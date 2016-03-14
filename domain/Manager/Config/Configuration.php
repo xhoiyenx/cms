@@ -14,13 +14,13 @@
  * Description:
  * Configuration page
  */
-namespace App\Http\Manager\Config;
+namespace Domain\Manager\Config;
 
 use Settings;
 use Illuminate\Http\Request;
-use App\Http\Manager\AbstractController;
+use Domain\Manager\BaseController;
 
-class Configuration extends AbstractController
+class Configuration extends BaseController
 {
   public function index( $type = 'general' )
   {

@@ -14,14 +14,13 @@
  * Description:
  * Product Category page
  */
-namespace App\Http\Manager\Product;
+namespace Domain\Manager\Product;
 
 use Illuminate\Http\Request;
-use App\Http\Manager\AbstractController;
+use Domain\Manager\BaseController;
+use Library\Models\ProductCategory;
 
-use App\Models\ProductCategory;
-
-class Categories extends AbstractController
+class Categories extends BaseController
 {
   public function index()
   {

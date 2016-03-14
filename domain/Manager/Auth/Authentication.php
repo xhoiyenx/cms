@@ -38,7 +38,7 @@ class Authentication extends BaseController
       ];
 
       if ( Auth::attempt( $login ) ) {
-        return redirect()->intended('/');
+        return redirect()->intended('manager/');
       }
       else {
         return back()->withErrors('Login Failed');

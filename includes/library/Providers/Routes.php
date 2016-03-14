@@ -17,5 +17,7 @@ class Routes extends ServiceProvider
     $router->group( $manager, function($router){
       require $this->app['path.domain'] . '/routes-admin.php';
     });
+
+    require $this->app['path.domain'] . '/routes-public.php';
   }
 }
