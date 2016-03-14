@@ -1,7 +1,7 @@
 <?php
-error_reporting(-1);
 define('BASE_PATH', __DIR__);
 define('START_TIME', microtime());
+define('FOOTPRINT', 'Developed By: <a href="mailto::hoiyen.2000@gmail.com">Hoiyen</a>');
 
 /*
 |--------------------------------------------------------------------------

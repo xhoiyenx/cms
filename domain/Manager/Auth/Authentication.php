@@ -15,13 +15,13 @@
  * Dashboard page
  */
 
-namespace App\Http\Manager\Auth;
+namespace Domain\Manager\Auth;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Http\Manager\AbstractController;
+use Domain\Manager\BaseController;
 
-class Authentication extends AbstractController
+class Authentication extends BaseController
 {
   public function __construct()
   {
