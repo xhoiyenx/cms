@@ -67,6 +67,7 @@ class DatabaseSchema
       $table->string('name', 100);
       $table->text('description')->nullable();
       $table->decimal('price', 10, 2);
+      $table->string('status', 10)->default('draft');
       $table->timestamps();
 
     });

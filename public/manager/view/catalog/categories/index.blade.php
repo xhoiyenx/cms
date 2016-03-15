@@ -19,7 +19,7 @@
 @section('content')
 <div class="row">
   <div class="col-md-4">
-  {{ Form::open( ['route' => 'manager.product.categories.save'] ) }}
+  {{ Form::open( ['route' => 'manager.catalog.categories.save'] ) }}
     <div class="panel panel-inverse">
       <div class="panel-heading">
         <h3 class="panel-title">Add New</h3>

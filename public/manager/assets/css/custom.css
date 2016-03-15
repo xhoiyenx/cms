@@ -326,3 +326,29 @@ body {
   color: #FFF;
 }
 
+/**
+ * Header menu
+ */
+.people-list .people-options {
+  padding: 10px 15px;
+}
+
+.people-list .people-options .btn-toolbar .btn {
+  font-size: 12px;
+}
+
+.people-list .people-options h3 {
+  margin: 0;
+  color: #FFF;
+  line-height: 38px;
+  font-weight: 500;
+}
+
+/**
+ * Form
+ */
+.panel-form h4 {
+  margin-top: 0;
+  font-weight: 400;
+}
+

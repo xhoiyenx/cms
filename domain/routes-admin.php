@@ -39,9 +39,17 @@ $router->group(['namespace' => 'Config'], function($router) {
 });
 
 #
-# Configuration pages
+# Catalog pages
 #
 $router->group(['namespace' => 'Catalog'], function($router) {
+
+  # Categories
   $router->get('catalog/category', 'Categories@index')->name('catalog.categories');
   $router->post('catalog/category', 'Categories@save')->name('catalog.categories.save');
+
+  # Products
+  $router->get('catalog/product', 'Product@index')->name('catalog.product');
+  $router->get('catalog/product/create', 'Product@create')->name('catalog.product.create');
+  $router->post('catalog/product/save', 'Product@save')->name('catalog.product.save');
+
 });

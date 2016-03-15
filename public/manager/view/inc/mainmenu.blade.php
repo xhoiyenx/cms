@@ -26,6 +26,9 @@
       <li>
         <a href="{{ route('manager.catalog.categories') }}">Categories</a>
       </li>
+      <li>
+        <a href="{{ route('manager.catalog.product') }}">Products</a>
+      </li>
     </ul>
   </li>
 </ul>
