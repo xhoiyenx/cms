@@ -14,7 +14,7 @@
  * Description:
  * Product Category page
  */
-namespace Domain\Manager\Product;
+namespace Domain\Manager\Catalog;
 
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;

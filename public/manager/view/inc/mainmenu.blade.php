@@ -24,7 +24,7 @@
     <a href="#"><i class="fa fa-shopping-basket"></i> <span>Catalog</span></a>
     <ul class="children">
       <li>
-        <a href="{{ route('manager.product.categories') }}">Categories</a>
+        <a href="{{ route('manager.catalog.categories') }}">Categories</a>
       </li>
     </ul>
   </li>

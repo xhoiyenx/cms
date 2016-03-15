@@ -14,10 +14,10 @@
  * Description:
  * Schema and generator for database tables
  */
-namespace App;
+namespace Library\Classes;
 
 use Illuminate\Database\Schema\Blueprint;
-use App\Models\Administrator;
+use Library\Models\Administrator;
 use Schema;
 use Hash;
 
@@ -67,7 +67,6 @@ class DatabaseSchema
       $table->string('name', 100);
       $table->text('description')->nullable();
       $table->decimal('price', 10, 2);
-      $table->text('image')->nullable();
       $table->timestamps();
 
     });
@@ -88,7 +87,17 @@ class DatabaseSchema
       $table->unsignedMediumInteger('product_id');
       $table->unsignedMediumInteger('product_category_id');
 
-    });    
+    });
+
+    Schema::dropIfExists('product_media');
+    Schema::create('product_media', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('product_id');
+      $table->text('path');
+      $table->string('type', 50);
+
+    });
   }
 
   public function install()

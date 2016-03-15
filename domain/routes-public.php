@@ -1,4 +1,4 @@
 <?php
 $router->get('/', function(){
-  return 'foo';
+  return 'public';
 });
