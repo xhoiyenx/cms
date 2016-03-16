@@ -23,7 +23,7 @@
       <h3><i class="fa fa-fw fa-gift"></i>Products</h3>
     </div>
     <div class="btn-toolbar pull-right">
-      <a class="btn btn-success btn-quirk" href="{{ route('manager.catalog.product.create') }}">Add New</a>
+      <a class="btn btn-success btn-quirk" href="{{ route('manager.catalog.product.update') }}">Add New</a>
     </div>
   </div>
 </div>

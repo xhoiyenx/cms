@@ -11659,7 +11659,7 @@ blockquote {
   content: '';
 }
 form .form-group:last-child {
-  margin-bottom: 0;
+  /*margin-bottom: 0;*/
 }
 /* Checkbox */
 .ckbox,

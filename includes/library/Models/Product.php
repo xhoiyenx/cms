@@ -20,5 +20,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-  
+  protected $table = 'product';
+
+  /**
+   * Format price value
+   * @param  decimal
+   * @return mixed
+   */
+  public function getPriceAttribute($value)
+  {
+    return (int) $value;
+  }
 }
