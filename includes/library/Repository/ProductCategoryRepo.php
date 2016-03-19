@@ -16,6 +16,8 @@
  */
 
 namespace Library\Repository;
+
+use Illuminate\Support\Collection;
 use Library\Models\ProductCategory;
 use Library\Models\ProductToCategory;
 
@@ -78,9 +80,10 @@ class ProductCategoryRepo
     if ( $level == 0 AND $tree == null)
       $tree = self::getTree();
 
-    $id     = isset( $tree['id'] ) ? $tree['id'] : 0;
-    $name   = isset( $tree['name'] ) ? $tree['name'] : 0;
-    $child  = isset( $tree['children'] ) ? $tree['children'] : null;
+    $id       = isset( $tree['id'] ) ? $tree['id'] : 0;
+    $name     = isset( $tree['name'] ) ? $tree['name'] : 0;
+    $child    = isset( $tree['children'] ) ? $tree['children'] : null;
+    $parent   = isset( $tree['parent_id'] ) ? $tree['parent_id'] : null;
 
     $pick   = '';
     if ( $selected != null ) {
@@ -89,7 +92,7 @@ class ProductCategoryRepo
     }
 
     if ( $level > 0 ) {
-      if ( ! empty($selected) AND $selected->id == $id ) {
+      if ( ! empty($selected) AND ($selected->id == $id OR $selected->id == $parent) ) {
 
       }
       else {
@@ -107,5 +110,39 @@ class ProductCategoryRepo
     }
 
     return $html;
-  }  
+  }
+
+  public static function getColl( $parent_id = 0, $tree = [], $name = '' )
+  {
+    $parent = '';
+    $categories = ProductCategory::where('parent_id', $parent_id)->get();
+
+    if ( ! $categories->isEmpty() )
+    {
+      foreach ( $categories as $category ) {
+        if ( $name != '' ) {
+          $parent = $name;
+          $name   = $name . ' > ' . $category->name;
+        }
+        else {
+          $name = $category->name;
+        }
+        
+        $data   = [
+          'id'        => $category->id,
+          'parent_id' => $category->parent_id,
+          'name'      => $name
+        ];
+
+        $tree[] = $data;
+
+        if ( $child = static::getColl($category->id, $tree, $name) ) {
+          $tree += $child;
+        }
+        $name = $parent;
+      }
+
+      return $tree;
+    }
+  }
 }

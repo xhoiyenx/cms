@@ -19,13 +19,17 @@ namespace Domain\Manager\Catalog;
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
 use Library\Models\ProductCategory;
+use Library\Repository\ProductCategoryRepo;
 
 class Categories extends BaseController
 {
   public function index( $category_id = null )
   {
+    $coll = ProductCategoryRepo::getColl();
     $data = ProductCategory::get();
     $edit = null;
+
+    dump($coll);
 
     if ( $category_id ) {
       $edit = ProductCategory::find($category_id);
