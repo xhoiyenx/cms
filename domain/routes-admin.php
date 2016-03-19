@@ -52,9 +52,9 @@ $router->group(['namespace' => 'Catalog'], function($router) {
   $router->get('catalog/product/update/{id?}', 'Product@update')->name('catalog.product.update');
   $router->post('catalog/product/save', 'Product@save')->name('catalog.product.save');
 
+  # Products media
+  $router->post('catalog/product/media', 'ProductMedia@index')->name('catalog.product.media');
+  $router->post('catalog/product/media-list', 'ProductMedia@mediaList')->name('catalog.product.media-list');
+
 });
 
-#
-# Media handler
-#
-$router->post('media/product/upload', 'MediaUpload@product')->name('media.product.upload');

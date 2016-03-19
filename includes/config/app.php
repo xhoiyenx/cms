@@ -137,7 +137,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
 
-        Library\Providers\Routes::class,
+        Library\Providers\RouteServiceProvider::class,
+        Library\Providers\MediaServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
 

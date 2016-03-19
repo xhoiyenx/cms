@@ -95,8 +95,11 @@ class DatabaseSchema
 
       $table->increments('id');
       $table->unsignedMediumInteger('product_id');
-      $table->text('path');
-      $table->string('type', 50);
+      $table->string('name', 200)->nullable();
+      $table->text('link');
+      $table->string('mime', 80);
+      $table->unsignedTinyInteger('sort_order')->default(0);
+      $table->timestamps();
 
     });
   }

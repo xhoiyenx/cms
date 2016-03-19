@@ -12,18 +12,18 @@
  * Model
  * 
  * Description:
- * Product Category model
+ * Product Media model
  */
 
 namespace Library\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategory extends Model
+class ProductMedia extends Model
 {
-  protected $table = 'product_category';
+  protected $table = 'product_media';
 
-  public function sub()
+  public function product()
   {
-    return $this->hasMany('Library\Models\ProductCategory', 'parent', 'id')->orderBy('sort_order');
-  }  
+    return $this->belongsTo('Library\Models\Product');
+  }
 }

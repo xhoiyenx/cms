@@ -16,7 +16,7 @@ namespace Library\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-class Routes extends ServiceProvider
+class RouteServiceProvider extends ServiceProvider
 {
   public function map(Router $router)
   {

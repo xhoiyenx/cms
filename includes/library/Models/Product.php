@@ -31,4 +31,13 @@ class Product extends Model
   {
     return (int) $value;
   }
+
+  /**
+   * Have relations to product media
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function media()
+  {
+    return $this->hasMany('Library\Models\ProductMedia');
+  }
 }
