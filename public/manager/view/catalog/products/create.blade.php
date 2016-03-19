@@ -34,7 +34,49 @@
 
 <div class="row">
   <div class="col-md-3">
-    
+    <!-- CATEGORIES -->
+    <div class="panel panel-primary">
+      <ul class="panel-options">
+        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
+      </ul>
+      <div class="panel-heading">
+        <h4 class="panel-title">Categories</h4>
+      </div>
+      <div class="panel-body">
+        
+        <ul class="checkbox-tree">
+          <li>
+            <label class="ckbox ckbox-primary">
+              <input checked="" type="checkbox"><span>Checkbox Primary</span>
+            </label>
+          </li>
+          <li>
+            <label class="ckbox ckbox-primary">
+              <input checked="" type="checkbox"><span>Checkbox Primary</span>
+            </label>
+          </li>
+          <li>
+            <label class="ckbox ckbox-primary">
+              <input checked="" type="checkbox"><span>Checkbox Primary</span>
+            </label>
+            <ul>
+              <li>
+                <label class="ckbox ckbox-primary">
+                  <input checked="" type="checkbox"><span>Checkbox Primary</span>
+                </label>
+              </li>
+              <li>
+                <label class="ckbox ckbox-primary">
+                  <input checked="" type="checkbox"><span>Checkbox Primary</span>
+                </label>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
   </div>
   <div class="col-md-9">
 

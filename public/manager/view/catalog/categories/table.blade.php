@@ -1,8 +1,10 @@
 <div class="panel">
 <table class="table table-bordered table-primary table-striped">
   <thead>
-    <th width="80%">name</th>
-    <th width="20%" class="text-center">action</th>
+    <tr>
+      <th width="80%">name</th>
+      <th width="20%" class="text-center">action</th>
+    </tr>
   </thead>
   <tbody>
     @forelse ( $list as $data )

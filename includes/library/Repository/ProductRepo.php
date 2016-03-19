@@ -72,4 +72,16 @@ class ProductRepo
     $product = Product::find($id);
     return $product;
   }
+
+  /**
+   * Get all data
+   * @return Collection
+   */
+  static function getData()
+  {
+    $product = Product::query();
+    $product->where('status', 'published');
+
+    return $product->get();
+  }
 }

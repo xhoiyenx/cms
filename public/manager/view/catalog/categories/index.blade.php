@@ -30,6 +30,12 @@
           <label>Name:</label>
           {{ Form::text('name', null, ['class' => 'form-control']) }}
         </div>
+        <div class="form-group">
+          <label>Parent:</label>
+          <select name="parent_id" class="form-control" style="width: 100%">
+            {!! Library\Repository\ProductCategoryRepo::selectTree() !!}
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
     </div>

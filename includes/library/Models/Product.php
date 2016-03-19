@@ -40,4 +40,14 @@ class Product extends Model
   {
     return $this->hasMany('Library\Models\ProductMedia');
   }
+
+  public function getPrice()
+  {
+    return number_format( $this->price, 0, '.', '.' );
+  }
+
+  public function delete()
+  {
+    
+  }
 }

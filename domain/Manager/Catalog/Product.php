@@ -23,10 +23,10 @@ use Library\Repository\ProductRepo;
 
 class Product extends BaseController
 {
-  public function index()
+  public function index(Request $request)
   {
     $view = [
-
+      'list' => ProductRepo::getData()
     ];
 
     return view()->make('catalog.products.index', $view);
@@ -52,9 +52,14 @@ class Product extends BaseController
     return view()->make('catalog.products.create', $view);
   }
 
-  public function cancel()
+  public function delete( $product_id = null )
   {
+    $product  = ProductRepo::getProduct( $product_id );
+    if ( $product ) {
+      $product->delete();
+    }
 
+    return back()->with('message', 'Product Deleted');
   }
 
   public function save(Request $request)

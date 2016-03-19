@@ -362,3 +362,13 @@ body {
   padding-top: 0;
 }
 
+.checkbox-tree, .checkbox-tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkbox-tree ul {
+  margin-left: 20px;
+}
+
