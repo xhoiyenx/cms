@@ -25,8 +25,9 @@ class Product extends BaseController
 {
   public function index(Request $request)
   {
+    $data = ProductRepo::getData();
     $view = [
-      'list' => ProductRepo::getData()
+      'list' => $data
     ];
 
     return view()->make('catalog.products.index', $view);

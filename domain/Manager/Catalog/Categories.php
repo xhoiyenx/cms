@@ -22,12 +22,18 @@ use Library\Models\ProductCategory;
 
 class Categories extends BaseController
 {
-  public function index()
+  public function index( $category_id = null )
   {
     $data = ProductCategory::get();
+    $edit = null;
+
+    if ( $category_id ) {
+      $edit = ProductCategory::find($category_id);
+    }
 
     $view = [
-      'list' => $data
+      'list' => $data,
+      'edit' => $edit
     ];
 
     return view()->make('catalog.categories.index', $view);
@@ -40,11 +46,20 @@ class Categories extends BaseController
       'name' => 'required',
     ]);
 
-    $data = new ProductCategory;
+    if ( $request->has('id') ) {
+      # update
+      $data = ProductCategory::find($request->get('id'));
+    }
+    else {
+      # insert
+      $data = new ProductCategory;
+    }
+
+    $data->parent_id = $request->get('parent_id');
     $data->name = $request->get('name');
     $data->save();
 
-    return back()->withMessage('Category saved');
+    return redirect()->route('manager.catalog.categories')->withMessage('Category saved');
 
   }
 }

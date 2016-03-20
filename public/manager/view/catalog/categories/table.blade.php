@@ -12,7 +12,7 @@
       <td>{{ $data->name }}</td>
       <td class="text-center">
         <ul class="table-options">
-          <li><a href="#" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
+          <li><a href="{{ route('manager.catalog.categories', ['id' => $data->id]) }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
           <li><a href="#" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
         </ul>
       </td>

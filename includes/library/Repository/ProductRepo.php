@@ -77,11 +77,14 @@ class ProductRepo
    * Get all data
    * @return Collection
    */
-  static function getData()
+  static function getData( $perPage = 20 )
   {
     $product = Product::query();
     $product->where('status', 'published');
 
-    return $product->get();
+    $data = $product->paginate($perPage);
+    $data->setPath('');
+
+    return $data;
   }
 }

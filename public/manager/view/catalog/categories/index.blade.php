@@ -19,10 +19,19 @@
 @section('content')
 <div class="row">
   <div class="col-md-4">
+  @if ( $edit )
+  {{ Form::model($edit, ['route' => 'manager.catalog.categories.save'] ) }}
+  {{ Form::hidden('id', $edit->id) }}
+  @else
   {{ Form::open( ['route' => 'manager.catalog.categories.save'] ) }}
+  @endif
     <div class="panel panel-inverse">
       <div class="panel-heading">
+        @if ( $edit )
+        <h3 class="panel-title">Edit '{{ $edit->name }}'</h3>
+        @else
         <h3 class="panel-title">Add New</h3>
+        @endif
       </div>
       <div class="panel-body">
         @include('inc.messages', ['type' => 'SaveCategory'])
@@ -33,7 +42,7 @@
         <div class="form-group">
           <label>Parent:</label>
           <select name="parent_id" class="form-control" style="width: 100%">
-            {!! Library\Repository\ProductCategoryRepo::selectTree() !!}
+            {!! Library\Repository\ProductCategoryRepo::selectTree( $edit ) !!}
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>

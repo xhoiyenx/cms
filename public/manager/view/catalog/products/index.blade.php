@@ -54,4 +54,5 @@
   </tbody>
 </table>
 </div>
+{!! $list->links() !!}
 @endsection

@@ -41,6 +41,11 @@ class Product extends Model
     return $this->hasMany('Library\Models\ProductMedia');
   }
 
+  public function categories()
+  {
+    return $this->belongsToMany('Library\Models\ProductCategory', 'product_to_category', 'product_id', 'product_category_id');
+  }
+
   public function getPrice()
   {
     return number_format( $this->price, 0, '.', '.' );

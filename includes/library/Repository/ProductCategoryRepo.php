@@ -73,7 +73,7 @@ class ProductCategoryRepo
     return $tree;
   }
 
-  public static function selectTree( $selected = 0, $tree = null, $html = '', $level = 0 )
+  public static function selectTree( $selected = null, $tree = null, $html = '', $level = 0 )
   {
     if ( $level == 0 AND $tree == null)
       $tree = self::getTree();
@@ -82,10 +82,23 @@ class ProductCategoryRepo
     $name   = isset( $tree['name'] ) ? $tree['name'] : 0;
     $child  = isset( $tree['children'] ) ? $tree['children'] : null;
 
-    if ( $level > 0 )
-      $html .= '<option value="'. $id .'">'. str_repeat('&nbsp;&nbsp;&nbsp;', $level) . $name .'</option>';
-    else
-      $html .= '<option value="'. $id .'">'. $name .'</option>';
+    $pick   = '';
+    if ( $selected != null ) {
+      if ( $selected->parent_id == $id )
+        $pick = ' selected';
+    }
+
+    if ( $level > 0 ) {
+      if ( ! empty($selected) AND $selected->id == $id ) {
+
+      }
+      else {
+        $html .= '<option value="'. $id .'"'.$pick.'>'. str_repeat('&nbsp;&nbsp;&nbsp;', $level) . $name .'</option>';
+      }
+    }
+    else {
+      $html .= '<option value="'. $id .'"'.$pick.'>'. $name .'</option>';
+    }
     if ( $child != null ) {
       $level++;
       foreach ( $child as $children ) {

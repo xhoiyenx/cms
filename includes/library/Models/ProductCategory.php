@@ -25,5 +25,10 @@ class ProductCategory extends Model
   public function sub()
   {
     return $this->hasMany('Library\Models\ProductCategory', 'parent', 'id')->orderBy('sort_order');
+  }
+
+  public function products()
+  {
+    return $this->belongsToMany('Library\Models\Product', 'product_to_category', 'product_id', 'product_category_id');
   }  
 }
