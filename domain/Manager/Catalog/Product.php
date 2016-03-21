@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
 
 use Library\Repository\ProductRepo;
+use Library\Repository\ProductCategoryRepo;
 
 class Product extends BaseController
 {
@@ -47,7 +48,8 @@ class Product extends BaseController
     }
 
     $view = [
-      'form' => $product
+      'form' => $product,
+      'tree' => ProductCategoryRepo::checkboxTree($product->categoriesArray())
     ];
 
     return view()->make('catalog.products.create', $view);

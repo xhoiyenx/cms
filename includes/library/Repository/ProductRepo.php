@@ -62,6 +62,10 @@ class ProductRepo
       $product->price   = $price;
       $product->status  = 'published';
       $product->save();
+
+      if ( isset($category) ) {
+        $product->categories()->sync($category);
+      }
     }
 
     return $product;

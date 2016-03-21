@@ -46,6 +46,11 @@ class Product extends Model
     return $this->belongsToMany('Library\Models\ProductCategory', 'product_to_category', 'product_id', 'product_category_id');
   }
 
+  public function categoriesArray()
+  {
+    return $this->categories->lists('id')->toArray();
+  }
+
   public function getPrice()
   {
     return number_format( $this->price, 0, '.', '.' );
@@ -53,6 +58,8 @@ class Product extends Model
 
   public function delete()
   {
-    
+    $this->media()->delete();
+    $this->categories()->delete();
+    parent::delete();
   }
 }

@@ -43,37 +43,9 @@
         <h4 class="panel-title">Categories</h4>
       </div>
       <div class="panel-body">
-        
-        <ul class="checkbox-tree">
-          <li>
-            <label class="ckbox ckbox-primary">
-              <input checked="" type="checkbox"><span>Checkbox Primary</span>
-            </label>
-          </li>
-          <li>
-            <label class="ckbox ckbox-primary">
-              <input checked="" type="checkbox"><span>Checkbox Primary</span>
-            </label>
-          </li>
-          <li>
-            <label class="ckbox ckbox-primary">
-              <input checked="" type="checkbox"><span>Checkbox Primary</span>
-            </label>
-            <ul>
-              <li>
-                <label class="ckbox ckbox-primary">
-                  <input checked="" type="checkbox"><span>Checkbox Primary</span>
-                </label>
-              </li>
-              <li>
-                <label class="ckbox ckbox-primary">
-                  <input checked="" type="checkbox"><span>Checkbox Primary</span>
-                </label>
-              </li>
-            </ul>
-          </li>
-        </ul>
 
+        {!! $tree !!}
+        
       </div>
     </div>
 

@@ -25,18 +25,15 @@ class Categories extends BaseController
 {
   public function index( $category_id = null )
   {
-    $coll = ProductCategoryRepo::getColl();
-    $data = ProductCategory::get();
+    $coll = collect(ProductCategoryRepo::getColl());
     $edit = null;
-
-    dump($coll);
 
     if ( $category_id ) {
       $edit = ProductCategory::find($category_id);
     }
 
     $view = [
-      'list' => $data,
+      'list' => $coll,
       'edit' => $edit
     ];
 

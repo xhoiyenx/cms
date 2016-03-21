@@ -23,12 +23,6 @@ use Library\Models\ProductToCategory;
 
 class ProductCategoryRepo
 {
-  static function getByProduct( $product_id )
-  {
-    $media = ProductMedia::where('product_id', $product_id)->orderBy('sort_order', 'asc')->get();
-    return $media;
-  }
-
   public static function getBreadcrumb( $category_id, $breadcrumb = [] )
   {
     $category = ProductCategory::find( $category_id );
@@ -107,6 +101,50 @@ class ProductCategoryRepo
       foreach ( $child as $children ) {
         $html = self::selectTree( $selected, $children, $html, $level );
       }
+    }
+
+    return $html;
+  }
+
+  public static function checkboxTree( $selected = [], $tree = null, $html = '', $level = 0 )
+  {
+    if ( $level == 0 AND $tree == null) {
+      $tree = static::getTree();
+      $tree = $tree['children'];
+    }
+
+    if ( ! empty($tree) )
+    {
+      if ( $html == '' ) {
+        $html .= '<ul class="checkbox-tree">' . PHP_EOL;
+      }
+      else {
+        $html .= '<ul>' . PHP_EOL;
+      }
+
+      $level++;
+      foreach ( $tree as $child ) {
+        $checked = '';
+        if ( in_array($child['id'], $selected) )
+          $checked = ' checked="checked"';
+
+        $html .= '<li>' . PHP_EOL;
+        $html .= '  <label class="ckbox ckbox-primary">' . PHP_EOL;
+        $html .= '    <input' .$checked. ' type="checkbox" name="category[]" value="' .$child['id']. '"><span>'. $child['name'] .'</span>' . PHP_EOL;
+        $html .= '  </label>' . PHP_EOL;
+
+        if ( count($child['children']) > 0 ) {
+          $html = static::checkboxTree($selected, $child['children'], $html, $level);
+        }
+        $html .= '</li>' . PHP_EOL;
+      }
+    }
+    else {
+      $html .= '</ul>' . PHP_EOL;
+    }
+
+    if ( $html != '' ) {
+      $html .= '</ul>' . PHP_EOL;
     }
 
     return $html;
