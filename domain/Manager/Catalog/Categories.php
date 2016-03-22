@@ -25,6 +25,8 @@ class Categories extends BaseController
 {
   public function index( $category_id = null )
   {
+    $this->setPage('Categories');
+
     $coll = collect(ProductCategoryRepo::getColl());
     $edit = null;
 

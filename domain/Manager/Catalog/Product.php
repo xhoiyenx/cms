@@ -26,6 +26,8 @@ class Product extends BaseController
 {
   public function index(Request $request)
   {
+    $this->setPage('Products');
+    
     $data = ProductRepo::getData();
     $view = [
       'list' => $data

@@ -23,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title></title>
+  <title>{{ $page or '' }}</title>
 
   <!-- FONTS -->
   {{ Html::style('public/manager/assets/css/font-awesome.css') }}
@@ -41,7 +41,6 @@
 </head>
 
 <body>
-
   <header>
     <div class="headerpanel">
 

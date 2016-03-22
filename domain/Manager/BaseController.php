@@ -19,6 +19,8 @@ use Illuminate\Routing\Controller;
 abstract class BaseController extends Controller
 {
   use ValidatesRequests;
+
+  protected $page;
   
   public function __construct()
   {
@@ -44,10 +46,12 @@ abstract class BaseController extends Controller
         'login'
       ]
     ]);
+
   }
 
-  protected function variables()
+  public function setPage( $text )
   {
-
+    $this->page = $text;
+    view()->share('page', $this->page);
   }
 }
