@@ -18,6 +18,7 @@ class Dashboard extends BaseController
 {
   public function index()
   {
+  	$this->setPage('Dashboard');
     return view('dashboard');
   }
 }

@@ -24,4 +24,5 @@
     @endforelse
   </tbody>
 </table>
+{!! $list->links() !!}
 </div>

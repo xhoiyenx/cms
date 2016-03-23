@@ -16,11 +16,13 @@
  */
 ?>
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li><a href="{{ route('manager.dashboard') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+  <li{!! is_active('manager.dashboard', ' class="active"') !!}>
+    <a href="{{ route('manager.dashboard') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+  </li>
 </ul>
 
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li class="nav-parent">
+  <li class="{!! is_active(['manager.catalog.categories', 'manager.catalog.product'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-shopping-basket"></i> <span>Catalog</span></a>
     <ul class="children">
       <li>

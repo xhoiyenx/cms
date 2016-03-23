@@ -17,6 +17,8 @@
 namespace Domain\Manager\Catalog;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Domain\Manager\BaseController;
 use Library\Models\ProductCategory;
 use Library\Repository\ProductCategoryRepo;
@@ -27,15 +29,22 @@ class Categories extends BaseController
   {
     $this->setPage('Categories');
 
-    $coll = collect(ProductCategoryRepo::getColl());
+    $data = null;
     $edit = null;
+    $coll = collect(ProductCategoryRepo::getColl());
+    if ( ! $coll->isEmpty() ) {
+      $data = new LengthAwarePaginator($coll, $coll->count(), 20, null, [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => 'page'
+              ]);
+    }
 
     if ( $category_id ) {
       $edit = ProductCategory::find($category_id);
     }
 
     $view = [
-      'list' => $coll,
+      'list' => $data,
       'edit' => $edit
     ];
 
