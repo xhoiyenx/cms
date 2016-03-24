@@ -3,7 +3,7 @@
  * HONAKO APPLICATION
  * By: Hoiyen
  * Ver: 0.0.1
- * Last Update: 09/03/2016
+ * Last Update: 23/03/2016
  *
  * Domain: 
  * Manager
@@ -17,6 +17,16 @@
 ?>
 @extends('inc.master')
 @section('content')
+<div class="people-list">
+  <div class="people-options clearfix">
+    <div class="pull-left">
+      <h3><i class="fa fa-fw fa-tags"></i>Categories</h3>
+    </div>
+    <div class="btn-toolbar pull-right">
+      <a class="btn btn-success btn-quirk btn-form" href="{{ route('manager.catalog.categories.update') }}">Add New</a>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-4">
   @if ( $edit )

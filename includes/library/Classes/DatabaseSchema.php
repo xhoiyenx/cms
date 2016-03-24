@@ -60,6 +60,7 @@ class DatabaseSchema
 
   public function products()
   {
+    # products
     Schema::dropIfExists('product');
     Schema::create('product', function(Blueprint $table) {
 
@@ -72,6 +73,7 @@ class DatabaseSchema
 
     });
 
+    # products category
     Schema::dropIfExists('product_category');
     Schema::create('product_category', function(Blueprint $table) {
 
@@ -82,6 +84,7 @@ class DatabaseSchema
 
     });
 
+    # connection between products and categories
     Schema::dropIfExists('product_to_category');
     Schema::create('product_to_category', function(Blueprint $table) {
 
@@ -90,6 +93,7 @@ class DatabaseSchema
 
     });
 
+    # product media
     Schema::dropIfExists('product_media');
     Schema::create('product_media', function(Blueprint $table) {
 
@@ -104,6 +108,23 @@ class DatabaseSchema
     });
   }
 
+  # upgrade
+  # DATABASE VERSION 0.0.2
+  private function upgrade_002()
+  {
+    # add product meta
+    Schema::dropIfExists('product_meta');
+    Schema::create('product_media', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('product_id');
+      $table->string('name', 50)->nullable();
+      $table->text('meta')->nullable();
+
+    });
+
+  }
+
   public function install()
   {
     $this->administrators();
@@ -113,6 +134,5 @@ class DatabaseSchema
 
   public function upgrade()
   {
-    $this->products();
   }
 }

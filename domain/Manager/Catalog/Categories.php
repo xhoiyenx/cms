@@ -51,6 +51,16 @@ class Categories extends BaseController
     return view()->make('catalog.categories.index', $view);
   }
 
+  public function update( $category_id = null )
+  {
+    $edit = null;
+    $view = [
+      'edit' => $edit
+    ];
+
+    return view('catalog.categories.ajax-form', $view);
+  }
+
   public function save(Request $request)
   {
 

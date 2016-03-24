@@ -128,6 +128,7 @@
 
   @section('before_footer')@show
   {{ Html::script('public/manager/assets/js/script.js') }}
+  {{ Html::script('public/manager/assets/js/app.js') }}
   @section('after_footer')@show
 </body>
 </html>

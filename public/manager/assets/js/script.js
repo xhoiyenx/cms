@@ -1,9 +1,6 @@
 $(document).ready(function() {
-
   'use strict';
-
   /***** SHOW / HIDE LEFT MENU *****/
-
   $('#menuToggle').click(function() {
 
     var collapsedMargin = $('.mainpanel').css('margin-left');
@@ -16,7 +13,6 @@ $(document).ready(function() {
     }
 
   });
-
 
   function toggleMenu(marginLeft, marginMain) {
 
