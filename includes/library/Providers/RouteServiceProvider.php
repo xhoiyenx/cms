@@ -60,8 +60,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var array
      */
     $public = [
-      'namespace'   => 'Domain\Public',
-      'as'          => 'public.'
+      'namespace'   => 'Domain\Site',
+      'as'          => ''
     ];
 
     /**

@@ -1,4 +1,18 @@
 <?php
-$router->get('/', function(){
-  return 'public';
-});
+/**
+ * HONAKO APPLICATION
+ * By: Hoiyen
+ * Ver: 0.0.1
+ * Last Update: 28/02/2016
+ *
+ * Domain: 
+ * Public
+ * 
+ * Type: 
+ * Router
+ * 
+ * Description:
+ * All public routes assigned here
+ */
+
+$router->get('/', 'Dashboard@homepage')->name('homepage');
