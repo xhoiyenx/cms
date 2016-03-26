@@ -111,12 +111,12 @@ class DatabaseSchema
     Schema::dropIfExists('product_term');
     Schema::create('product_term', function(Blueprint $table) {
 
-      $table->increments('id');
-      $table->unsignedMediumInteger('parent')->default(0);
+      $table->smallIncrements('id');
+      $table->unsignedSmallInteger('parent')->default(0);
       $table->string('name', 100);
       $table->string('slug', 100);
       $table->string('type', 50);
-      $table->smallInteger('sort')->default(0);
+      $table->tinyInteger('sort')->default(0);
       $table->timestamps();
       $table->softDeletes();
 
@@ -142,8 +142,6 @@ class DatabaseSchema
   }
 
   # upgrade
-<<<<<<< HEAD
-  # DATABASE VERSION 0.0.2
   private function upgrade_003()
   {
     # add product meta
@@ -155,30 +153,13 @@ class DatabaseSchema
       $table->string('name', 100);
       $table->string('slug', 100);
       $table->string('type', 50);
-      $table->smallInteger('sort')->default(0);
+      $table->tinyInteger('sort')->default(0);
       $table->timestamps();
       $table->softDeletes();
 
     });
 
   }  
-=======
-  # DATABASE VERSION 0.0.3
-  private function upgrade_003()
-  {
-    # add product variations
-    Schema::dropIfExists('product_variant');
-    Schema::create('product_variant', function(Blueprint $table) {
-
-      $table->increments('id');
-      $table->unsignedMediumInteger('product_id');
-      $table->string('name', 50)->nullable();
-      $table->text('meta')->nullable();
-
-    });
-
-  }
->>>>>>> origin/master
 
   public function install()
   {
