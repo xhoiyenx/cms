@@ -44,9 +44,8 @@ $router->group(['namespace' => 'Config'], function($router) {
 $router->group(['namespace' => 'Catalog'], function($router) {
 
   # Categories
-  $router->get('catalog/category/{id?}', 'Categories@index')->name('catalog.categories');
+  $router->get('catalog/category', 'Categories@index')->name('catalog.categories');
   $router->post('catalog/category', 'Categories@update')->name('catalog.categories.update');  
-  $router->post('catalog/category/save', 'Categories@save')->name('catalog.categories.save');
 
   # Products
   $router->get('catalog/product', 'Product@index')->name('catalog.product');
@@ -55,7 +54,7 @@ $router->group(['namespace' => 'Catalog'], function($router) {
   $router->post('catalog/product/save', 'Product@save')->name('catalog.product.save');
 
   # Products media
-  $router->post('catalog/product/media', 'ProductMedia@index')->name('catalog.product.media');
+  $router->post('catalog/product/media', 'ProductMedia@update')->name('catalog.product.media');
   $router->post('catalog/product/media-list', 'ProductMedia@mediaList')->name('catalog.product.media-list');
 
 });

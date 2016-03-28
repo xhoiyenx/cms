@@ -16,6 +16,7 @@
  */
 namespace Domain\Manager\Catalog;
 
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -25,63 +26,97 @@ use Library\Repository\ProductCategoryRepo;
 
 class Categories extends BaseController
 {
-  public function index( $category_id = null )
+  public function index(Request $request)
   {
+    # delete request
+    if ( $request->delete ) {
+      $delete = ProductCategory::find($request->delete);
+      if ( $delete ) {
+        $delete->delete();
+      }
+      return back()->withMessage($delete->name . ' Deleted');
+    }
+
     $this->setPage('Categories');
 
     $data = null;
-    $edit = null;
+
+    # create pagination from Collection
     $coll = collect(ProductCategoryRepo::getColl());
+    $page = $request->page ?: 1;
+
     if ( ! $coll->isEmpty() ) {
-      $data = new LengthAwarePaginator($coll, $coll->count(), 20, null, [
+      $data = new LengthAwarePaginator($coll->forPage($page, 20), $coll->count(), 20, null, [
                 'path' => Paginator::resolveCurrentPath(),
                 'pageName' => 'page'
               ]);
     }
 
-    if ( $category_id ) {
-      $edit = ProductCategory::find($category_id);
-    }
-
     $view = [
       'list' => $data,
-      'edit' => $edit
     ];
 
     return view()->make('catalog.categories.index', $view);
   }
 
-  public function update( $category_id = null )
+  /**
+   * Update, only receive ajax request
+   * @param  Request $request
+   * @return 
+   */
+  public function update( Request $request )
   {
-    $edit = null;
-    $view = [
-      'edit' => $edit
-    ];
+    $edit     = null;
 
-    return view('catalog.categories.ajax-form', $view);
-  }
+    # only receive ajax request
+    if ( $request->ajax() )
+    {
+      if ( $request->has('id') ) {
+        # update
+        $edit = ProductCategory::find($request->id);
+      }
 
-  public function save(Request $request)
-  {
+      $view = [
+        'edit' => $edit
+      ];
 
-    $this->validateWithBag('SaveCategory', $request, [
-      'name' => 'required',
-    ]);
+      # user click save
+      if ( ! is_null($request->name) ) {
+        #validate
+        $validator = Validator::make($request->all(), [
+          'name' => 'required',
+        ]);
 
-    if ( $request->has('id') ) {
-      # update
-      $data = ProductCategory::find($request->get('id'));
+        # validate fail
+        if ( $validator->fails() ) {
+          return view('catalog.categories.ajax-update', $view)->withErrors($validator);
+        }
+        # validation success
+        else {
+
+          if ( $request->has('id') ) {
+            # update
+            $data = ProductCategory::find($request->id);
+          }
+          else {
+            # insert
+            $data = new ProductCategory;
+          }
+
+          $data->parent_id  = $request->parent_id;
+          $data->name       = $request->name;
+          $data->save();
+
+          return 1;
+        }
+      }
+
+      return view('catalog.categories.ajax-update', $view);
     }
-    else {
-      # insert
-      $data = new ProductCategory;
+    else
+    {
+      # maybe show 404
+      return abort(404);
     }
-
-    $data->parent_id = $request->get('parent_id');
-    $data->name = $request->get('name');
-    $data->save();
-
-    return redirect()->route('manager.catalog.categories')->withMessage('Category saved');
-
   }
 }

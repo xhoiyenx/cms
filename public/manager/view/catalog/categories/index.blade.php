@@ -27,41 +27,60 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-4">
-  @if ( $edit )
-  {{ Form::model($edit, ['route' => 'manager.catalog.categories.save'] ) }}
-  {{ Form::hidden('id', $edit->id) }}
-  @else
-  {{ Form::open( ['route' => 'manager.catalog.categories.save'] ) }}
-  @endif
-    <div class="panel panel-inverse">
-      <div class="panel-heading">
-        @if ( $edit )
-        <h3 class="panel-title">Edit '{{ $edit->name }}'</h3>
-        @else
-        <h3 class="panel-title">Add New</h3>
-        @endif
-      </div>
-      <div class="panel-body">
-        @include('inc.messages', ['type' => 'SaveCategory'])
-        <div class="form-group">
-          <label>Name:</label>
-          {{ Form::text('name', null, ['class' => 'form-control']) }}
-        </div>
-        <div class="form-group">
-          <label>Parent:</label>
-          <select name="parent_id" class="form-control" style="width: 100%">
-            {!! Library\Repository\ProductCategoryRepo::selectTree( $edit ) !!}
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-    </div>
-  {{ Form::close() }}
-  </div>
-  <div class="col-md-8">
-    @include('catalog.categories.table')
-  </div>
+@include('inc.messages')
+<div class="panel">
+<table class="table table-bordered table-hover table-primary">
+  <thead>
+    <tr>
+      <th width="80%">name</th>
+      <th width="20%" class="text-center">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @forelse ( $list as $data )
+    <tr>
+      <td>{{ $data['name'] }}</td>
+      <td class="text-center">
+        <ul class="table-options">
+          <li><a class="btn-form" data-id="{{ $data['id'] }}" href="{{ route('manager.catalog.categories.update') }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
+          <li><a href="{{ route('manager.catalog.categories') }}?delete={{ $data['id'] }}" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
+        </ul>
+      </td>
+    </tr>
+    @empty
+    <tr>
+      <td colspan="2">No Data Found</td>
+    </tr>
+    @endforelse
+  </tbody>
+</table>
 </div>
+{!! $list->links() !!}
+@endsection
+
+@section('after_footer')
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.modal-content').on('submit', 'form', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: $(this).attr('action'), 
+      type: 'POST',             
+      data: new FormData($(this)[0]),
+      contentType: false,       
+      cache: false,             
+      processData:false,        
+      success: function(data) {
+        if ( data == 1 ) {
+          $('.modal').modal('hide');
+          window.location.href = '{{ request()->url() }}';
+        }
+        else {
+          $('.modal-content').html(data);
+        }
+      }
+    });
+  });  
+});
+</script>
 @endsection

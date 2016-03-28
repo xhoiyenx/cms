@@ -1,4 +1,9 @@
+@if ( $edit )
+{{ Form::model($edit, ['files' => true] ) }}
+{{ Form::hidden('id', $edit->id) }}
+@else
 {{ Form::open( ['files' => true] ) }}
+@endif
 {{ Form::hidden('save', 1) }}
 {{ Form::hidden('action', request()->get('action')) }}
 {{ Form::hidden('product_id', request()->get('id')) }}
@@ -8,15 +13,8 @@
 </div>
 <div class="modal-body">
   
-  @if ( $errors->count() > 0 )
-  <div class="alert alert-danger">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    @foreach( $errors->all() as $message )
-    <p>{{$message}}</p>
-    @endforeach
-  </div>
-  @endif
-
+  @include('inc.ajax-messages')
+  
   <div class="form-group">
     {{ Form::label('name', 'Name', ['class' => 'form-label']) }}
     {{ Form::text('name', null, ['class' => 'form-control']) }}

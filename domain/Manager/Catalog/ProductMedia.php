@@ -23,8 +23,9 @@ use Library\Repository\ProductMediaRepo;
 
 class ProductMedia extends BaseController
 {
-  public function index( Request $request )
+  public function update( Request $request )
   {
+    $edit   = null;
     $errors = array();
 
     if ( $request->ajax() )
@@ -72,8 +73,12 @@ class ProductMedia extends BaseController
 
     } # request is ajax
 
-    $view = [
+    if ( $request->action == 'update' ) {
+      $edit = ProductMediaModel::find( $request->id );
+    }
 
+    $view = [
+      'edit' => $edit
     ];
 
     return view()->make('catalog.media.product', $view)->withErrors( $errors );

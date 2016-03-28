@@ -24,8 +24,8 @@
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu pull-right fm-menu" role="menu">
-          <li><a href="" data-id="{{ $file->id }}" data-action="update" class="show-form"><i class="fa fa-pencil"></i> Edit</a></li>
-          <li><a href="" data-id="{{ $file->id }}" data-action="delete" class="show-form"><i class="fa fa-trash-o"></i> Delete</a></li>
+          <li><a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $file->id }}" data-action="update" class="btn-form"><i class="fa fa-pencil"></i> Edit</a></li>
+          <li><a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $file->id }}" data-action="delete" class="btn-form"><i class="fa fa-trash-o"></i> Delete</a></li>
         </ul>
       </div><!-- btn-group -->
       <div class="thmb-prev">
@@ -35,3 +35,17 @@
   </div><!-- col-xs-6 -->
   @endforeach
 @endif
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.btn-form').click(function(event) {
+    event.preventDefault();
+
+    $.post( $(this).attr('href'), $(this).data(), 
+      function(data, textStatus, xhr) {
+        $('.modal-content').html(data);
+        $('.modal').modal('show');
+      }
+    );
+  });  
+});
+</script>

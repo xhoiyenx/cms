@@ -95,7 +95,7 @@
       </div>
       <div class="panel-body">
         <div class="panel-actions">
-          <a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $form->id }}" data-action="insert" class="btn btn-success btn-quirk show-form">upload media</a>
+          <a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $form->id }}" data-action="insert" class="btn btn-success btn-quirk btn-form">upload media</a>
         </div>
         <div class="row filemanager">
         </div>
@@ -112,6 +112,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+  /*
   $('.show-form').click(function(event) {
     event.preventDefault();
 
@@ -135,6 +136,7 @@ $(document).ready(function() {
     $('.modal').modal('show');
 
   });
+  */
 
   $('.modal-content').on('submit', 'form', function(event) {
     event.preventDefault();
