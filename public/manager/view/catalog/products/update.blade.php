@@ -95,7 +95,7 @@
       </div>
       <div class="panel-body">
         <div class="panel-actions">
-          <a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $form->id }}" data-action="insert" class="btn btn-success btn-quirk btn-form">upload media</a>
+          <a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $form->id }}" class="btn btn-success btn-quirk btn-form">upload media</a>
         </div>
         <div class="row filemanager">
         </div>
@@ -111,32 +111,6 @@
 @section('after_footer')
 <script type="text/javascript">
 $(document).ready(function() {
-
-  /*
-  $('.show-form').click(function(event) {
-    event.preventDefault();
-
-    $.post( $(this).attr('href'),
-    {
-      id: $(this).data('id'),
-      action: $(this).data('action'),
-    },
-    function(data) {
-      if ( data == 2 ) {
-        $.gritter.add({
-          title: 'Success',
-          text: 'Media data deleted',
-          class_name: 'with-icon check-circle'
-        });
-      }
-      else {
-        $('.modal-content').html(data);
-      }
-    });
-    $('.modal').modal('show');
-
-  });
-  */
 
   $('.modal-content').on('submit', 'form', function(event) {
     event.preventDefault();
@@ -168,7 +142,6 @@ $(document).ready(function() {
 
   /* load media */
   loadMedia();
-
   
 });
 

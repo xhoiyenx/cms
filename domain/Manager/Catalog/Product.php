@@ -54,7 +54,7 @@ class Product extends BaseController
       'tree' => ProductCategoryRepo::checkboxTree($product->categoriesArray())
     ];
 
-    return view()->make('catalog.products.create', $view);
+    return view()->make('catalog.products.update', $view);
   }
 
   public function delete( $product_id = null )

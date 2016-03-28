@@ -1,12 +1,10 @@
 @if ( $edit )
 {{ Form::model($edit, ['files' => true] ) }}
-{{ Form::hidden('id', $edit->id) }}
+{{ Form::hidden('action', 'update') }}
 @else
 {{ Form::open( ['files' => true] ) }}
+{{ Form::hidden('action', 'insert') }}
 @endif
-{{ Form::hidden('save', 1) }}
-{{ Form::hidden('action', request()->get('action')) }}
-{{ Form::hidden('product_id', request()->get('id')) }}
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title">Upload Media</h4>
@@ -40,5 +38,7 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
   <button class="btn btn-primary" name="save">Save changes</button>
+  {{ Form::hidden('id', request()->get('id')) }}
+  {{ Form::hidden('save', 1) }}
 </div>
 {{ Form::close() }}

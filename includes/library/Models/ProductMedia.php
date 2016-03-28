@@ -26,4 +26,16 @@ class ProductMedia extends Model
   {
     return $this->belongsTo('Library\Models\Product');
   }
+
+  /**
+   * Delete media
+   * @return
+   */
+  public function delete()
+  {
+    $media = app('media');
+    if ( $media->delete( $this->link ) ) {
+      parent::delete();
+    }
+  }
 }

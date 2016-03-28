@@ -151,6 +151,38 @@ class Media
     $image->save( $target );
   }
 
+  public function delete( $filename )
+  {
+    if ( empty($filename) )
+      return;
+
+    # get file path
+    if ( File::exists( $filepath = $this->image_path . '/' . $filename ) ) {
+      # this is image
+      # clear all resized image
+      $this->clearResize($filename);
+
+      # delete image
+      return File::delete($filepath);
+    }
+    # non image
+    elseif ( File::exists( $filepath = $this->files_path . '/' . $filename ) ) {
+      # delete file
+      return File::delete($filepath);
+    }
+  }
+
+  public function clearResize( $filename )
+  {
+    foreach ( $this->image_sizes as $size ) {
+      $name = $this->setFilename( $filename, $size );
+      $path = $this->image_path . '/' . $name;
+      if ( File::exists($path) ) {
+        File::delete($path);
+      }
+    }
+  }
+
   /*
   public function clearResize( $image_path )
   {
