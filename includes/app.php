@@ -28,12 +28,10 @@ $app->singleton(
   Library\Http\Kernel::class
 );
 
-/*
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+  Illuminate\Contracts\Console\Kernel::class,
+  Library\Console\Kernel::class
 );
-*/
 
 $app->singleton(
   Illuminate\Contracts\Debug\ExceptionHandler::class,
