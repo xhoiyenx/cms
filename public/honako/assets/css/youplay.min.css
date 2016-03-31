@@ -24,7 +24,6 @@
   content: ''
 }
 .angled-img, .youplay-slider {
-  -webkit-shape-outside: polygon(9% 0, 0 100%, 91% 100%, 100% 0)
 }
 body, html {
   height: 100%
@@ -2192,7 +2191,6 @@ img.rounded {
 .angled-img {
   position: relative;
   display: block;
-  shape-outside: polygon(9% 0, 0 100%, 91% 100%, 100% 0);
   pointer-events: auto
 }
 .angled-img, .angled-img:focus, .angled-img:hover {
@@ -2203,27 +2201,9 @@ img.rounded {
 .angled-img .img {
   position: relative;
   overflow: hidden;
-  -webkit-transform: skew(-8deg);
-  -ms-transform: skew(-8deg);
-  -o-transform: skew(-8deg);
-  transform: skew(-8deg);
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  background: #160962;
-  -webkit-backface-visibility: hidden
 }
 .angled-img .img>img {
   width: 100%;
-  -webkit-transform: skew(8deg) scale(1.15);
-  -ms-transform: skew(8deg) scale(1.15);
-  -o-transform: skew(8deg) scale(1.15);
-  transform: skew(8deg) scale(1.15);
-  -o-transition: .3s opacity ease;
-  transition: .3s opacity ease;
-  -webkit-backface-visibility: hidden;
-  opacity: .5
 }
 .angled-img .img.img-offset {
   -webkit-transform-origin: 50% 100%;
@@ -2306,7 +2286,10 @@ img.rounded {
   position: relative;
   text-align: center;
   margin-top: 1.8rem;
-  margin-bottom: 3rem
+  margin-bottom: 3rem;
+  line-height: 20px;
+  min-height: 40px;  
+  font-size: 16px;
 }
 .angled-img .bottom-info h4:after {
   content: '';

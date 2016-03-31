@@ -68,7 +68,7 @@ class Media
       'medium'  => [
         'width'   => 300,
         'height'  => 350,
-        'crop'    => true
+        'crop'    => false
       ],
       'large'   => [
         'width'   => 800,

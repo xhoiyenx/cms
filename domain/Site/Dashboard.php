@@ -13,10 +13,16 @@
  */
 namespace Domain\Site;
 
+use Library\Repository\ProductRepo;
+
 class Dashboard extends BaseController
 {
   public function homepage()
   {
-    return view('homepage');
+    $view = [
+      'products' => ProductRepo::getData()
+    ];
+
+    return view('homepage', $view);
   }
 }

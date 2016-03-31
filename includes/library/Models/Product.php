@@ -62,4 +62,13 @@ class Product extends Model
     $this->categories()->delete();
     parent::delete();
   }
+
+  public function getImage( $size = 'thumb', $object = false )
+  {
+    $media = $this->media;
+    if ( ! $media->isEmpty() ) {
+      $image = $media[0];
+      return app('media')->getMedia($image->link, $image->mime, $size);
+    }
+  }
 }
