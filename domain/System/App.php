@@ -17,6 +17,15 @@ use Library\Classes\DatabaseSchema;
 
 class App extends BaseController
 {
+	/**
+	 * Show installation page
+	 * @return view
+	 */
+	public function index()
+	{
+		return view('system.install');
+	}
+
 	public function install()
 	{
 		$schema = new DatabaseSchema;

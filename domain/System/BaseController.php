@@ -30,11 +30,6 @@ abstract class BaseController extends Controller
   private function init()
   {
     # define default view path for manager
-    view()->addLocation( public_path('system/view') );    
-  }
-
-  protected function variables()
-  {
-
+    view()->addLocation( public_path('manager/view') );    
   }
 }
