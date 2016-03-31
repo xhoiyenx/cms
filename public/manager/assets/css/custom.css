@@ -371,3 +371,11 @@ body {
   margin-left: 20px;
 }
 
+/**
+ * System Installation
+ */
+.signup form h4 {
+  color: #FFF;
+  font-weight: normal;
+}
+

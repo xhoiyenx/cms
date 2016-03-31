@@ -14,10 +14,6 @@
  * Description:
  * All system routes assigned here
  */
-
-$router->get('/', function(){
-
-});
-
+$router->get('/', 'App@index');
 $router->get('install', 'App@install');
 $router->get('upgrade', 'App@upgrade');

@@ -45,6 +45,7 @@ class RouteServiceProvider extends ServiceProvider
     $system = [
       'namespace'   => 'Domain\System',
       'prefix'      => 'system',
+      'middleware'  => 'system',      
       'as'          => 'system.'
     ];
 
