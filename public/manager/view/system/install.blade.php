@@ -64,15 +64,53 @@
               <div class="col-md-6">
                 <div class="form-group mb10">
                   <label>Hostname:</label>
-                  {{ Form::text('hostname', null, ['class' => 'form-control']) }}
+                  {{ Form::text('dbhost', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
                   <label>Database:</label>
-                  {{ Form::text('database', null, ['class' => 'form-control']) }}
+                  {{ Form::text('dbname', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
                   <label>Username:</label>
+                  {{ Form::text('dbuser', null, ['class' => 'form-control']) }}
+                </div>
+                <div class="form-group mb10">
+                  <label>Password:</label>
+                  {{ Form::text('dbpass', null, ['class' => 'form-control']) }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Account setup</h4>
+                <p class="help-block">Set administrator account.</p>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb10">
+                  <label>Username:</label>
                   {{ Form::text('username', null, ['class' => 'form-control']) }}
+                </div>
+                <div class="form-group mb10">
+                  <label>Password:</label>
+                  {{ Form::text('password', null, ['class' => 'form-control']) }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Application settings</h4>
+                <p class="help-block">Set base settings for the application.</p>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb10">
+                  <label>Timezone:</label>
+                  <select class="form-control" name="timezone">
+                  @foreach ( $timezones as $timezone )
+                    <option value="{{ $timezone }}" @if( $timezone == date('e') ) selected @endif>{{ $timezone }}</option>
+                  @endforeach
+                  </select>
                 </div>
                 <div class="form-group mb10">
                   <label>Password:</label>

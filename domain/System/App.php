@@ -23,7 +23,10 @@ class App extends BaseController
 	 */
 	public function index()
 	{
-		return view('system.install');
+		$view = [
+			'timezones' => timezone_identifiers_list()
+		];
+		return view('system.install', $view);
 	}
 
 	public function install()
