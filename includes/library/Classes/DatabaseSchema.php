@@ -113,7 +113,7 @@ class DatabaseSchema
   private function upgrade_002()
   {
     # add product meta
-    Schema::dropIfExists('product_meta');
+    Schema::dropIfExists('product_media');
     Schema::create('product_media', function(Blueprint $table) {
 
       $table->increments('id');

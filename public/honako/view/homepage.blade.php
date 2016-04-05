@@ -58,7 +58,6 @@
     </div>
     @endif
 
-    <!-- Preorder -->
     <div class="h2"></div>
     <section class="youplay-banner small">
       <div class="image" style="background-image: url(assets/images/banner-witcher-3.jpg); background-size: cover;" data-top-bottom="background-position: 50% -150px;" data-bottom-top="background-position: 50% 150px;">
@@ -66,18 +65,13 @@
 
       <div class="info container align-center">
         <div>
-          <h2>The Witcher 3:<br> Wild Hunt</h2>
-
-          <!-- See countdown init in bottom of the page -->
-          <div class="countdown h2" data-end="2017/01/01"></div>
-
+          <h2>Jasa Download</h2>
           <br>
           <br>
-          <a class="btn btn-lg" href="#!">Pre-Order</a>
+          <a class="btn btn-lg" href="#!">See Details</a>
         </div>
       </div>
     </section>
-    <!-- /Preorder -->
 
 
     <!-- Partners -->
@@ -87,7 +81,7 @@
 
       <div class="info align-center">
         <div>
-          <h2 class="mb-40">Partners</h2>
+          <h2 class="mb-40">Jasa Pembelian Game</h2>
 
           <div class="row">
             <div class="col-md-10 col-md-offset-1">

@@ -52,8 +52,8 @@ class Media
     $this->app = $app;
     $this->upload_path = $path;
 
-    $this->image_path = $this->upload_path . '\\images';
-    $this->files_path = $this->upload_path . '\\files';
+    $this->image_path = $this->upload_path . '/images';
+    $this->files_path = $this->upload_path . '/files';
     $this->setImageSizes();
   }
 
@@ -83,14 +83,14 @@ class Media
     $filepath = '';
     # this is an image?
     if ( $this->isImage( $file->getClientMimeType() ) ) {
-      $filepath = $this->image_path . '\\' . $this->setFilename( $file->getClientOriginalName() );
+      $filepath = $this->image_path . '/' . $this->setFilename( $file->getClientOriginalName() );
 
       $image = new SimpleImage( $file->getPathname() );
       $image->save( $filepath );
     }
     # this is not an image
     else {
-      $filepath = $this->files_path . '\\' . $this->sanitize( $file->getClientOriginalName() );
+      $filepath = $this->files_path . '/' . $this->sanitize( $file->getClientOriginalName() );
       
       $file->move( $this->files_path, $this->sanitize( $file->getClientOriginalName() ) );
     }
@@ -128,10 +128,10 @@ class Media
   public function mediaPath( $filename, $mime )
   {
     if ( $this->isImage( $mime ) ) {
-      return $this->image_path . '\\' . $filename;
+      return $this->image_path . '/' . $filename;
     }
     else {
-      return $this->files_path . '\\' . $filename;
+      return $this->files_path . '/' . $filename;
     }
   }
 

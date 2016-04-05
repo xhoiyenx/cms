@@ -65,17 +65,17 @@
         <ul class="nav navbar-nav">
           <li>
             <a href="#!">
-              Store
-            </a>
-          </li>
-          <li>
-            <a href="#!">
               Jasa Download
             </a>
           </li>
           <li>
             <a href="#!">
               Jasa Pembelian
+            </a>
+          </li>
+          <li>
+            <a href="#!">
+              Kontak Kami
             </a>
           </li>
         </ul>

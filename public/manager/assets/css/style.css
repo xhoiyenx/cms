@@ -3205,7 +3205,7 @@ div.error { margin-bottom: 20px; }
 .btn-toolbar-media-manager .btn:hover, .btn-toolbar-media-manager .btn:focus { border-color: transparent; }
 .btn-toolbar-media-manager .btn > i { font-size: 14px; vertical-align: baseline; line-height: 0; margin-right: 5px; }
 .btn-toolbar-media-manager .btn + .btn { margin-left: 1px; }
-.filemanager .thmb { background-color: #fff; border-radius: 2px; padding: 10px; margin-bottom: 20px; position: relative; }
+.filemanager .thmb { background-color: #fff; padding: 5px; margin-bottom: 20px; position: relative; }
 .filemanager .thmb:after { clear: both; display: block; content: ''; }
 .filemanager .ckbox { position: absolute; top: 15px; left: 15px; display: none; }
 .filemanager .ckbox span:before { border: 0; }
