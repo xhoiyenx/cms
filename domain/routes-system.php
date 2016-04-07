@@ -17,3 +17,5 @@
 $router->get('/', 'App@index');
 $router->get('install', 'App@install');
 $router->get('upgrade', 'App@upgrade');
+
+$router->get('test', 'Test@index');

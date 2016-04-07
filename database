@@ -1,3 +1,19 @@
 VARIATIONS SAMPLE
 1 | Colors
 2 | Sizes
+
+
+
+1. Colors
+	1. Green
+	2. Black
+
+2. Sizes
+	1. XL
+	2. SM
+
+1. Clothes [ MAX TOTAL VARIANTS IS QUADRANT OF ASSIGNED VARIANTS ]
+	1. Black XL Clothes
+	2. Black SM Clothes
+	3. Green XL Clothes
+	4. Green SM Clothes
