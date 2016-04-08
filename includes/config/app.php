@@ -143,6 +143,7 @@ return [
         Library\Providers\MediaServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 

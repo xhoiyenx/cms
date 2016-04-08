@@ -106,6 +106,22 @@ class DatabaseSchema
       $table->timestamps();
 
     });
+
+    # add product meta
+    Schema::dropIfExists('product_term');
+    Schema::create('product_term', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('parent')->default(0);
+      $table->string('name', 100);
+      $table->string('slug', 100);
+      $table->string('type', 50);
+      $table->smallInteger('sort')->default(0);
+      $table->timestamps();
+      $table->softDeletes();
+
+    });
+
   }
 
   # upgrade
@@ -124,6 +140,27 @@ class DatabaseSchema
     });
 
   }
+
+  # upgrade
+  # DATABASE VERSION 0.0.2
+  private function upgrade_003()
+  {
+    # add product meta
+    Schema::dropIfExists('product_term');
+    Schema::create('product_term', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('parent')->default(0);
+      $table->string('name', 100);
+      $table->string('slug', 100);
+      $table->string('type', 50);
+      $table->smallInteger('sort')->default(0);
+      $table->timestamps();
+      $table->softDeletes();
+
+    });
+
+  }  
 
   public function install()
   {

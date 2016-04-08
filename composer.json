@@ -9,7 +9,8 @@
         "barryvdh/composer-cleanup-plugin": "0.1.x@dev",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "abeautifulsite/simpleimage": "*"
+        "abeautifulsite/simpleimage": "*",
+        "barryvdh/laravel-debugbar": "2.*"
     },
     "autoload": {
         "psr-4": {
