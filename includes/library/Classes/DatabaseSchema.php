@@ -142,6 +142,7 @@ class DatabaseSchema
   }
 
   # upgrade
+<<<<<<< HEAD
   # DATABASE VERSION 0.0.2
   private function upgrade_003()
   {
@@ -161,6 +162,23 @@ class DatabaseSchema
     });
 
   }  
+=======
+  # DATABASE VERSION 0.0.3
+  private function upgrade_003()
+  {
+    # add product variations
+    Schema::dropIfExists('product_variant');
+    Schema::create('product_variant', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('product_id');
+      $table->string('name', 50)->nullable();
+      $table->text('meta')->nullable();
+
+    });
+
+  }
+>>>>>>> origin/master
 
   public function install()
   {

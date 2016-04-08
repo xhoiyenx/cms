@@ -2,9 +2,27 @@ VARIATION GROUP
 1 | Colors
 2 | Sizes
 
+<<<<<<< HEAD
 VARIATION DESCRIPTION
 1 | 1 | Black
 2 | 1 | Green
 3 | 2 | XL
 4 | 2 | XXL
 
+=======
+
+
+1. Colors
+	1. Green
+	2. Black
+
+2. Sizes
+	1. XL
+	2. SM
+
+1. Clothes [ MAX TOTAL VARIANTS IS QUADRANT OF ASSIGNED VARIANTS ]
+	1. Black XL Clothes
+	2. Black SM Clothes
+	3. Green XL Clothes
+	4. Green SM Clothes
+>>>>>>> origin/master
