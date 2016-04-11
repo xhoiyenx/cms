@@ -65,9 +65,12 @@ class DatabaseSchema
     Schema::create('product', function(Blueprint $table) {
 
       $table->mediumIncrements('id');
-      $table->string('name', 100);
+      $table->unsignedMediumInteger('parent')->default(0);
+      $table->string('name', 200);
       $table->text('description')->nullable();
       $table->decimal('price', 10, 2)->default('0.00');
+      $table->enum('use_stock', ['n', 'y'])->default('n');
+      $table->unsignedSmallInteger('qty_stock')->default(0);
       $table->string('status', 10)->default('draft');
       $table->timestamps();
 
@@ -75,15 +78,6 @@ class DatabaseSchema
 
     # products
     Schema::dropIfExists('product_detail');
-    Schema::create('product_detail', function(Blueprint $table) {
-
-      $table->increments('id');
-      $table->unsignedMediumInteger('product_id');
-      $table->string('type', 50);
-      $table->decimal('price', 10, 2)->default('0.00');
-
-    });
-
     Schema::dropIfExists('product_category');
     Schema::dropIfExists('product_to_category');
     Schema::dropIfExists('product_taxonomy');
@@ -145,7 +139,6 @@ class DatabaseSchema
     Schema::create('product_term_relation', function(Blueprint $table) {
 
       $table->unsignedMediumInteger('product_id');
-      $table->unsignedMediumInteger('product_detail_id')->nullable();
       $table->unsignedSmallInteger('term_id');
       $table->string('type', 50);
 
