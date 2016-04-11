@@ -17,16 +17,11 @@
 ?>
 @extends('inc.master')
 @section('content')
-<div class="people-list">
-  <div class="people-options clearfix">
-    <div class="pull-left">
-      <h3><i class="fa fa-fw fa-gift"></i>Products</h3>
-    </div>
-    <div class="btn-toolbar pull-right">
-      <a class="btn btn-success btn-quirk" href="{{ route('manager.catalog.product.update') }}">Add New</a>
-    </div>
-  </div>
-</div>
+<h1 class="manager-title clearfix">
+  <i class="fa fa-fw fa-gift"></i>Products
+  <a class="btn btn-success btn-quirk pull-right" href="{{ route('manager.catalog.product.update') }}">Add New</a>
+</h1>
+@include('inc.messages')
 <div class="panel">
 <table class="table table-bordered table-primary table-striped">
   <thead>

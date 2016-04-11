@@ -16,6 +16,23 @@ body {
   user-select: none;  
 }
 
+.manager-title {
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  padding: 0 0 15px 0;
+  line-height: 30px;
+  border-bottom: 2px solid #000;
+}
+
+.manager-title i {
+  margin-right: 5px;
+}
+
+.manager-title .btn {
+  padding: 5px 12px;
+}
+
+
 /**
  * Font Changes
  */
@@ -51,6 +68,10 @@ body {
   border-top-color: #DDD;
 }
 
+.table > tbody > tr > td > strong {
+  font-weight: 500;
+}
+
 .dataTables_paginate .pagination > .paginate_button.next > a,
 .dataTables_paginate .pagination > .paginate_button.previous > a {
   padding: 9px 15px;
@@ -76,7 +97,7 @@ body {
 }
 
 .table-options {
-  text-align: right;
+  text-align: center;
 }
 
 .table-options > li > a {

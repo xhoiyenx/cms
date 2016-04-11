@@ -18,8 +18,11 @@
 @extends('inc.master')
 @section('content')
 <h1 class="manager-title clearfix">
-  <i class="fa fa-fw fa-tags"></i>{{ $page }}
-  <a class="btn btn-primary btn-quirk btn-form pull-right" href="{{ route('manager.catalog.categories.update') }}">Add New</a>
+  <i class="fa fa-fw fa-share-alt"></i>{{ $page }}
+  @if ( request()->has('group') )
+  <a class="btn btn-danger btn-quirk pull-right ml10" href="{{ route('manager.catalog.attributes') }}">Cancel</a>
+  @endif
+  <a class="btn btn-primary btn-quirk btn-form pull-right" data-parent="{{ request()->get('group', 0) }}" href="{{ route('manager.catalog.attributes.update') }}">Add New</a>
 </h1>
 @include('inc.messages')
 <div class="panel">
@@ -33,11 +36,15 @@
   <tbody>
     @forelse ( $list as $data )
     <tr>
+      @if ( $data['parent'] != 0 )
       <td>{{ $data['name'] }}</td>
+      @else
+      <td><strong><a href="{{ route('manager.catalog.attributes') }}?group={{ $data['id'] }}">{{ $data['name'] }}</a></strong></td>
+      @endif
       <td class="text-center">
         <ul class="table-options">
-          <li><a class="btn-form" data-id="{{ $data['id'] }}" href="{{ route('manager.catalog.categories.update') }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
-          <li><a href="{{ route('manager.catalog.categories') }}?delete={{ $data['id'] }}" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
+          <li><a class="btn-form" data-id="{{ $data['id'] }}" data-parent="{{ request()->get('group', 0) }}" href="{{ route('manager.catalog.attributes.update') }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
+          <li><a href="{{ route('manager.catalog.attributes') }}?delete={{ $data['id'] }}" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
         </ul>
       </td>
     </tr>
@@ -67,7 +74,7 @@ $(document).ready(function() {
       success: function(data) {
         if ( data == 1 ) {
           $('.modal').modal('hide');
-          window.location.href = '{{ request()->url() }}';
+          window.location.href = '{{ request()->fullUrl() }}';
         }
         else {
           $('.modal-content').html(data);

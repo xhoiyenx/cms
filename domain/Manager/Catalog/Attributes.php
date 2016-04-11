@@ -28,7 +28,7 @@ use Library\Models\Taxonomy;
 use Library\Repository\ProductTaxonomy;
 
 
-class Categories extends BaseController
+class Attributes extends BaseController
 {
   public function index(Request $request)
   {
@@ -42,24 +42,28 @@ class Categories extends BaseController
       return back()->withMessage($delete->name . ' Deleted');
     }
 
-    $this->setPage('Categories');
+    $this->setPage('Attribute Group');
 
-    $data = array();
+    if ( $request->has('group') ){
+      $parent = Taxonomy::find($request->group);
 
-    # create pagination from Collection
-    $coll = collect(ProductTaxonomy::getCollection('category'));
-    $page = $request->page ?: 1;
+      if ( ! $parent ) {
+        return redirect()->back()->withErrors('Attribute group not found');
+      }
 
-    $data = new LengthAwarePaginator($coll->forPage($page, 20), $coll->count(), 20, null, [
-              'path' => Paginator::resolveCurrentPath(),
-              'pageName' => 'page'
-            ]);
+      $this->setPage('Attribute ' . $parent->name );
+      $data = Taxonomy::where('parent', $request->group)->orderBy('sort')->paginate();
+    }
+    else {
+      $this->setPage('Attribute Group');
+      $data = Taxonomy::where('type', 'attribute')->where('parent', 0)->orderBy('sort')->paginate();
+    }
 
     $view = [
       'list' => $data,
     ];
 
-    return view()->make('catalog.categories.index', $view);
+    return view()->make('catalog.attributes.index', $view);
   }
 
   /**
@@ -74,6 +78,13 @@ class Categories extends BaseController
     # only receive ajax request
     if ( $request->ajax() )
     {
+      if ( $request->parent != 0 ) {
+        $this->setPage('Attribute');
+      }
+      else {
+        $this->setPage('Attribute Group');
+      }
+
       if ( $request->has('id') ) {
         # update
         $edit = Taxonomy::find($request->id);
@@ -81,7 +92,7 @@ class Categories extends BaseController
 
       $view = [
         'edit' => $edit,
-        'tree' => ProductTaxonomy::selectTree('category', $edit)
+        'tree' => ProductTaxonomy::selectTree('attribute', $edit)
       ];
 
       # user click save
@@ -94,7 +105,7 @@ class Categories extends BaseController
 
         # validate fail
         if ( $validator->fails() ) {
-          return view('catalog.categories.ajax-update', $view)->withErrors($validator);
+          return view('catalog.attributes.ajax-update', $view)->withErrors($validator);
         }
         # validation success
         else {
@@ -111,14 +122,15 @@ class Categories extends BaseController
           $data->parent = $request->parent;
           $data->name   = $request->name;
           $data->slug   = str_slug( $request->name );
-          $data->type   = 'category';
+          $data->type   = 'attribute';
+          $data->sort   = $request->sort;
           $data->save();
 
           return 1;
         }
       }
 
-      return view('catalog.categories.ajax-update', $view);
+      return view('catalog.attributes.ajax-update', $view);
     }
     else
     {

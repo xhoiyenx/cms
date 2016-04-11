@@ -1399,7 +1399,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .modal.fade .modal-dialog { -webkit-transform: translate(0, -25%); -ms-transform: translate(0, -25%); -o-transform: translate(0, -25%); transform: translate(0, -25%); -webkit-transition: -webkit-transform 0.3s ease-out; -moz-transition: -moz-transform 0.3s ease-out; -o-transition: -o-transform 0.3s ease-out; transition: transform 0.3s ease-out; }
 .modal.in .modal-dialog { -webkit-transform: translate(0, 0); -ms-transform: translate(0, 0); -o-transform: translate(0, 0); transform: translate(0, 0); }
 .modal-open .modal { overflow-x: hidden; overflow-y: auto; }
-.modal-dialog { position: relative; width: auto; margin: 10px; }
+.modal-dialog { position: relative; width: 90%; margin: 10px; }
 .modal-content { position: relative; background-color: #ffffff; border: 1px solid #999999; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 2px; -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5); box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5); background-clip: padding-box; outline: 0; }
 .modal-backdrop { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1040; background-color: #000000; }
 .modal-backdrop.fade { opacity: 0; filter: alpha(opacity=0); }
@@ -2793,7 +2793,7 @@ form .form-group:last-child {  /*margin-bottom: 0;*/ }
 .ckbox span:before, .ckbox span:after { line-height: 18px; position: absolute; }
 .ckbox span:before { content: ''; width: 14px; height: 14px; background-color: #fff; border: 1px solid #dbdfe6; border-radius: 1px; top: 2px; left: 0; }
 .ckbox span:after { left: 2.5px; top: 0; content: '\f00c'; font-family: 'FontAwesome'; font-size: 9px; color: #696c74; display: none; }
-.ckbox input[type='checkbox'] { opacity: 0; margin: 0 5px 0 0; }
+.ckbox input[type='checkbox'] { opacity: 0; margin: 0 10px 0 0; }
 .ckbox input[type='checkbox']:checked + span:before { border-color: #ccd1db; }
 .ckbox input[type='checkbox']:checked + span:after { display: block; }
 .ckbox input[type='checkbox'][disabled] + span, .ckbox input[type='checkbox'][disabled] + span:before, .ckbox input[type='checkbox'][disabled] + span:after { opacity: .75; }

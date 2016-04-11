@@ -14,11 +14,16 @@
 namespace Domain\System;
 
 use Library\Classes\DatabaseSchema;
+use Library\Repository\ProductTaxonomy;
 
 class Test extends BaseController
 {
 	public function index()
 	{
-		
+		$tree = ProductTaxonomy::selectTree('category');
+
+    echo '<pre style="font: 12px courier new">';
+    var_dump($tree);
+
 	}
 }

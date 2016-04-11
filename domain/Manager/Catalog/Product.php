@@ -19,8 +19,10 @@ namespace Domain\Manager\Catalog;
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
 
+
+
 use Library\Repository\ProductRepo;
-use Library\Repository\ProductCategoryRepo;
+use Library\Repository\ProductTaxonomy;
 
 class Product extends BaseController
 {
@@ -51,7 +53,7 @@ class Product extends BaseController
 
     $view = [
       'form' => $product,
-      'tree' => ProductCategoryRepo::checkboxTree($product->categoriesArray())
+      'tree' => ProductTaxonomy::checkboxTree('category', $product->categoriesArray())
     ];
 
     return view()->make('catalog.products.update', $view);

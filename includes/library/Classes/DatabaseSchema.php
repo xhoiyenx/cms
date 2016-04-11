@@ -122,6 +122,17 @@ class DatabaseSchema
 
     });
 
+    # connection between products and taxonomy
+    Schema::dropIfExists('product_taxonomy');
+    Schema::create('product_taxonomy', function(Blueprint $table) {
+
+      $table->unsignedMediumInteger('product_id');
+      $table->unsignedMediumInteger('product_detail_id')->nullable();
+      $table->unsignedSmallInteger('term_id');
+      $table->string('type', 50);
+
+    });
+
   }
 
   # upgrade
@@ -170,5 +181,15 @@ class DatabaseSchema
 
   public function upgrade()
   {
+    # connection between products and taxonomy
+    Schema::dropIfExists('product_taxonomy');
+    Schema::create('product_taxonomy', function(Blueprint $table) {
+
+      $table->unsignedMediumInteger('product_id');
+      $table->unsignedMediumInteger('product_detail_id')->nullable();
+      $table->unsignedSmallInteger('term_id');
+      $table->string('type', 50);
+
+    });    
   }
 }
