@@ -67,12 +67,29 @@ class DatabaseSchema
       $table->mediumIncrements('id');
       $table->string('name', 100);
       $table->text('description')->nullable();
-      $table->decimal('price', 10, 2);
+      $table->decimal('price', 10, 2)->default('0.00');
       $table->string('status', 10)->default('draft');
       $table->timestamps();
 
     });
 
+    # products
+    Schema::dropIfExists('product_detail');
+    Schema::create('product_detail', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('product_id');
+      $table->string('type', 50);
+      $table->decimal('price', 10, 2)->default('0.00');
+
+    });
+
+    Schema::dropIfExists('product_category');
+    Schema::dropIfExists('product_to_category');
+    Schema::dropIfExists('product_taxonomy');
+    Schema::dropIfExists('product_attribute');
+
+    /*
     # products category
     Schema::dropIfExists('product_category');
     Schema::create('product_category', function(Blueprint $table) {
@@ -83,7 +100,7 @@ class DatabaseSchema
       $table->timestamps();
 
     });
-
+    
     # connection between products and categories
     Schema::dropIfExists('product_to_category');
     Schema::create('product_to_category', function(Blueprint $table) {
@@ -92,6 +109,7 @@ class DatabaseSchema
       $table->unsignedMediumInteger('product_category_id');
 
     });
+    */
 
     # product media
     Schema::dropIfExists('product_media');
@@ -123,8 +141,8 @@ class DatabaseSchema
     });
 
     # connection between products and taxonomy
-    Schema::dropIfExists('product_taxonomy');
-    Schema::create('product_taxonomy', function(Blueprint $table) {
+    Schema::dropIfExists('product_term_relation');
+    Schema::create('product_term_relation', function(Blueprint $table) {
 
       $table->unsignedMediumInteger('product_id');
       $table->unsignedMediumInteger('product_detail_id')->nullable();
