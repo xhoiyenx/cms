@@ -19,18 +19,13 @@
 @section('content')
 {{ Form::model($form, ['route' => 'manager.catalog.product.save']) }}
 {{ Form::hidden('id', $form->id) }}
-
-<div class="people-list">
-  <div class="people-options clearfix">
-    <div class="pull-left">
-      <h3><i class="fa fa-fw fa-gift"></i>@if ($form->status == 'draft')New @else Edit @endif Product</h3>
-    </div>
-    <div class="btn-toolbar pull-right">
-      <button type="submit" class="btn btn-success btn-quirk">Save</button>
-      <a href="{{ route('manager.catalog.product') }}" class="btn btn-primary btn-quirk">Cancel</a>
-    </div>
-  </div>
-</div>
+<h1 class="manager-title clearfix">
+  <i class="fa fa-fw fa-gift"></i>{{ $page }}
+  <div class="btn-toolbar pull-right">
+    <button type="submit" class="btn btn-success btn-quirk">Save</button>
+    <a href="{{ route('manager.catalog.product') }}" class="btn btn-primary btn-quirk">Cancel</a>
+  </div>  
+</h1>
 
 <ul class="nav nav-tabs nav-line">
   <li class="active">

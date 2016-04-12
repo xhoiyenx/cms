@@ -43,7 +43,17 @@ class Product extends Model
 
   public function categories()
   {
-    return $this->belongsToMany('Library\Models\ProductCategory', 'product_to_category', 'product_id', 'product_category_id');
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'category');
+  }
+
+  public function attributes()
+  {
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->whereIn('product_term_relation.type', ['attribute', 'variation']);
+  }
+
+  public function variations()
+  {
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'variation');
   }
 
   public function categoriesArray()

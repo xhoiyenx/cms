@@ -9,12 +9,9 @@
     
     <div class="row">
       <div class="col-md-3">
-        
+        <h4 class="nomargin">Attributes <i class="fa fa-fw fa-exclamation-circle tooltips" data-toggle="tooltip" data-original-title="To create variations, you need to assign attributes"></i></h4>
       </div>
       <div class="col-md-9">
-        <div class="form-group">
-          <input type="text" class="form-control">
-        </div>
       </div>
     </div>
 

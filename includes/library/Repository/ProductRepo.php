@@ -64,7 +64,7 @@ class ProductRepo
       $product->save();
 
       if ( isset($category) ) {
-        $product->categories()->sync($category);
+        $product->categories()->sync( self::syncTerms($category, 'category') );
       }
     }
 
@@ -90,5 +90,17 @@ class ProductRepo
     $data->setPath('');
 
     return $data;
+  }
+
+  static function syncTerms( $data = [], $type = 'category' )
+  {
+    $terms = [];
+    if ( ! empty($data) ) {
+      foreach( $data as $term )
+      {
+        $terms[$term] = ['type' => $type];
+      }
+    }
+    return $terms;
   }
 }

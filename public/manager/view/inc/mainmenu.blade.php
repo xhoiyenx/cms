@@ -40,7 +40,7 @@
 
 <ul class="nav nav-pills nav-stacked nav-quirk">
   <li class="nav-parent">
-    <a href="#"><i class="fa fa-gears"></i> <span>Configuration</span></a>
+    <a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a>
     <ul class="children">
       <li>
         <a href="{{ route('manager.configuration') }}">General</a>
