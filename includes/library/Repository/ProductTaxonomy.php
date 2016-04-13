@@ -150,7 +150,47 @@ class ProductTaxonomy
     }
 
     return $html;
-  }  
+  }
+
+  public static function checkboxList( $selected = [] )
+  {
+    $html   = '';
+    $terms  = Taxonomy::where('parent', 0)->where('type', 'attribute')->orderBy('sort')->get();
+    $available = [];
+
+    if ( ! $terms->isEmpty() )
+    {
+      $html .= '<div class="cb-attributes">' . PHP_EOL;
+      foreach ( $terms as $term )
+      {
+        $values = $term->children;
+        if ( ! $values->isEmpty() ) {
+          $available[] = $term;
+          $html .= '<div>' . $term->name . '</div>' . PHP_EOL;
+          $html .= '<ul class="checkbox-tree">' . PHP_EOL;
+
+          foreach ( $values as $child ) {
+            $checked = '';
+            if ( in_array($child['id'], $selected) )
+              $checked = ' checked="checked"';
+
+            $html .= '<li>' . PHP_EOL;
+            $html .= '  <label class="ckbox ckbox-primary">' . PHP_EOL;
+            $html .= '    <input' .$checked. ' type="checkbox" name="attribute[]" value="' .$child['id']. '"><span>'. $child['name'] .'</span>' . PHP_EOL;
+            $html .= '  </label>' . PHP_EOL;
+            $html .= '</li>' . PHP_EOL;
+          }
+
+          $html .= '</ul>' . PHP_EOL;
+
+        }
+
+      }
+      $html .= '</div>' . PHP_EOL;
+    }
+
+    return $html;
+  }
 
   /**
    * Create list of all data of selected taxonomy

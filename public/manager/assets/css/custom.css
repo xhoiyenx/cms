@@ -16,6 +16,15 @@ body {
   user-select: none;  
 }
 
+.max300 {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.panel-body.max300 {
+  padding: 10px 20px;
+}
+
 .manager-title {
   font-size: 18px;
   margin: 0 0 15px 0;
@@ -390,6 +399,16 @@ body {
 
 .checkbox-tree ul {
   margin-left: 20px;
+}
+
+.cb-attributes > div {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.cb-attributes:last-child {
+  margin-bottom: 10px;
 }
 
 /**

@@ -52,6 +52,18 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+  $('input[name="attribute[]"]').on('change', function(event) {
+
+    var $checked_attr = $('input[name="attribute[]"]:checked').map(function(){
+      return $(this).val();
+    }).get();
+
+    $.post('{{ route('manager.catalog.product.save') }}', {attribute: $checked_attr, id: '{{ $form->id}}'}, function(data, textStatus, xhr) {
+      /*optional stuff to do after success */
+    });
+    
+  });
+
   $('.modal-content').on('submit', 'form', function(event) {
     event.preventDefault();
     $.ajax({

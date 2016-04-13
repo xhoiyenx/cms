@@ -56,7 +56,8 @@ class Product extends BaseController
 
     $view = [
       'form' => $product,
-      'tree' => ProductTaxonomy::checkboxTree('category', $product->categoriesArray())
+      'tree' => ProductTaxonomy::checkboxTree('category', $product->categoriesArray()),
+      'attr' => ProductTaxonomy::checkboxList()
     ];
 
     return view()->make('catalog.products.update', $view);
@@ -74,9 +75,19 @@ class Product extends BaseController
 
   public function save(Request $request)
   {
+    # save ajax request here
+    if ( $request->ajax() ) {
+      return $this->ajaxSave($request);
+    }
+
     $product = ProductRepo::setProduct( $request->all() );
     if ( $product ) {
       return redirect()->route('manager.catalog.product');
     }
+  }
+
+  private function ajaxSave(Request $request)
+  {
+
   }
 }

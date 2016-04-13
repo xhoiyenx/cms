@@ -22,12 +22,12 @@ class Taxonomy extends Model
 {
   protected $table = 'product_term';
 
-  /*
-  public function sub()
+  public function children()
   {
     return $this->hasMany('Library\Models\Taxonomy', 'parent', 'id');
   }
 
+  /*
   public function products()
   {
     return $this->belongsToMany('Library\Models\Product', 'product_to_category', 'product_category_id', 'product_id');

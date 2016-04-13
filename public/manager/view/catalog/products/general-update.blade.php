@@ -1,39 +1,4 @@
 <div class="row">
-  <div class="col-md-3">
-    <!-- CATEGORIES -->
-    <div class="panel panel-primary">
-      <ul class="panel-options">
-        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
-      </ul>
-      <div class="panel-heading">
-        <h4 class="panel-title">Categories</h4>
-      </div>
-      <div class="panel-body">
-
-        {!! $tree !!}
-        
-      </div>
-    </div>
-
-    <div class="panel panel-inverse-full">
-      <ul class="panel-options">
-        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
-      </ul>
-      <div class="panel-heading">
-        <h3 class="panel-title">Media</h3>
-      </div>
-      <div class="panel-body">
-        <div class="panel-actions">
-          <a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $form->id }}" class="btn btn-success btn-quirk btn-form">upload media</a>
-        </div>
-        <div class="row filemanager">
-        </div>
-
-      </div>
-    </div>
-    
-
-  </div>
   <div class="col-md-9">
 
     <div class="panel panel-inverse">
@@ -72,4 +37,51 @@
     
 
   </div>  
+  <div class="col-md-3">
+    <!-- CATEGORIES -->
+    <div class="panel panel-primary">
+      <ul class="panel-options">
+        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
+      </ul>
+      <div class="panel-heading">
+        <h4 class="panel-title">Categories</h4>
+      </div>
+      <div class="panel-body max300">
+
+        {!! $tree !!}
+        
+      </div>
+    </div>
+
+    <div class="panel panel-primary">
+      <ul class="panel-options">
+        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
+      </ul>
+      <div class="panel-heading">
+        <h4 class="panel-title">Attributes</h4>
+      </div>
+      <div class="panel-body max300">
+        {!! $attr !!}
+      </div>
+    </div>    
+
+    <div class="panel panel-inverse-full">
+      <ul class="panel-options">
+        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
+      </ul>
+      <div class="panel-heading">
+        <h3 class="panel-title">Media</h3>
+      </div>
+      <div class="panel-body">
+        <div class="panel-actions">
+          <a href="{{ route('manager.catalog.product.media') }}" data-id="{{ $form->id }}" class="btn btn-success btn-quirk btn-form">upload media</a>
+        </div>
+        <div class="row filemanager">
+        </div>
+
+      </div>
+    </div>
+    
+
+  </div>
 </div>
