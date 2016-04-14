@@ -32,7 +32,7 @@
   <tbody>
     @forelse ( $list as $data )
     <tr>
-      <td>{{ $data->name }}</td>
+      <td><strong><a href="{{ route('manager.catalog.product.update', ['id' => $data->id]) }}">{{ $data->name }}</a></strong></td>
       <td>{{ $data->getPrice() }}</td>
       <td class="text-center">
         <ul class="table-options">

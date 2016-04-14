@@ -117,6 +117,17 @@ body {
   background-color: #FFF;
 }
 
+.table .cbox {
+  width: 1%;
+}
+
+.table .cbox > input {
+  margin: 0;
+  display: block;
+  position: relative;
+  top: 3px;
+}
+
 /** LOGIN PAGE **/
 .signwrapper .input-group > .input-group-addon,
 .signwrapper .form-control {

@@ -43,22 +43,30 @@ class Product extends Model
 
   public function categories()
   {
-    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'category');
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'category')->wherePivot('type', '=', 'category');
   }
 
   public function attributes()
   {
-    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->whereIn('product_term_relation.type', ['attribute', 'variation']);
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'attribute')->wherePivot('type', '=', 'attribute');
   }
 
   public function variations()
   {
-    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'variation');
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'variation')->wherePivot('type', '=', 'variation');
   }
 
-  public function categoriesArray()
+  public function taxonomyArray( $type = 'categories' )
   {
-    return $this->categories->lists('id')->toArray();
+    switch ($type) {
+      case 'variations':
+        return $this->variations->lists('id')->toArray();
+        break;
+      
+      default:
+        return $this->categories->lists('id')->toArray();
+        break;
+    }
   }
 
   public function getPrice()

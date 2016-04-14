@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
 
 
+use Library\Models\Taxonomy;
 
 use Library\Repository\ProductRepo;
 use Library\Repository\ProductTaxonomy;
@@ -56,8 +57,8 @@ class Product extends BaseController
 
     $view = [
       'form' => $product,
-      'tree' => ProductTaxonomy::checkboxTree('category', $product->categoriesArray()),
-      'attr' => ProductTaxonomy::checkboxList()
+      'tree' => ProductTaxonomy::checkboxTree('category', $product->taxonomyArray('categories')),
+      'attr' => ProductTaxonomy::checkboxList($product->attributes->lists('id')->toArray())
     ];
 
     return view()->make('catalog.products.update', $view);
@@ -88,6 +89,54 @@ class Product extends BaseController
 
   private function ajaxSave(Request $request)
   {
+    switch ($request->action)
+    {
+      # assign attribute
+      case 'attribute':
+        $product = ProductRepo::getProduct( $request->id );
+        $attributes = [];
+        if ( ! empty($request->attribute) ) {
+          $attributes = $request->attribute;
+        }
+        $product->attributes()->sync( ProductRepo::syncTerms($attributes, 'attribute') );
+        return $this->listAttributes( $attributes );
+        break;
 
+      # get attributes
+      case 'getAttributes':
+        $product = ProductRepo::getProduct( $request->id );
+        return $this->listAttributes( $product->attributes->lists('id')->toArray() );
+        break;
+    }
+  }
+
+  private function listAttributes( $attributes )
+  {
+    $html = '';
+    $taxonomies = Taxonomy::where('parent', 0)->where('type', 'attribute')->orderBy('sort')->get();
+    if ( ! $taxonomies->isEmpty() )
+    {
+      foreach ($taxonomies as $taxonomy)
+      {
+        
+        $attribute = $taxonomy->children()->lists('name', 'id')->toArray();
+        if ( ! empty($attribute) ) {
+          
+          foreach ( $attribute as $key => $val )
+          {
+            if ( ! in_array($key, $attributes))
+              unset($attribute[$key]);
+          }
+          if ( ! empty($attribute)) {
+            $html .= '<tr>';
+            $html .= '  <td class="cbox"><input type="checkbox" value="'. $key .'"></td>';
+            $html .= '  <td><strong>'. $taxonomy->name .'</strong></td>';
+            $html .= '  <td>'. implode(", ", $attribute) . '</td>';
+            $html .= '</tr>';            
+          }
+        }
+      }
+    }
+    return $html;
   }
 }

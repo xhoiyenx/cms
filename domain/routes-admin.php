@@ -62,5 +62,8 @@ $router->group(['namespace' => 'Catalog'], function($router) {
   $router->post('catalog/product/media/delete', 'ProductMedia@delete')->name('catalog.product.media.delete');
   $router->post('catalog/product/media-list', 'ProductMedia@mediaList')->name('catalog.product.media-list');
 
+  # Products variation
+  $router->post('catalog/product/variation', 'ProductVariation@update')->name('catalog.product.variation');
+
 });
 

@@ -1,19 +1,27 @@
-<div class="panel panel-inverse">
-  <ul class="panel-options">
-    <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
-  </ul>
-  <div class="panel-heading">
-    <h4 class="panel-title">Variations</h4>
-  </div>
-  <div class="panel-body">
-    
-    <div class="row">
-      <div class="col-md-3">
-        <h4 class="nomargin">Attributes <i class="fa fa-fw fa-exclamation-circle tooltips" data-toggle="tooltip" data-original-title="To create variations, you need to assign attributes"></i></h4>
-      </div>
-      <div class="col-md-9">
-      </div>
-    </div>
-
-  </div>
+<h1 class="manager-title clearfix text-uppercase" style="padding-bottom: 5px; font-size: 12px">
+  Attributes
+</h1>
+<div class="panel">
+<table class="table table-bordered table-hover table-primary">
+  <tbody class="ajax-attributes">
+  </tbody>
+</table>
+</div>
+<h1 class="manager-title clearfix text-uppercase" style="padding-bottom: 5px; font-size: 12px">
+  Variations
+  <div class="btn-toolbar pull-right">
+    <a class="btn btn-primary btn-quirk btn-form" data-id="{{ $form->id }}" href="{{ route('manager.catalog.product.variation') }}">Add New</a>
+  </div>  
+</h1>
+<div class="panel ajax-variations">
+<table class="table table-bordered table-hover table-primary">
+  <thead>
+    <tr>
+      <th width="80%">name</th>
+      <th width="20%" class="text-center">action</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 </div>

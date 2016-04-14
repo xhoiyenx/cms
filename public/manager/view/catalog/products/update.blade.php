@@ -58,8 +58,8 @@ $(document).ready(function() {
       return $(this).val();
     }).get();
 
-    $.post('{{ route('manager.catalog.product.save') }}', {attribute: $checked_attr, id: '{{ $form->id}}'}, function(data, textStatus, xhr) {
-      /*optional stuff to do after success */
+    $.post('{{ route('manager.catalog.product.save') }}', {attribute: $checked_attr, id: '{{ $form->id}}', action: 'attribute'}, function(data, textStatus, xhr) {
+      $('.ajax-attributes').html(data);
     });
     
   });
@@ -94,6 +94,9 @@ $(document).ready(function() {
 
   /* load media */
   loadMedia();
+
+  /* load attributes */
+  loadAttributes();
   
 });
 
@@ -102,6 +105,13 @@ function loadMedia()
   $('.filemanager').load('<?php echo route('manager.catalog.product.media-list')?>',{ id: <?php echo $form->id?> } ,
     function(){
     /* Stuff to do after the page is loaded */
+  });
+}
+
+function loadAttributes()
+{
+  $.post('{{ route('manager.catalog.product.save') }}', {id: '{{ $form->id}}', action: 'getAttributes'}, function(data, textStatus, xhr) {
+    $('.ajax-attributes').html(data);
   });
 }
 </script>
