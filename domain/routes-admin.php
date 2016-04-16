@@ -14,9 +14,6 @@
  * Description:
  * All administrator routes assigned here
  */
-$router->get('/', function(){
-  return 'foo';
-});
 
 #
 # Dashboard

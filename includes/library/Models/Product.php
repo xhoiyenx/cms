@@ -51,6 +51,11 @@ class Product extends Model
     return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'attribute')->wherePivot('type', '=', 'attribute');
   }
 
+  public function variationGroups()
+  {
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'variation_groups')->wherePivot('type', '=', 'variation_groups');
+  }  
+
   public function variations()
   {
     return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'variation')->wherePivot('type', '=', 'variation');

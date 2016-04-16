@@ -1,5 +1,8 @@
 <h1 class="manager-title clearfix text-uppercase" style="padding-bottom: 5px; font-size: 12px">
   Attributes
+  <div class="btn-toolbar pull-right">
+    <a class="btn btn-primary btn-quirk set-variation" data-id="{{ $form->id }}" href="{{ route('manager.catalog.product.save') }}">Set as variation</a>
+  </div>    
 </h1>
 <div class="panel">
 <table class="table table-bordered table-hover table-primary">
@@ -10,7 +13,7 @@
 <h1 class="manager-title clearfix text-uppercase" style="padding-bottom: 5px; font-size: 12px">
   Variations
   <div class="btn-toolbar pull-right">
-    <a class="btn btn-primary btn-quirk btn-form" data-id="{{ $form->id }}" href="{{ route('manager.catalog.product.variation') }}">Add New</a>
+    <a class="btn btn-primary btn-quirk btn-form btn-variation" data-id="{{ $form->id }}" href="{{ route('manager.catalog.product.variation') }}">Add New</a>
   </div>  
 </h1>
 <div class="panel ajax-variations">

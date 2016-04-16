@@ -64,6 +64,23 @@ $(document).ready(function() {
     
   });
 
+  $('.set-variation').on('click', function(event) {
+    event.preventDefault();
+    var attributes = $('.attributes:checked');
+    if ( attributes.length > 0 ) {
+      $.post($(this).attr('href'), {id: $(this).data('id'), attributes: attributes.map(function(){return $(this).val();}).get(), action: 'variation_group'}, function(data, textStatus, xhr) {
+        /*optional stuff to do after success */
+      });
+    }
+    else {
+      alert('Please assign one or more attribute data');
+    }
+  });
+
+  $('.btn-variation').click(function(event) {
+    $('.modal-dialog').addClass('modal-lg');
+  });
+
   $('.modal-content').on('submit', 'form', function(event) {
     event.preventDefault();
     $.ajax({
