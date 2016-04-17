@@ -2,12 +2,6 @@
   <div class="col-md-9">
 
     <div class="panel panel-inverse">
-      <ul class="panel-options">
-        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
-      </ul>
-      <div class="panel-heading">
-        <h4 class="panel-title">Information</h4>
-      </div>
       <div class="panel-body">
 
         <div class="row">
@@ -25,7 +19,7 @@
           </div>
 
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group nomargin">
               <label>Description:</label>
               {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 4]) }}
             </div>
