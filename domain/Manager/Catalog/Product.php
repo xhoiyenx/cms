@@ -83,7 +83,7 @@ class Product extends BaseController
 
     $product = ProductRepo::setProduct( $request->all() );
     if ( $product ) {
-      return redirect()->route('manager.catalog.product');
+      return redirect()->route('manager.catalog.product.update', ['id' => $product->id]);
     }
   }
 

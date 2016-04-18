@@ -51,6 +51,11 @@ class ProductRepo
     return $product;
   }
 
+  static function validate()
+  {
+    
+  }
+
   static function setProduct( $param )
   {
     extract($param);
@@ -58,9 +63,15 @@ class ProductRepo
     
     if ( $product )
     {
-      $product->name    = $name;
-      $product->price   = $price;
-      $product->status  = 'published';
+      $product->name        = $name;
+      $product->price       = $price;
+      $product->use_stock   = $use_stock;
+      $product->qty_stock   = $qty_stock;
+      $product->status      = 'published';
+
+      if ( ! empty($sku))
+        $product->sku = $sku;
+
       $product->save();
 
       if ( isset($category) ) {

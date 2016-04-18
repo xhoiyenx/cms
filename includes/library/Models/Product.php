@@ -94,4 +94,12 @@ class Product extends Model
       return app('media')->getMedia($image->link, $image->mime, $size);
     }
   }
+
+  /**
+   * Mutators
+   */
+  public function getQtyStockAttribute($value)
+  {
+      return intval($value);
+  }  
 }

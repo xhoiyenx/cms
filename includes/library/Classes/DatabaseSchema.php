@@ -66,6 +66,7 @@ class DatabaseSchema
 
       $table->mediumIncrements('id');
       $table->unsignedMediumInteger('parent')->default(0);
+      $table->string('sku', 100)->unique()->nullable();
       $table->string('name', 200);
       $table->text('description')->nullable();
       $table->decimal('price', 10, 2)->default('0.00');

@@ -5,29 +5,58 @@
       <div class="panel-body">
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label>Name:</label>
               {{ Form::text('name', null, ['class' => 'form-control']) }}
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Price:</label>
-              {{ Form::text('price', null, ['class' => 'form-control']) }}
-            </div>
-          </div>
 
           <div class="col-md-12">
-            <div class="form-group nomargin">
+            <div class="form-group">
               <label>Description:</label>
               {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 4]) }}
             </div>
           </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Use Stock:</label>
+              {{ Form::select('use_stock', ['n' => 'No', 'y' => 'Yes'], null, ['class' => 'form-control', 'style' => 'width:100%']) }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Stock:</label>
+              {{ Form::text('qty_stock', null, ['class' => 'form-control']) }}
+            </div>
+          </div>
+
         </div>
         
       </div>
     </div>
+
+    <div class="panel panel-inverse">
+      <div class="panel-body form-horizontal form-set">
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">SKU</label>
+          <div class="col-md-9">
+            {{ Form::text('sku', null, ['class' => 'form-control']) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Price</label>
+          <div class="col-md-9">
+            {{ Form::text('price', null, ['class' => 'form-control']) }}
+          </div>
+        </div>
+
+      </div>
+    </div>    
     
 
   </div>  
