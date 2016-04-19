@@ -147,6 +147,73 @@ class DatabaseSchema
 
   }
 
+  public function users()
+  {
+    Schema::dropIfExists('user');
+    Schema::create('user', function(Blueprint $table) {
+
+      $table->mediumIncrements('id');
+      $table->unsignedSmallInteger('role_id');      
+      $table->string('usermail', 50)->unique();
+      $table->string('username', 25)->unique();
+      $table->string('password', 60);
+      $table->string('status', 25);
+      $table->string('registration_key', 60);
+      $table->rememberToken();
+      $table->timestamps();
+
+    });
+
+    Schema::dropIfExists('user_detail');
+    Schema::create('user_detail', function(Blueprint $table) {
+
+      $table->mediumIncrements('id');
+      $table->unsignedMediumInteger('user_id');
+      $table->string('type', 50);
+      $table->string('fullname', 200);
+      $table->string('company', 200)->nullable();
+      $table->text('address')->nullable();
+      $table->string('region', 200)->nullable();
+      $table->string('city', 200)->nullable();
+      $table->string('country', 200)->nullable();
+      $table->string('postcode', 10)->nullable();
+      $table->string('phone', 25)->nullable();
+      $table->string('mobile', 25)->nullable();
+      $table->string('fax', 25)->nullable();
+      $table->tinyInteger('sort')->default(0);
+
+    });
+
+    Schema::dropIfExists('user_eav');
+    Schema::create('user_eav', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->unsignedMediumInteger('user_id');
+      $table->string('eav_key', 100);
+      $table->text('eav_val');
+
+    });
+
+    Schema::dropIfExists('user_role');
+    Schema::create('user_role', function(Blueprint $table) {
+
+      $table->unsignedTinyInteger('id', true);
+      $table->string('name', 100);
+      $table->timestamps();      
+
+    });
+
+    Schema::dropIfExists('user_permission');
+    Schema::create('user_permission', function(Blueprint $table) {
+
+      $table->mediumIncrements('id');
+      $table->unsignedSmallInteger('role_id');
+      $table->string('permission', 200);
+
+    });    
+
+  }
+
   # upgrade
   # DATABASE VERSION 0.0.2
   private function upgrade_002()
@@ -193,15 +260,6 @@ class DatabaseSchema
 
   public function upgrade()
   {
-    # connection between products and taxonomy
-    Schema::dropIfExists('product_taxonomy');
-    Schema::create('product_taxonomy', function(Blueprint $table) {
-
-      $table->unsignedMediumInteger('product_id');
-      $table->unsignedMediumInteger('product_detail_id')->nullable();
-      $table->unsignedSmallInteger('term_id');
-      $table->string('type', 50);
-
-    });    
+    $this->users();
   }
 }
