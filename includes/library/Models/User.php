@@ -21,4 +21,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
   protected $table = 'user';
+
+  public function details()
+  {
+  	return $this->hasMany('Library\Models\UserDetail');
+  }
+
+  public function meta()
+  {
+  	return $this->hasMany('Library\Models\UserMeta');
+  }
+
+  public function role()
+  {
+  	return $this->belongsTo('Library\Models\UserRole');
+  }
 }

@@ -64,3 +64,15 @@ $router->group(['namespace' => 'Catalog'], function($router) {
 
 });
 
+#
+# User pages
+#
+$router->group(['namespace' => 'User'], function($router) {
+
+  # Users
+  $router->get('users', 'Users@index')->name('users');
+
+  # Roles
+  $router->get('roles', 'Roles@index')->name('roles');
+
+});

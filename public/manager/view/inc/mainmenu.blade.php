@@ -39,6 +39,17 @@
 </ul>
 
 <ul class="nav nav-pills nav-stacked nav-quirk">
+  <li class="{!! is_active(['manager.users'], 'active ') !!}nav-parent">
+    <a href="#"><i class="fa fa-user"></i> <span>Users</span></a>
+    <ul class="children">
+      <li>
+        <a href="{{ route('manager.users') }}">User</a>
+      </li>
+      <li>
+        <a href="{{ route('manager.roles') }}">User Roles</a>
+      </li>
+    </ul>    
+  </li>
   <li class="nav-parent">
     <a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a>
     <ul class="children">
