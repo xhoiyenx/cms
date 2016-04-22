@@ -74,5 +74,7 @@ $router->group(['namespace' => 'User'], function($router) {
 
   # Roles
   $router->get('roles', 'Roles@index')->name('roles');
+  $router->get('roles/update/{id?}', 'Roles@update')->name('roles.update');
+  $router->post('roles/save', 'Roles@save')->name('roles.save');
 
 });

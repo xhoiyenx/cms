@@ -402,6 +402,16 @@ body {
   padding-top: 0;
 }
 
+.form-set {
+  padding: 0 !important;
+}
+
+.form-set .form-group {
+  margin: 0;
+  padding: 10px 20px;
+  border-bottom: 1px solid #DDD;
+}
+
 .checkbox-tree, .checkbox-tree ul {
   list-style: none;
   margin: 0;
