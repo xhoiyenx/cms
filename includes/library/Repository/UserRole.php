@@ -27,9 +27,4 @@ class UserRole
 
     return $list->paginate();
   }
-
-  static function modules()
-  {
-    
-  }
 }

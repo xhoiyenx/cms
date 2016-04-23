@@ -31,9 +31,8 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
-          <label>Name:</label>
-          {{ Form::text('name', null, ['class' => 'form-control']) }}
+        <div class="form-group nomargin">
+          {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) }}
         </div>
       </div>
 
@@ -51,14 +50,18 @@
     <div class="form-group">
       <label class="col-md-3 control-label"><strong>Catalog</strong></label>
       <div class="col-md-9">
-        <h5>Attributes</h5>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-3 control-label">Price</label>
-      <div class="col-md-9">
-        {{ Form::text('price', null, ['class' => 'form-control']) }}
+        <div class="col-md-4">
+          <h5>Attributes</h5>
+          {{ cbPermissions('catalog_attributes') }}
+        </div>
+        <div class="col-md-4">
+          <h5>Categories</h5>
+          {{ cbPermissions('catalog_categories') }}
+        </div>
+        <div class="col-md-4">
+          <h5>Products</h5>
+          {{ cbPermissions('catalog_products') }}
+        </div>
       </div>
     </div>
     

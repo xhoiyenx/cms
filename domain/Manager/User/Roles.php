@@ -14,6 +14,7 @@
 
 namespace Domain\Manager\User;
 use Domain\Manager\BaseController;
+use Illuminate\Http\Request;
 use Library\Repository\UserRole;
 use Library\Models\UserRole as Role;
 
@@ -48,6 +49,6 @@ class Roles extends BaseController
 
   public function save(Request $request)
   {
-
+    dump($request->all());
   }
 }
