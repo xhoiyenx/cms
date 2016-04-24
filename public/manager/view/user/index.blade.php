@@ -19,7 +19,7 @@
 @section('content')
 <h1 class="manager-title clearfix">
   <i class="fa fa-fw fa-user"></i>{{ $page }}
-  <a class="btn btn-success btn-quirk pull-right" href="{{ route('manager.catalog.product.update') }}">Add New</a>
+  <a class="btn btn-success btn-quirk pull-right" href="{{ route('manager.users.update') }}">Add New</a>
 </h1>
 @include('inc.messages')
 <div class="panel">
@@ -36,8 +36,8 @@
       <td>{{ $data->getPrice() }}</td>
       <td class="text-center">
         <ul class="table-options">
-          <li><a href="{{ route('manager.catalog.product.update', ['id' => $data->id]) }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
-          <li><a href="{{ route('manager.catalog.product.delete', ['id' => $data->id]) }}" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
+          <li><a href="{{ route('manager.users.update', ['id' => $data->id]) }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
+          <li><a href="{{ route('manager.users.delete', ['id' => $data->id]) }}" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
         </ul>
       </td>
     </tr>

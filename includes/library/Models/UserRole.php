@@ -29,6 +29,17 @@ class UserRole extends Model
 
 	public function permissions()
 	{
-		return $this->hasMany('Library\Models\UserPermission');
+		return $this->hasMany('Library\Models\UserPermission', 'role_id');
 	}
+
+  public function permissions_list()
+  {
+    return $this->permissions()->where('active', 1)->lists('permission');
+  }
+
+  public function delete()
+  {
+    $this->permissions()->delete();
+    $this->delete();
+  }
 }

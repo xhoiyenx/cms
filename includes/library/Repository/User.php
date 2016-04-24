@@ -27,4 +27,9 @@ class User
 
 		return $list->paginate();
 	}
+
+  static function find($id = null)
+  {
+    return UserModel::findOrNew($id);
+  }  
 }

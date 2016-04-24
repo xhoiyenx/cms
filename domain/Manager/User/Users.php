@@ -14,6 +14,9 @@
 
 namespace Domain\Manager\User;
 use Domain\Manager\BaseController;
+
+use Validator;
+use Illuminate\Http\Request;
 use Library\Repository\User;
 
 class Users extends BaseController
@@ -27,4 +30,21 @@ class Users extends BaseController
   	];
   	return view('user.index', $view);
   }
+
+  public function update($id = null)
+  {
+    $form = User::find($id);
+
+    if ($form->exists) {
+      $this->setPage('Edit role');
+    }
+    else {
+      $this->setPage('Add new role');
+    }
+    
+    $view = [
+      'form' => $form
+    ];
+    return view('user.update', $view);
+  }  
 }

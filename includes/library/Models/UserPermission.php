@@ -22,6 +22,7 @@ class UserPermission extends Model
 {
 	protected $table = 'user_permission';
 	public $timestamps = false;
+  protected $fillable = ['permission', 'active'];
 
 	public function role()
 	{

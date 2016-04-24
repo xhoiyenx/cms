@@ -49,11 +49,16 @@ function is_active( $route, $text = '' )
 
 function cbPermissions( $name, $data = [] )
 {
+  
   foreach ( ['can_view', 'can_edit', 'can_delete'] as $permission )
   {
+    $checked = '';
+    if ( ! empty($data) && in_array($name . '_' . $permission, $data) ) {
+      $checked = ' checked';
+    }
   ?>
   <label class="ckbox">
-    <?php echo Form::checkbox('permissions['. $name . '_' . $permission .']')?><span><?php echo trans('global.' . $permission)?></span>
+    <input type="checkbox" name="<?php echo 'permissions['. $name . '_' . $permission .']'?>" <?php echo $checked?>><span><?php echo trans('global.' . $permission)?></span>
   </label>
   <?php
   }

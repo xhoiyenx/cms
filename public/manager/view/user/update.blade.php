@@ -17,13 +17,13 @@
 ?>
 @extends('inc.master')
 @section('content')
-{{ Form::model($form, ['route' => 'manager.roles.save']) }}
+{{ Form::model($form, ['route' => 'manager.users.save']) }}
 {{ Form::hidden('id', $form->id)}}
 <h1 class="manager-title clearfix">
   <i class="fa fa-fw fa-gift"></i>{{ $page }}
   <div class="btn-toolbar pull-right">
     <button type="submit" class="btn btn-success btn-quirk">Save</button>
-    <a href="{{ route('manager.roles') }}" class="btn btn-primary btn-quirk">Cancel</a>
+    <a href="{{ route('manager.users') }}" class="btn btn-primary btn-quirk">Cancel</a>
   </div>  
 </h1>
 
@@ -33,12 +33,33 @@
   <div class="panel-body">
 
     <div class="row">
-      <div class="col-md-12">
-        <div class="form-group nomargin">
-          {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) }}
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Username</label>
+          {{ Form::text('username', null, ['class' => 'form-control']) }}
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Email Address</label>
+          {{ Form::text('usermail', null, ['class' => 'form-control']) }}
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Password</label>
+          {{ Form::password('userpass', ['class' => 'form-control']) }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Confirm Password</label>
+          {{ Form::password('userpass_confirm', ['class' => 'form-control']) }}
+        </div>
+      </div>
     </div>
     
   </div>
@@ -50,22 +71,9 @@
   </div>
   <div class="panel-body form-horizontal form-set">
 
-    <?php $permissions = $form->permissions_list()->toArray() ?>
     <div class="form-group">
       <label class="col-md-3 control-label"><strong>Catalog</strong></label>
       <div class="col-md-9">
-        <div class="col-md-4">
-          <h5>Attributes</h5>
-          {{ cbPermissions('catalog_attributes', $permissions) }}
-        </div>
-        <div class="col-md-4">
-          <h5>Categories</h5>
-          {{ cbPermissions('catalog_categories', $permissions) }}
-        </div>
-        <div class="col-md-4">
-          <h5>Products</h5>
-          {{ cbPermissions('catalog_products', $permissions) }}
-        </div>
       </div>
     </div>
     

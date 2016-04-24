@@ -14,9 +14,10 @@
 
 namespace Domain\Manager\User;
 use Domain\Manager\BaseController;
+
+use Validator;
 use Illuminate\Http\Request;
 use Library\Repository\UserRole;
-use Library\Models\UserRole as Role;
 
 class Roles extends BaseController
 {
@@ -32,13 +33,13 @@ class Roles extends BaseController
 
   public function update($id = null)
   {
-    $this->setPage('Add New');
+    $form = UserRole::find($id);
 
-    if ( is_null($id) ) {
-      $form = new Role;
+    if ($form->exists) {
+      $this->setPage('Edit role');
     }
     else {
-      $form = Role::find($id);
+      $this->setPage('Add new role');
     }
     
     $view = [
@@ -47,8 +48,37 @@ class Roles extends BaseController
     return view('user.roles.update', $view);
   }
 
+  public function delete($id = null)
+  {
+    $role = UserRole::find($id);
+    if ($role) {
+      $role->delete();
+      return back()->with('message', 'Role deleted');
+    }
+  }
+
   public function save(Request $request)
   {
-    dump($request->all());
+    $id = '';
+    if ( $request->has('id') ) {
+      $id = ',' . $request->get('id');
+    }
+
+    #validate
+    $validator = Validator::make($request->all(), [
+      'name' => 'required|unique:user_role,name' . $id,
+    ]);
+
+    # validate fail
+    if ( $validator->fails() ) {
+      return back()->withErrors($validator);
+    }
+    # save data
+    else {
+      if ( $role = UserRole::save($request) ) {
+        return redirect()->route('manager.roles.update', ['id' => $role->id])->with('message', 'Data saved');
+      }
+    }
+
   }
 }
