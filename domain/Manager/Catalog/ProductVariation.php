@@ -18,18 +18,31 @@ namespace Domain\Manager\Catalog;
 
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
+use Library\Repository\ProductRepo;
 
 class ProductVariation extends BaseController
 {
   public function update( Request $request )
   {
+    # if not ajax, abort
     if ( ! $request->ajax() )
       return abort(404);
 
+    # if product id not exists, abort
     if ( ! $request->has('id') )
       return abort(404);
 
-    $view = [];
+    $product = ProductRepo::find( $request->id );
+    $variant = ProductRepo::find( $request->variant );
+
+    $view = [
+      'product' => $product,
+      'form'    => $variant
+    ];
+
+    if ( empty($product->attributes) ) {
+      $request->session()->flash('message', 'Please assign product attributes!');
+    }
 
     return view('catalog.products.ajax-variation', $view);
   }

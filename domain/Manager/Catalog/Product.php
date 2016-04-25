@@ -124,6 +124,15 @@ class Product extends BaseController
   {
     $html = '';
     $input = '';
+
+    if ( empty($attributes) ) {
+      $html .= '<tr>';
+      $html .= '  <td colspan="2">Please assign product attributes to use variation.</td>';
+      $html .= '</tr>';
+
+      return $html;
+    }
+
     $taxonomies = Taxonomy::where('parent', 0)->where('type', 'attribute')->orderBy('sort')->get();
     if ( ! $taxonomies->isEmpty() )
     {
@@ -148,7 +157,6 @@ class Product extends BaseController
               $input .= ' disabled';
 
             $html .= '<tr>';
-            $html .= '  <td class="cbox"><input class="attributes"'.$input.' name="attributes[]" type="checkbox" value="'. $taxonomy->id .'"></td>';
             $html .= '  <td><strong>'. $taxonomy->name .'</strong></td>';
             $html .= '  <td>'. implode(", ", $attribute) . '</td>';
             $html .= '</tr>';            
@@ -156,6 +164,13 @@ class Product extends BaseController
         }
       }
     }
+    else
+    {
+      $html .= '<tr>';
+      $html .= '  <td colspan="2">Please assign product attributes to use variation.</td>';
+      $html .= '</tr>';
+    }
+
     return $html;
   }
 }

@@ -21,6 +21,11 @@ use Library\Models\Product;
 
 class ProductRepo
 {
+  static function find($id = null)
+  {
+    return Product::findOrNew($id);
+  }  
+
   /**
    * Create draft product
    * @return Library\Models\Product

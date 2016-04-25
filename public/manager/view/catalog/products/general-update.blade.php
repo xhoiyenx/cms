@@ -21,14 +21,14 @@
 
           <div class="col-md-6">
             <div class="form-group">
-              <label>Use Stock:</label>
+              <label>Use Stock Management:</label>
               {{ Form::select('use_stock', ['n' => 'No', 'y' => 'Yes'], null, ['class' => 'form-control', 'style' => 'width:100%']) }}
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label>Stock:</label>
+              <label>Stock Quantity:</label>
               {{ Form::text('qty_stock', null, ['class' => 'form-control']) }}
             </div>
           </div>

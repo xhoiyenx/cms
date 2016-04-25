@@ -1,11 +1,11 @@
 <h1 class="manager-title clearfix text-uppercase" style="padding-bottom: 5px; font-size: 12px">
   Attributes
   <div class="btn-toolbar pull-right">
-    <a class="btn btn-primary btn-quirk set-variation" data-id="{{ $form->id }}" href="{{ route('manager.catalog.product.save') }}">Set as variation</a>
+    <!--<a class="btn btn-primary btn-quirk set-variation" data-id="{{ $form->id }}" href="{{ route('manager.catalog.product.save') }}">Set as variation</a>-->
   </div>    
 </h1>
 <div class="panel">
-<table class="table table-bordered table-hover table-primary">
+<table class="table table-bordered table-primary">
   <tbody class="ajax-attributes">
   </tbody>
 </table>
