@@ -64,12 +64,16 @@ class Product extends Model
   public function taxonomyArray( $type = 'categories' )
   {
     switch ($type) {
+      case 'attributes':
+        return $this->attributes()->lists('id')->toArray();
+        break;
+
       case 'variations':
-        return $this->variations->lists('id')->toArray();
+        return $this->variations()->lists('id')->toArray();
         break;
       
       default:
-        return $this->categories->lists('id')->toArray();
+        return $this->categories()->lists('id')->toArray();
         break;
     }
   }

@@ -19,11 +19,14 @@ namespace Domain\Manager\Catalog;
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
 use Library\Repository\ProductRepo;
+use Library\Repository\ProductTaxonomy;
 
 class ProductVariation extends BaseController
 {
   public function update( Request $request )
   {
+    $success = true;
+
     # if not ajax, abort
     if ( ! $request->ajax() )
       return abort(404);
@@ -35,14 +38,18 @@ class ProductVariation extends BaseController
     $product = ProductRepo::find( $request->id );
     $variant = ProductRepo::find( $request->variant );
 
-    $view = [
-      'product' => $product,
-      'form'    => $variant
-    ];
-
-    if ( empty($product->attributes) ) {
+    if ( $product->attributes->isEmpty() ) {
+      $success = false;
       $request->session()->flash('message', 'Please assign product attributes!');
     }
+
+    dump(ProductTaxonomy::getParents( $product->taxonomyArray('attributes') ));
+
+    $view = [
+      'product' => $product,
+      'form'    => $variant,
+      'success' => $success
+    ];
 
     return view('catalog.products.ajax-variation', $view);
   }

@@ -1,5 +1,5 @@
 <div class="ajax-form">
-  @if ( ! $product->variations->isEmpty())
+  @if ( $success )
   {{ Form::model( $form, ['route' => 'manager.catalog.product.variation'] ) }}
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

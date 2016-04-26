@@ -53,9 +53,7 @@ class ProductTaxonomy
       }
 
       return $tree;
-    }
-
-    
+    }    
   }
 
   /**
@@ -231,5 +229,11 @@ class ProductTaxonomy
 
       return $tree;
     }
-  }  
+  }
+
+  public static function getParents( $taxonomies = [] )
+  {
+    $query = Taxonomy::whereIn( 'id', $taxonomies)->groupBy('parent')->get();
+    return $query;
+  }
 }
