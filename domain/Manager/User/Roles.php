@@ -36,10 +36,10 @@ class Roles extends BaseController
     $form = UserRole::find($id);
 
     if ($form->exists) {
-      $this->setPage('Edit role');
+      $this->setPage('Edit Role');
     }
     else {
-      $this->setPage('Add new role');
+      $this->setPage('Add New Role');
     }
     
     $view = [

@@ -309,4 +309,17 @@ $(document).ready(function() {
     width: 'style'
   });
 
+  /**
+   * Bind checkall checkbox
+   */
+  $('.checkall').change(function(event) {
+    var $checkboxes = $(document).find(':checkbox');
+    if ( $(this).prop('checked') ) {
+      $checkboxes.prop('checked', true) ;
+    }
+    else {
+      $checkboxes.prop('checked', false) ;
+    }
+  });
+
 });

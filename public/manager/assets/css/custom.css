@@ -431,6 +431,20 @@ body {
   padding: 10px;
 }
 
+.panel-options .ckbox {
+  margin: 0;
+  position: relative;
+  bottom: -1px;
+}
+
+.panel-inverse .panel-options .ckbox span {
+  color: #FFF;
+}
+
+.wh5 h5 {
+  font-weight: 500;
+}
+
 @media (max-width:768px) {
   .form-set .form-group .col-md-9 {
     border: none;

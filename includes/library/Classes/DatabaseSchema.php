@@ -208,6 +208,7 @@ class DatabaseSchema
 
       $table->mediumIncrements('id');
       $table->unsignedSmallInteger('role_id');
+      $table->boolean('active')->default(1);
       $table->string('permission', 200);
 
     });    

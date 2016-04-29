@@ -15,7 +15,6 @@
 namespace Domain\Manager\User;
 use Domain\Manager\BaseController;
 
-use Validator;
 use Illuminate\Http\Request;
 use Library\Repository\User;
 
@@ -36,15 +35,22 @@ class Users extends BaseController
     $form = User::find($id);
 
     if ($form->exists) {
-      $this->setPage('Edit role');
+      $this->setPage('Edit User');
     }
     else {
-      $this->setPage('Add new role');
+      $this->setPage('Add New User');
     }
     
     $view = [
       'form' => $form
     ];
     return view('user.update', $view);
-  }  
+  }
+
+  public function save(Request $request)
+  {
+    $this->validate($request, [
+
+    ]);
+  }
 }

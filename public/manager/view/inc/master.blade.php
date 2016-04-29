@@ -45,7 +45,7 @@
     <div class="headerpanel">
 
       <div class="logopanel">
-        <h2><a href="index.html">HONAKO</a></h2>
+        <h2><a href="index.html">&nbsp;</a></h2>
       </div><!-- logopanel -->
 
       <div class="headerbar">

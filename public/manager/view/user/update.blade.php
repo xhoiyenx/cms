@@ -67,15 +67,30 @@
 
 <div class="panel panel-inverse">
   <div class="panel-heading">
-    <h3 class="panel-title">Permissions</h3>
+    <h3 class="panel-title">Information</h3>
   </div>
   <div class="panel-body form-horizontal form-set">
 
     <div class="form-group">
-      <label class="col-md-3 control-label"><strong>Catalog</strong></label>
+      <label class="col-md-3 control-label">Fullname</label>
       <div class="col-md-9">
+        {{ Form::text('fullname', null, ['class' => 'form-control']) }}
       </div>
     </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">Company</label>
+      <div class="col-md-9">
+        {{ Form::text('company', null, ['class' => 'form-control']) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">Address</label>
+      <div class="col-md-9">
+        {{ Form::textarea('address', null, ['class' => 'form-control', 'rows' => 4]) }}
+      </div>
+    </div>        
     
   </div>
 </div>

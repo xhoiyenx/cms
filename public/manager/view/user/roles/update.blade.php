@@ -45,14 +45,21 @@
 </div>
 
 <div class="panel panel-inverse">
+  <ul class="panel-options">
+    <li>
+      <label class="ckbox">
+        <input class="checkall" type="checkbox"><span>Check All</span>
+      </label>
+    </li>
+  </ul>
   <div class="panel-heading">
     <h3 class="panel-title">Permissions</h3>
   </div>
-  <div class="panel-body form-horizontal form-set">
+  <div class="panel-body form-horizontal form-set wh5">
 
     <?php $permissions = $form->permissions_list()->toArray() ?>
     <div class="form-group">
-      <label class="col-md-3 control-label"><strong>Catalog</strong></label>
+      <label class="col-md-3 control-label"><h5>CATALOG</h5></label>
       <div class="col-md-9">
         <div class="col-md-4">
           <h5>Attributes</h5>
@@ -71,8 +78,6 @@
     
   </div>
 </div>
-
-
 
 {{ Form::close() }}
 @endsection
