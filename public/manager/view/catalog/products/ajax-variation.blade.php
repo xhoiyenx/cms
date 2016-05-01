@@ -68,9 +68,11 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+  /*
   $('select').select2({
     dropdownParent: $('.modal')
   });
+  */
 
   $('.deactivate_neighbor').change(function(event) {
 
