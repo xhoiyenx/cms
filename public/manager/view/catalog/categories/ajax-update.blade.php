@@ -42,8 +42,10 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+  /*
   $('select').select2({
     dropdownParent: $('.modal')
   });
+  */
 });
 </script>

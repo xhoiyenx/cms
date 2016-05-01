@@ -55,4 +55,9 @@ class ProductVariation extends BaseController
 
     return view('catalog.products.ajax-variation', $view);
   }
+
+  public function save()
+  {
+    
+  }
 }

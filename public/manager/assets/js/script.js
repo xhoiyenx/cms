@@ -303,11 +303,11 @@ $(document).ready(function() {
 
   /**
    * INIT SELECT2
-   */
   $('select').select2({
     dropdownAutoWidth: true,
     width: 'style'
   });
+   */
 
   /**
    * Bind checkall checkbox
