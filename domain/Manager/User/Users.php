@@ -40,17 +40,40 @@ class Users extends BaseController
     else {
       $this->setPage('Add New User');
     }
-    
+
     $view = [
-      'form' => $form
+      'form'    => $form,
+      'status'  => User::status(),
+      'roles'   => User::roles()
     ];
     return view('user.update', $view);
   }
 
   public function save(Request $request)
   {
-    $this->validate($request, [
+    if ($request->has('id'))
+    {
+      $this->validate($request, [
+        'username' => 'required|max:25',
+        'usermail' => 'required|max:50|email',
+        'password' => 'confirmed'
+      ]);
+    }
+    else
+    {
+      $this->validate($request, [
+        'username' => 'required|max:25|unique:user',
+        'usermail' => 'required|max:50|email|unique:user',
+        'password' => 'required|confirmed'
+      ]);
+    }
 
-    ]);
+    $user = User::save($request);
+    if ( $user ) {
+      return redirect()->route('manager.users.update', ['id' => $user->id])->with('message', 'Data updated');
+    }
+    else {
+      return back()->withInput();
+    }
   }
 }

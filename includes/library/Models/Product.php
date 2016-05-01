@@ -17,6 +17,7 @@
 
 namespace Library\Models;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Product extends Model
 {
@@ -99,11 +100,30 @@ class Product extends Model
     }
   }
 
+  public function haveMultiAttributes()
+  {
+    $query = DB::table('product_term_relation');
+    $query->select(DB::raw('COUNT(product_term.parent) AS multi'));
+    $query->join('product_term', 'product_term.id', '=', 'product_term_relation.term_id');
+    $query->where('product_term_relation.type', '=', 'attribute');
+    $query->where('product_term_relation.product_id', '=', $this->id);
+    $query->groupBy( 'product_term.parent' );
+    $query->orderBy( 'multi', 'desc' );
+    $data = $query->first();
+    
+    if ( $data->multi > 1 ) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   /**
    * Mutators
    */
   public function getQtyStockAttribute($value)
   {
-      return intval($value);
-  }  
+    return intval($value);
+  } 
 }

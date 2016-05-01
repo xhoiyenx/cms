@@ -20,11 +20,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-  protected $table = 'user';
+  protected $table    = 'user';
+  protected $appends  = ['general'];
 
-  public function details()
+  public function detail( $type = 'general' )
   {
-  	return $this->hasMany('Library\Models\UserDetail');
+  	return $this->hasOne('Library\Models\UserDetail')->firstOrNew( ['type' => $type] );
   }
 
   public function meta()
@@ -35,5 +36,10 @@ class User extends Authenticatable
   public function role()
   {
   	return $this->belongsTo('Library\Models\UserRole');
+  }
+
+  public function getGeneralAttribute()
+  {
+    return $this->attributes['general'] = $this->detail()->toArray();
   }
 }

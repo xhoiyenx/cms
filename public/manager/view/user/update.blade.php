@@ -17,7 +17,7 @@
 ?>
 @extends('inc.master')
 @section('content')
-{{ Form::model($form, ['route' => 'manager.users.save']) }}
+{{ Form::model($form->toArray(), ['route' => 'manager.users.save']) }}
 {{ Form::hidden('id', $form->id)}}
 <h1 class="manager-title clearfix">
   <i class="fa fa-fw fa-gift"></i>{{ $page }}
@@ -51,16 +51,32 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Password</label>
-          {{ Form::password('userpass', ['class' => 'form-control']) }}
+          {{ Form::password('password', ['class' => 'form-control']) }}
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label>Confirm Password</label>
-          {{ Form::password('userpass_confirm', ['class' => 'form-control']) }}
+          {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Status</label>
+          {{ Form::select('status', $status, null, ['class' => 'form-control', 'style' => 'width:100%']) }}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Role</label>
+          {{ Form::select('role_id', $roles, null, ['class' => 'form-control', 'style' => 'width:100%']) }}
+        </div>
+      </div>
+    </div>
+
     
   </div>
 </div>
@@ -74,23 +90,58 @@
     <div class="form-group">
       <label class="col-md-3 control-label">Fullname</label>
       <div class="col-md-9">
-        {{ Form::text('fullname', null, ['class' => 'form-control']) }}
+        {{ Form::text('general[fullname]', null, ['class' => 'form-control']) }}
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-md-3 control-label">Company</label>
       <div class="col-md-9">
-        {{ Form::text('company', null, ['class' => 'form-control']) }}
+        {{ Form::text('general[company]', null, ['class' => 'form-control']) }}
       </div>
     </div>
 
     <div class="form-group">
       <label class="col-md-3 control-label">Address</label>
       <div class="col-md-9">
-        {{ Form::textarea('address', null, ['class' => 'form-control', 'rows' => 4]) }}
+        {{ Form::textarea('general[address]', null, ['class' => 'form-control', 'rows' => 3]) }}
       </div>
-    </div>        
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">Region</label>
+      <div class="col-md-9">
+        {{ Form::text('general[region]', null, ['class' => 'form-control']) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">City</label>
+      <div class="col-md-9">
+        {{ Form::text('general[city]', null, ['class' => 'form-control']) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">Phone Number</label>
+      <div class="col-md-9">
+        {{ Form::text('general[phone]', null, ['class' => 'form-control']) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">Mobile Number</label>
+      <div class="col-md-9">
+        {{ Form::text('general[mobile]', null, ['class' => 'form-control']) }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-3 control-label">Fax Number</label>
+      <div class="col-md-9">
+        {{ Form::text('general[fax]', null, ['class' => 'form-control']) }}
+      </div>
+    </div>    
     
   </div>
 </div>

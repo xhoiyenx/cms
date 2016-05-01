@@ -25,15 +25,15 @@
 <div class="panel">
 <table class="table table-bordered table-primary table-striped">
   <thead>
-    <th>name</th>
+    <th>email</th>
     <th>price</th>
     <th width="15%" class="text-center">action</th>
   </thead>
   <tbody>
     @forelse ( $list as $data )
     <tr>
-      <td><strong><a href="{{ route('manager.catalog.product.update', ['id' => $data->id]) }}">{{ $data->name }}</a></strong></td>
-      <td>{{ $data->getPrice() }}</td>
+      <td><strong><a href="{{ route('manager.users.update', ['id' => $data->id]) }}">{{ $data->usermail }}</a></strong></td>
+      <td></td>
       <td class="text-center">
         <ul class="table-options">
           <li><a href="{{ route('manager.users.update', ['id' => $data->id]) }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>

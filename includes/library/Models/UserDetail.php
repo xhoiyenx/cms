@@ -22,6 +22,7 @@ class UserDetail extends Model
 {
 	protected $table = 'user_detail';
 	public $timestamps = false;
+  protected $fillable = ['type'];  
 
 	public function user()
 	{

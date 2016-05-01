@@ -61,6 +61,7 @@ $router->group(['namespace' => 'Catalog'], function($router) {
 
   # Products variation
   $router->post('catalog/product/variation', 'ProductVariation@update')->name('catalog.product.variation');
+  $router->post('catalog/product/variation/save', 'ProductVariation@save')->name('catalog.product.variation.save');
 
 });
 

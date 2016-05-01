@@ -22,10 +22,10 @@
 </ul>
 
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li class="{!! is_active(['manager.catalog.categories', 'manager.catalog.product', 'manager.catalog.attributes'], 'active ') !!}nav-parent">
+  <li class="{!! is_active(['manager.catalog.categories', 'manager.catalog.product', 'manager.catalog.product.update', 'manager.catalog.attributes'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-shopping-basket"></i> <span>Catalog</span></a>
     <ul class="children">
-      <li class="{!! is_active(['manager.catalog.product'], 'active ') !!}">
+      <li class="{!! is_active(['manager.catalog.product', 'manager.catalog.product.update'], 'active ') !!}">
         <a href="{{ route('manager.catalog.product') }}">Products</a>
       </li>    
       <li class="{!! is_active(['manager.catalog.attributes'], 'active ') !!}">
@@ -39,13 +39,13 @@
 </ul>
 
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li class="{!! is_active(['manager.users'], 'active ') !!}nav-parent">
+  <li class="{!! is_active(['manager.users', 'manager.roles', 'manager.users.update', 'manager.roles.update'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-user"></i> <span>Users</span></a>
     <ul class="children">
-      <li>
+      <li class="{!! is_active(['manager.users', 'manager.users.update'], 'active ') !!}">
         <a href="{{ route('manager.users') }}">User</a>
       </li>
-      <li>
+      <li class="{!! is_active(['manager.roles', 'manager.roles.update'], 'active ') !!}">
         <a href="{{ route('manager.roles') }}">User Roles</a>
       </li>
     </ul>    

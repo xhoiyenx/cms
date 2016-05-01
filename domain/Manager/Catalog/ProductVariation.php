@@ -42,8 +42,10 @@ class ProductVariation extends BaseController
       $success = false;
       $request->session()->flash('message', 'Please assign product attributes!');
     }
-
-    dump(ProductTaxonomy::getParents( $product->taxonomyArray('attributes') ));
+    elseif ( ! $product->haveMultiAttributes() ) {
+      $success = false;
+      $request->session()->flash('message', 'Please assign more than one product attribute values!');
+    }
 
     $view = [
       'product' => $product,

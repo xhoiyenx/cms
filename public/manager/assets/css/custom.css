@@ -441,6 +441,17 @@ body {
   color: #FFF;
 }
 
+.input-group-addon label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.input-group-addon span {
+  position: relative;
+  bottom: 2px;
+  margin-left: 2px;
+}
+
 .wh5 h5 {
   font-weight: 500;
 }
