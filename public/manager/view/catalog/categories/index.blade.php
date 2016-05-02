@@ -23,23 +23,18 @@
 </h1>
 @include('inc.messages')
 <div class="panel">
-<table class="table table-bordered table-hover table-primary">
+<table class="table table-bordered table-primary">
   <thead>
     <tr>
-      <th width="80%">name</th>
-      <th width="20%" class="text-center">action</th>
+      <th class="cbox"><input type="checkbox" class="checkall"></th>
+      <th>name</th>
     </tr>
   </thead>
   <tbody>
     @forelse ( $list as $data )
     <tr>
-      <td>{{ $data['name'] }}</td>
-      <td class="text-center">
-        <ul class="table-options">
-          <li><a class="btn-form" data-id="{{ $data['id'] }}" href="{{ route('manager.catalog.categories.update') }}" title="Edit"><i class="fa fa-fw fa-pencil"></i></a></li>
-          <li><a href="{{ route('manager.catalog.categories') }}?delete={{ $data['id'] }}" title="Delete"><i class="fa fa-fw fa-trash"></i></a></li>
-        </ul>
-      </td>
+      <td class="cbox"><input type="checkbox" name="categories[]" value="{{ $data['id'] }}"></td>
+      <td><a class="btn-form" data-id="{{ $data['id'] }}" href="{{ route('manager.catalog.categories.update') }}" title="Edit">{{ $data['name'] }}</a></td>
     </tr>
     @empty
     <tr>
@@ -49,6 +44,7 @@
   </tbody>
 </table>
 </div>
+<input type="submit" value="Delete Checked" class="btn btn-small btn-quirk btn-primary">
 {!! $list->links() !!}
 @endsection
 

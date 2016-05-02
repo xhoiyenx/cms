@@ -50,7 +50,7 @@ class Categories extends BaseController
     $coll = collect(ProductTaxonomy::getCollection('category'));
     $page = $request->page ?: 1;
 
-    $data = new LengthAwarePaginator($coll->forPage($page, 20), $coll->count(), 20, null, [
+    $data = new LengthAwarePaginator($coll->forPage($page, 1), $coll->count(), 1, null, [
               'path' => Paginator::resolveCurrentPath(),
               'pageName' => 'page'
             ]);

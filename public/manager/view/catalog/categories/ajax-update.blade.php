@@ -47,5 +47,6 @@ $(document).ready(function() {
     dropdownParent: $('.modal')
   });
   */
+  setTimeout( function() { $('input[name=name]').focus(); }, 750 );
 });
 </script>
