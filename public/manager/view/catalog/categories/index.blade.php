@@ -22,6 +22,7 @@
   <a class="btn btn-primary btn-quirk btn-form pull-right" href="{{ route('manager.catalog.categories.update') }}">Add New</a>
 </h1>
 @include('inc.messages')
+{{ Form::open(['route' => 'manager.catalog.categories.action']) }}
 <div class="panel">
 <table class="table table-bordered table-primary">
   <thead>
@@ -33,7 +34,7 @@
   <tbody>
     @forelse ( $list as $data )
     <tr>
-      <td class="cbox"><input type="checkbox" name="categories[]" value="{{ $data['id'] }}"></td>
+      <td class="cbox"><input type="checkbox" name="delete[]" value="{{ $data['id'] }}"></td>
       <td><a class="btn-form" data-id="{{ $data['id'] }}" href="{{ route('manager.catalog.categories.update') }}" title="Edit">{{ $data['name'] }}</a></td>
     </tr>
     @empty
@@ -46,6 +47,7 @@
 </div>
 <input type="submit" value="Delete Checked" class="btn btn-small btn-quirk btn-primary">
 {!! $list->links() !!}
+{{ Form::close() }}
 @endsection
 
 @section('after_footer')

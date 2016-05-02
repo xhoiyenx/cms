@@ -25,17 +25,20 @@
   <a class="btn btn-primary btn-quirk btn-form pull-right" data-parent="{{ request()->get('group', 0) }}" href="{{ route('manager.catalog.attributes.update') }}">Add New</a>
 </h1>
 @include('inc.messages')
+{{ Form::open(['route' => 'manager.catalog.attributes.action']) }}
 <div class="panel">
 <table class="table table-bordered table-hover table-primary">
   <thead>
     <tr>
+      <th class="cbox"><input type="checkbox" class="checkall"></th>
       <th width="80%">name</th>
-      <th width="20%" class="text-center">action</th>
+      <th width="15%" class="text-center">action</th>
     </tr>
   </thead>
   <tbody>
     @forelse ( $list as $data )
     <tr>
+      <td class="cbox"><input type="checkbox" name="delete[]" value="{{ $data['id'] }}"></td>
       @if ( $data['parent'] != 0 )
       <td>{{ $data['name'] }}</td>
       @else
@@ -50,13 +53,15 @@
     </tr>
     @empty
     <tr>
-      <td colspan="2">No Data Found</td>
+      <td colspan="3">No Data Found</td>
     </tr>
     @endforelse
   </tbody>
 </table>
 </div>
+<input type="submit" value="Delete Checked" class="btn btn-small btn-quirk btn-primary">
 {!! $list->links() !!}
+{{ Form::close() }}
 @endsection
 
 @section('after_footer')

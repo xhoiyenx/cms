@@ -32,16 +32,6 @@ class Categories extends BaseController
 {
   public function index(Request $request)
   {
-
-    # delete request
-    if ( $request->delete ) {
-      $delete = Taxonomy::find($request->delete);
-      if ( $delete ) {
-        $delete->delete();
-      }
-      return back()->withMessage($delete->name . ' Deleted');
-    }
-
     $this->setPage('Categories');
 
     $data = array();
@@ -50,7 +40,7 @@ class Categories extends BaseController
     $coll = collect(ProductTaxonomy::getCollection('category'));
     $page = $request->page ?: 1;
 
-    $data = new LengthAwarePaginator($coll->forPage($page, 1), $coll->count(), 1, null, [
+    $data = new LengthAwarePaginator($coll->forPage($page, 20), $coll->count(), 20, null, [
               'path' => Paginator::resolveCurrentPath(),
               'pageName' => 'page'
             ]);
@@ -59,7 +49,7 @@ class Categories extends BaseController
       'list' => $data,
     ];
 
-    return view()->make('catalog.categories.index', $view);
+    return view('catalog.categories.index', $view);
   }
 
   /**
@@ -125,5 +115,23 @@ class Categories extends BaseController
       # maybe show 404
       return abort(404);
     }
+  }
+
+  public function action( Request $request )
+  {
+    # delete request
+    if ( $request->has('delete') ) {
+      $categories = Taxonomy::findMany($request->delete);
+
+      if ( ! $categories->isEmpty() ) {
+        foreach ( $categories as $category ) {
+          $category->delete();
+        }
+      }
+      return back()->withMessage('Item/s Deleted');
+    }
+    else {
+      return back()->withMessage('Please select item');
+    }    
   }
 }

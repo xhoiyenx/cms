@@ -32,8 +32,11 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+  /*
   $('select').select2({
     dropdownParent: $('.modal')
   });
+  */
+  setTimeout( function() { $('input[name=name]').focus(); }, 750 ); 
 });
 </script>

@@ -138,4 +138,22 @@ class Attributes extends BaseController
       return abort(404);
     }
   }
+
+  public function action( Request $request )
+  {
+    if ( $request->has('delete') )
+    {
+      $attributes = Taxonomy::findMany( $request->delete );
+      if ( ! $attributes->isEmpty() ) {
+        foreach ( $attributes as $attribute ) {
+          $attribute->delete();
+        }
+      }
+
+      return back()->withMessage('Item/s Deleted');
+    }
+    else {
+      return back()->withMessage('Please select item');
+    }
+  }
 }

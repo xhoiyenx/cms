@@ -42,11 +42,13 @@ $router->group(['namespace' => 'Catalog'], function($router) {
 
   # Categories
   $router->get('catalog/category', 'Categories@index')->name('catalog.categories');
-  $router->post('catalog/category', 'Categories@update')->name('catalog.categories.update'); 
+  $router->post('catalog/category', 'Categories@update')->name('catalog.categories.update');
+  $router->post('catalog/category/action', 'Categories@action')->name('catalog.categories.action');
 
   # Attributes
   $router->get('catalog/attribute', 'Attributes@index')->name('catalog.attributes');
   $router->post('catalog/attribute', 'Attributes@update')->name('catalog.attributes.update');  
+  $router->post('catalog/attribute/action', 'Attributes@action')->name('catalog.attributes.action');  
 
   # Products
   $router->get('catalog/product', 'Product@index')->name('catalog.product');
