@@ -16,8 +16,10 @@
  */
 namespace Domain\Manager\Catalog;
 
+use DB;
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
+use Library\Models\Taxonomy;
 use Library\Repository\ProductRepo;
 use Library\Repository\ProductTaxonomy;
 
@@ -46,6 +48,12 @@ class ProductVariation extends BaseController
       $success = false;
       $request->session()->flash('message', 'Please assign more than one product attribute values!');
     }
+
+    #$group = DB::select('SELECT * FROM product_term WHERE id IN ( SELECT parent FROM product_term WHERE id IN( SELECT term_id FROM product_term_relation WHERE product_id = ? ) GROUP BY parent )', [ $product->id ]);
+    #$group = Taxonomy::query()->select('SELECT * FROM product_term WHERE id IN ( SELECT parent FROM product_term WHERE id IN( SELECT term_id FROM product_term_relation WHERE product_id = ? ) GROUP BY parent )', [ $product->id ]);
+    #$group = Taxonomy::select('*')->whereIn( 'id',  );
+    #$group = DB::selectRaw('SELECT parent FROM product_term WHERE id IN( SELECT term_id FROM product_term_relation WHERE product_id = 1 )');
+    #dump($group);
 
     $view = [
       'product' => $product,

@@ -15,14 +15,19 @@ namespace Domain\System;
 
 use Library\Classes\DatabaseSchema;
 use Library\Repository\ProductTaxonomy;
-
-use Library\Repository\ProductRepo;
+use Library\Models\Taxonomy;
+use Library\Models\Product;
 
 class Test extends BaseController
 {
 	public function index()
 	{
-    $product = ProductRepo::getProduct(1);
-    dump($product->attributes->lists('id'));
+    $product = Product::find(1);
+
+    $group = Taxonomy::select('*')->whereIn( 'id', function($query) use ($product) {
+      $query->selectRaw('parent FROM product_term WHERE id IN( SELECT term_id FROM product_term_relation WHERE product_id = ? ) GROUP BY parent', [$product->id]);
+    });
+
+    dump($group->get());
 	}
 }
