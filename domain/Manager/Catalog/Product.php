@@ -99,13 +99,15 @@ class Product extends BaseController
           $attributes = $request->attribute;
         }
         $product->attributes()->sync( ProductRepo::syncTerms($attributes, 'attribute') );
-        return $this->listAttributes( $attributes, $product->variationGroups->lists('id')->toArray() );
+        #return $this->listAttributes( $attributes, $product->variationGroups->lists('id')->toArray() );
+        return $this->listAttributes( $product );
         break;
 
       # get attributes
       case 'getAttributes':
         $product = ProductRepo::getProduct( $request->id );
-        return $this->listAttributes( $product->attributes->lists('id')->toArray(), $product->variationGroups->lists('id')->toArray() );
+        return $this->listAttributes( $product );
+        #return $this->listAttributes( $product->attributes->lists('id')->toArray(), $product->variationGroups->lists('id')->toArray() );
         break;
 
       # assign attribute group as variation
@@ -120,12 +122,12 @@ class Product extends BaseController
     }
   }
 
-  private function listAttributes( $attributes, $groups = [] )
+  private function listAttributes( \Library\Models\Product $product )
   {
-    $html = '';
-    $input = '';
+    $html   = '';
+    $groups = $product->attributeGroups();
 
-    if ( empty($attributes) ) {
+    if ( $groups->isEmpty() ) {
       $html .= '<tr>';
       $html .= '  <td colspan="2">Please assign product attributes to use variation.</td>';
       $html .= '</tr>';
@@ -133,41 +135,13 @@ class Product extends BaseController
       return $html;
     }
 
-    $taxonomies = Taxonomy::where('parent', 0)->where('type', 'attribute')->orderBy('sort')->get();
-    if ( ! $taxonomies->isEmpty() )
+    foreach ($groups as $taxonomy)
     {
-      foreach ($taxonomies as $taxonomy)
-      {
-        $input = '';
-       
-        if ( in_array($taxonomy->id, $groups) )
-          $input = ' checked';
+      $attributes = $taxonomy->children->lists('name')->toArray();
 
-        $attribute = $taxonomy->children()->lists('name', 'id')->toArray();
-        if ( ! empty($attribute) ) {
-          
-          foreach ( $attribute as $key => $val )
-          {
-            if ( ! in_array($key, $attributes))
-              unset($attribute[$key]);
-          }
-          if ( ! empty($attribute)) {
-
-            if ( count($attribute) == 1 )
-              $input .= ' disabled';
-
-            $html .= '<tr>';
-            $html .= '  <td><strong>'. $taxonomy->name .'</strong></td>';
-            $html .= '  <td>'. implode(", ", $attribute) . '</td>';
-            $html .= '</tr>';            
-          }
-        }
-      }
-    }
-    else
-    {
       $html .= '<tr>';
-      $html .= '  <td colspan="2">Please assign product attributes to use variation.</td>';
+      $html .= '  <td><strong>'. $taxonomy->name .'</strong></td>';
+      $html .= '  <td>'. implode(', ', $attributes) .'</td>';
       $html .= '</tr>';
     }
 

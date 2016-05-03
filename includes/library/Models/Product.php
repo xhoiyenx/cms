@@ -24,16 +24,6 @@ class Product extends Model
   protected $table = 'product';
 
   /**
-   * Format price value
-   * @param  decimal
-   * @return mixed
-   */
-  public function getPriceAttribute($value)
-  {
-    return (int) $value;
-  }
-
-  /**
    * Have relations to product media
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
@@ -119,11 +109,38 @@ class Product extends Model
     }
   }
 
+  public function attributeGroups()
+  {
+    $product = $this;
+    $groups = Taxonomy::with('children')->select('*')->whereIn( 'id', function($query) use ($product) {
+      $query->selectRaw('parent FROM product_term WHERE id IN( SELECT term_id FROM product_term_relation WHERE product_id = ? ) AND type = ? GROUP BY parent', [$product->id, 'attribute']);
+    })->orderBy('sort');
+
+    return $groups->get();
+  }
+
   /**
    * Mutators
    */
+  
+  /**
+   * Format quantity value
+   * @param  mixed
+   * @return integer
+   */  
   public function getQtyStockAttribute($value)
   {
     return intval($value);
-  } 
+  }
+
+  /**
+   * Format price value
+   * @param  decimal
+   * @return integer
+   */
+  public function getPriceAttribute($value)
+  {
+    return intval($value);
+  }
+
 }

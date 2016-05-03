@@ -50,7 +50,14 @@
 
     <div class="panel panel-inverse">
       <div class="panel-body form-horizontal form-set">
-        
+        @foreach ( $product->attributeGroups() as $group )
+        <div class="form-group">
+          <label class="col-md-3 control-label">{{ $group->name }}</label>
+          <div class="col-md-9">
+            {{ Form::select('variation[]', $group->children->lists('name', 'id'), null, ['class' => 'form-control']) }}
+          </div>
+        </div>
+        @endforeach
       </div>
     </div>
 
