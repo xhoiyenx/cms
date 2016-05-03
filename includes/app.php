@@ -38,6 +38,8 @@ $app->singleton(
   Library\Exceptions\Handler::class
 );
 
-(new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile()))->load();
+if ( file_exists( $app->environmentFilePath() ) ) {
+	(new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile()))->load();	
+}
 
 return $app;

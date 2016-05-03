@@ -55,55 +55,63 @@
               @endforeach
             </div>
             @endif
-            {{ Form::open([ 'route' => 'manager.login' ]) }}
+            {{ Form::open([ 'route' => 'system.install' ]) }}
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <h4>Database setup</h4>
                 <p class="help-block">Please set database information here.</p>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div class="form-group mb10">
-                  <label>Hostname:</label>
+                  <label>Hostname: *</label>
                   {{ Form::text('dbhost', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
-                  <label>Database:</label>
+                  <label>Database: *</label>
                   {{ Form::text('dbname', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
-                  <label>Username:</label>
+                  <label>Username: *</label>
                   {{ Form::text('dbuser', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
-                  <label>Password:</label>
+                  <label>Password: *</label>
                   {{ Form::text('dbpass', null, ['class' => 'form-control']) }}
+                </div>
+                <div class="form-group mb10">
+                  <label>Database Prefix:</label>
+                  {{ Form::text('prefix', null, ['class' => 'form-control']) }}
                 </div>
               </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <h4>Account setup</h4>
                 <p class="help-block">Set administrator account.</p>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div class="form-group mb10">
-                  <label>Username:</label>
+                  <label>Rolename: *</label>
+                  {{ Form::text('rolename', 'Administrator', ['class' => 'form-control']) }}
+                </div>
+                <div class="form-group mb10">
+                  <label>Username: *</label>
                   {{ Form::text('username', null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
-                  <label>Password:</label>
+                  <label>Password: *</label>
                   {{ Form::text('password', null, ['class' => 'form-control']) }}
                 </div>
               </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-5">
                 <h4>Application settings</h4>
                 <p class="help-block">Set base settings for the application.</p>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div class="form-group mb10">
                   <label>Timezone:</label>
                   <select class="form-control" name="timezone">

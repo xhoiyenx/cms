@@ -13,6 +13,7 @@
  */
 namespace Domain\System;
 
+use Illuminate\Http\Request;
 use Library\Classes\DatabaseSchema;
 
 class App extends BaseController
@@ -31,8 +32,7 @@ class App extends BaseController
 
 	public function install()
 	{
-		$schema = new DatabaseSchema;
-		$schema->install();
+		return back()->withInput();
 	}
 
 	public function upgrade()
