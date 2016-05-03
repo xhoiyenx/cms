@@ -153,7 +153,7 @@ class ProductTaxonomy
   public static function checkboxList( $selected = [] )
   {
     $html   = '';
-    $terms  = Taxonomy::where('parent', 0)->where('type', 'attribute')->orderBy('sort')->get();
+    $terms  = Taxonomy::with('children')->where('parent', 0)->where('type', 'attribute')->orderBy('sort')->get();
     $available = [];
 
     if ( ! $terms->isEmpty() )

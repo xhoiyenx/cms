@@ -37,6 +37,11 @@ class Product extends Model
     return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'category')->wherePivot('type', '=', 'category');
   }
 
+  public function attr()
+  {
+    return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'attribute')->wherePivot('type', '=', 'attribute');
+  }  
+
   public function attributes()
   {
     return $this->belongsToMany('Library\Models\Taxonomy', 'product_term_relation', 'product_id', 'term_id')->where('product_term_relation.type', 'attribute')->wherePivot('type', '=', 'attribute');

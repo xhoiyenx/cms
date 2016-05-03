@@ -27,7 +27,7 @@ class Test extends BaseController
 
     $groups = $product->attributeGroups();
     foreach ( $groups as $group ) {
-    	dump( $group->name . ': ' . $group->children->lists('name', 'id') );
+    	dump( $group->attributeOf( $product ) );
     }
 	}
 }

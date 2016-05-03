@@ -10,6 +10,27 @@
     
     @include('inc.ajax-messages')
 
+    <div class="panel panel-inverse">
+      <div class="panel-body form-horizontal form-set">
+        @foreach ( $product->attributeGroups() as $group )
+        <?php
+        /**
+         * Only show attribute selection if attribute is more than 1
+         */
+        $attributes = $group->attributeOf($product);
+        if ( $attributes->count() < 2 )
+          continue;
+        ?>
+        <div class="form-group">
+          <label class="col-md-3 control-label">{{ $group->name }}</label>
+          <div class="col-md-9">
+            {{ Form::select('variation[]', $group->attributeOf($product), null, ['class' => 'form-control']) }}
+          </div>
+        </div>
+        @endforeach
+      </div>
+    </div>    
+
     <div class="row">
       <div class="col-md-6">
         
@@ -46,19 +67,6 @@
         </div>
 
       </div>      
-    </div>
-
-    <div class="panel panel-inverse">
-      <div class="panel-body form-horizontal form-set">
-        @foreach ( $product->attributeGroups() as $group )
-        <div class="form-group">
-          <label class="col-md-3 control-label">{{ $group->name }}</label>
-          <div class="col-md-9">
-            {{ Form::select('variation[]', $group->children->lists('name', 'id'), null, ['class' => 'form-control']) }}
-          </div>
-        </div>
-        @endforeach
-      </div>
     </div>
 
   </div>

@@ -137,7 +137,7 @@ class Product extends BaseController
 
     foreach ($groups as $taxonomy)
     {
-      $attributes = $taxonomy->children->lists('name')->toArray();
+      $attributes = $taxonomy->attributeOf($product)->toArray();
 
       $html .= '<tr>';
       $html .= '  <td><strong>'. $taxonomy->name .'</strong></td>';

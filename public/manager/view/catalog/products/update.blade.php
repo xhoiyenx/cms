@@ -77,6 +77,10 @@ $(document).ready(function() {
     }
   });
 
+  $('.btn-form').click(function(event) {
+    $('.modal-dialog').removeClass('modal-lg');
+  });
+
   $('.btn-variation').click(function(event) {
     $('.modal-dialog').addClass('modal-lg');
   });

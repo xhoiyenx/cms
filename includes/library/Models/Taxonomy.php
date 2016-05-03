@@ -27,6 +27,15 @@ class Taxonomy extends Model
     return $this->hasMany('Library\Models\Taxonomy', 'parent', 'id');
   }
 
+  public function attributeOf( \Library\Models\Product $product )
+  {
+    $attributes = $product->attr->lists('id')->toArray();
+
+    return $this->children->lists('name', 'id')->filter( function($value, $key) use($attributes) {
+      return in_array($key, $attributes);
+    });
+  }
+
   /*
   public function products()
   {
