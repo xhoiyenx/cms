@@ -16,10 +16,12 @@
  */
 namespace Domain\Manager\Catalog;
 
+use Validator;
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
 use Library\Repository\ProductRepo;
 use Library\Repository\ProductTaxonomy;
+
 
 class ProductVariation extends BaseController
 {
@@ -58,7 +60,10 @@ class ProductVariation extends BaseController
 
   public function save( Request $request )
   {
-    /*
+    $validator = Validator::make($request->all(), [
+      'sku' => 'required|unique:product',
+    ]);
+
     $product = ProductRepo::find( $request->parent );
     $variant = ProductRepo::find( $request->id );
 
@@ -68,7 +73,22 @@ class ProductVariation extends BaseController
       'success' => true
     ];
 
+    if ( $validator->fails() ) {
+      return view('catalog.products.ajax-variation', $view)->withErrors($validator);
+    }
+    else {
+      # save variant
+      $variant->sku         = $request->sku;
+      $variant->name        = '';
+      $variant->parent      = $request->parent;
+      $variant->use_stock   = $request->use_stock;
+      $variant->qty_stock   = $request->qty_stock ?: 0;
+      $variant->status      = 'published';
+      $variant->save();
+
+      return 1;
+    }
+
     return view('catalog.products.ajax-variation', $view);
-    */
   }
 }

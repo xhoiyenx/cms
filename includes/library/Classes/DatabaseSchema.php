@@ -84,28 +84,6 @@ class DatabaseSchema
     Schema::dropIfExists('product_taxonomy');
     Schema::dropIfExists('product_attribute');
 
-    /*
-    # products category
-    Schema::dropIfExists('product_category');
-    Schema::create('product_category', function(Blueprint $table) {
-
-      $table->mediumIncrements('id');
-      $table->unsignedMediumInteger('parent_id')->default(0);
-      $table->string('name', 100);
-      $table->timestamps();
-
-    });
-    
-    # connection between products and categories
-    Schema::dropIfExists('product_to_category');
-    Schema::create('product_to_category', function(Blueprint $table) {
-
-      $table->unsignedMediumInteger('product_id');
-      $table->unsignedMediumInteger('product_category_id');
-
-    });
-    */
-
     # product media
     Schema::dropIfExists('product_media');
     Schema::create('product_media', function(Blueprint $table) {
@@ -215,52 +193,15 @@ class DatabaseSchema
 
   }
 
-  # upgrade
-  # DATABASE VERSION 0.0.2
-  private function upgrade_002()
-  {
-    # add product meta
-    Schema::dropIfExists('product_media');
-    Schema::create('product_media', function(Blueprint $table) {
-
-      $table->increments('id');
-      $table->unsignedMediumInteger('product_id');
-      $table->string('name', 50)->nullable();
-      $table->text('meta')->nullable();
-
-    });
-
-  }
-
-  # upgrade
-  private function upgrade_003()
-  {
-    # add product meta
-    Schema::dropIfExists('product_term');
-    Schema::create('product_term', function(Blueprint $table) {
-
-      $table->increments('id');
-      $table->unsignedMediumInteger('parent')->default(0);
-      $table->string('name', 100);
-      $table->string('slug', 100);
-      $table->string('type', 50);
-      $table->tinyInteger('sort')->default(0);
-      $table->timestamps();
-      $table->softDeletes();
-
-    });
-
-  }  
-
   public function install()
   {
     $this->administrators();
     $this->settings();
     $this->products();
+    $this->users();
   }
 
   public function upgrade()
   {
-    $this->users();
   }
 }
