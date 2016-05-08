@@ -105,6 +105,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'dbhost' => 'hostname',
+        'dbname' => 'database name',
+        'dbuser' => 'mysql username',
+        'dbpass' => 'mysql password',
+        'rolename'  => 'administrator role name',
+        'username'  => 'administrator username',
+        'password'  => 'administrator password',
+    ],
 
 ];

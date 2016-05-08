@@ -39,7 +39,7 @@ require 'includes/vendor/autoload.php';
 
 $compiledPath = 'resources/cache/compiled.php';
 if (file_exists($compiledPath)) {
-    require $compiledPath;
+  require $compiledPath;
 }
 
 $app = require_once 'includes/app.php';

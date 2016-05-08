@@ -92,7 +92,6 @@ class Attributes extends BaseController
 
       $view = [
         'edit' => $edit,
-        'tree' => ProductTaxonomy::selectTree('attribute', $edit)
       ];
 
       # user click save

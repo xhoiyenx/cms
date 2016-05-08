@@ -14,9 +14,11 @@
 
 namespace Domain\System;
 use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class BaseController extends Controller
 {
+  use ValidatesRequests;
   
   public function __construct()
   {

@@ -12,6 +12,18 @@
 
 $app = new Core\Foundation\Application( BASE_PATH );
 
+# check if base configuration file exists
+if ( file_exists( $app->environmentFilePath() ) ) {
+  (new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile()))->load();  
+}
+# need to do installation process
+else {
+  if ( $_SERVER['REQUEST_URI'] != '/system' ) {
+    header('Location: /system');
+    exit;
+  }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
@@ -37,9 +49,5 @@ $app->singleton(
   Illuminate\Contracts\Debug\ExceptionHandler::class,
   Library\Exceptions\Handler::class
 );
-
-if ( file_exists( $app->environmentFilePath() ) ) {
-	(new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile()))->load();	
-}
 
 return $app;

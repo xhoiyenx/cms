@@ -51,7 +51,7 @@
             @if ( count($errors) > 0 )
             <div class="alert alert-danger">
               @foreach ($errors->all() as $error)
-              {{ $error }}
+              {{ $error }}<br>
               @endforeach
             </div>
             @endif
@@ -64,11 +64,11 @@
               <div class="col-md-7">
                 <div class="form-group mb10">
                   <label>Hostname: *</label>
-                  {{ Form::text('dbhost', null, ['class' => 'form-control']) }}
+                  {{ Form::text('dbhost', null, ['class' => 'form-control', 'placeholder' => 'localhost']) }}
                 </div>
                 <div class="form-group mb10">
                   <label>Database: *</label>
-                  {{ Form::text('dbname', null, ['class' => 'form-control']) }}
+                  {{ Form::text('dbname', null, ['class' => 'form-control', 'placeholder' => 'Database name']) }}
                 </div>
                 <div class="form-group mb10">
                   <label>Username: *</label>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group mb10">
                   <label>Database Prefix:</label>
-                  {{ Form::text('prefix', null, ['class' => 'form-control']) }}
+                  {{ Form::text('prefix', null, ['class' => 'form-control', 'placeholder' => 'Database prefix']) }}
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="form-group mb10">
                   <label>Password: *</label>
-                  {{ Form::text('password', null, ['class' => 'form-control']) }}
+                  {{ Form::password('password', ['class' => 'form-control']) }}
                 </div>
               </div>
             </div>
@@ -119,10 +119,6 @@
                     <option value="{{ $timezone }}" @if( $timezone == date('e') ) selected @endif>{{ $timezone }}</option>
                   @endforeach
                   </select>
-                </div>
-                <div class="form-group mb10">
-                  <label>Password:</label>
-                  {{ Form::text('password', null, ['class' => 'form-control']) }}
                 </div>
               </div>
             </div>

@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application as BaseApplication;
 
 class Application extends BaseApplication
 {
+  public $need_install = false;
+
   /**
    * Bind all of the application paths in the container.
    *
