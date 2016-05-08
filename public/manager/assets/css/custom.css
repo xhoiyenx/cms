@@ -424,7 +424,7 @@ body {
   margin: 0;
   padding: 0;
   border-bottom: 1px solid #DDD;
-  min-height: 59px;
+  min-height: 50px;
   height: 100%;
 }
 
@@ -453,6 +453,10 @@ body {
 .input-group-addon label {
   margin: 0;
   cursor: pointer;
+}
+
+select.form-control {
+  padding: 6px 8px;
 }
 
 .input-group-addon span {

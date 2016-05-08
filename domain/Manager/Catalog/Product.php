@@ -57,11 +57,18 @@ class Product extends BaseController
 
     $view = [
       'form' => $product,
-      'tree' => ProductTaxonomy::checkboxTree('category', $product->taxonomyArray('categories')),
-      'attr' => ProductTaxonomy::checkboxList($product->attributes->lists('id')->toArray())
     ];
 
-    return view()->make('catalog.products.update', $view);
+    return view()->make('catalog.products.update.general', $view);
+  }
+
+  /**
+   * Handling index lists actions, like delete, filter, search, etc
+   * @return [type] [description]
+   */
+  public function action( Request $request )
+  {
+
   }
 
   public function delete( $product_id = null )
