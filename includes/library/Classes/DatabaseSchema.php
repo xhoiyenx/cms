@@ -195,7 +195,7 @@ class DatabaseSchema
 
   public function install()
   {
-    $this->administrators();
+    #$this->administrators();
     $this->settings();
     $this->products();
     $this->users();

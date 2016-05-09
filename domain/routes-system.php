@@ -16,6 +16,7 @@
  */
 $router->get('/', 'App@index');
 $router->post('/', 'App@install')->name('install');
+$router->get('setup', 'App@setup')->name('setup');
 
 $router->get('upgrade', 'App@upgrade');
 $router->get('test', 'Test@index');

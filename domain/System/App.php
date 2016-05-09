@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
 use Library\Classes\DatabaseSchema;
 use Illuminate\Database\Connectors\MySqlConnector;
 
+use Library\Models\User;
+use Library\Models\UserRole;
+
 class App extends BaseController
 {
 	/**
@@ -73,8 +76,13 @@ class App extends BaseController
 		# create environment file
 		$this->setEnvFile($request);
 
+		session(['accounts' => array(
+			'rolename' => $request->rolename,
+			'username' => $request->username,
+			'password' => $request->password
+		)]);
 
-		#return back()->withInput();
+		return redirect()->route('system.setup');
 	}
 
 	private function setEnvFile(Request $request)
@@ -95,6 +103,30 @@ class App extends BaseController
 		$fp = fopen('.env', 'w');
 		fwrite($fp, $env);
 		fclose($fp);
+	}
+
+	public function setup()
+	{
+		# install database
+		$schema = new DatabaseSchema;
+		$schema->install();
+
+		# create administrator role
+		$accounts = session('accounts');
+
+		$role = new UserRole;
+		$role->name = $accounts['rolename'];
+		$role->save();
+
+		$user = new User;
+		$user->username = $accounts['username'];
+		$user->password = bcrypt($accounts['password']);
+		$user->usermail = '';
+		$user->status 	= 'active';
+		$user->role_id 	= $role->id;
+		$user->save();
+
+		return redirect()->route('manager.login');
 	}
 
 	public function upgrade()

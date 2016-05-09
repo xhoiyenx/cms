@@ -45,7 +45,7 @@ class Product extends BaseController
    */
   public function update( $product_id = null )
   {
-    $this->setPage('Products');
+    $this->setPage('Add New Product');
 
     if ( empty( $product_id ) ) {
       $product  = ProductRepo::setDraft();
