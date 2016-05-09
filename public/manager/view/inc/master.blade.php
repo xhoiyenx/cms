@@ -32,12 +32,14 @@
   <!-- PLUGINS -->
   {{ Html::style('public/manager/assets/css/select2.css') }}
   {{ Html::style('public/manager/assets/css/jquery.gritter.css') }}
+  {{ Html::style('public/manager/assets/lib/redactor/redactor.css') }}
 
   <!-- CORE -->
   {{ Html::style('public/manager/assets/css/style.css') }}
   {{ Html::style('public/manager/assets/css/custom.css') }}
 
   {{ Html::script('public/manager/assets/js/modernizr.js') }}
+  {{ Html::script('public/manager/assets/js/jquery-2.1.4.min.js') }}  
 </head>
 
 <body>
@@ -119,7 +121,6 @@
     </div>
   </div>
 
-  {{ Html::script('public/manager/assets/js/jquery-2.1.4.min.js') }}
   {{ Html::script('public/manager/assets/js/bootstrap.min.js') }}
 
   <!-- PLUGINS -->

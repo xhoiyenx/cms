@@ -88,9 +88,20 @@ class Product extends BaseController
       return $this->ajaxSave($request);
     }
 
-    $product = ProductRepo::setProduct( $request->all() );
+    # save product
+    $product = ProductRepo::find( $request->id );
+    $product->name        = $request->name;
+    $product->description = $request->description;
+    $product->sku         = $request->sku;
+    $product->price       = $request->price;
+    $product->use_stock   = $request->use_stock;
+    $product->qty_stock   = $request->qty_stock ?: 0;
+    $product->status      = 'published';
+    $product->save();
+
     if ( $product ) {
-      return redirect()->route('manager.catalog.product.update', ['id' => $product->id]);
+      return redirect()->route('manager.catalog.product.update', ['id' => $product->id])
+      ->with('message', 'Product data saved');
     }
   }
 

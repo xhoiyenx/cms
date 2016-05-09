@@ -49,7 +49,6 @@ function is_active( $route, $text = '' )
 
 function cbPermissions( $name, $data = [] )
 {
-  
   foreach ( ['can_view', 'can_edit', 'can_delete'] as $permission )
   {
     $checked = '';
@@ -62,4 +61,17 @@ function cbPermissions( $name, $data = [] )
   </label>
   <?php
   }
+}
+
+function redactor( $name )
+{
+	?><script src="/public/manager/assets/lib/redactor/redactor.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('textarea[name=<?=$name?>]').redactor({
+			minHeight: 200
+		});
+	});
+	</script>
+	<?php
 }

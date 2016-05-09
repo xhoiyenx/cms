@@ -26,11 +26,12 @@
     <a href="{{ route('manager.catalog.product') }}" class="btn btn-primary btn-quirk">Cancel</a>
   </div>  
 </h1>
-
+@include('inc.messages')
+@include('catalog.products.update.menu')
 <div class="row">
   <div class="col-md-9">
 
-    <div class="panel panel-inverse">
+    <div class="panel">
       <div class="panel-body">
 
         <div class="row">
@@ -42,9 +43,10 @@
           </div>
 
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group nomargin">
               <label>Description:</label>
               {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 4]) }}
+              {!! redactor('description') !!}
             </div>
           </div>
 
@@ -53,7 +55,7 @@
       </div>
     </div>
 
-    <div class="panel panel-inverse">
+    <div class="panel">
       <div class="panel-body form-horizontal form-set">
 
         <div class="form-group">
@@ -80,7 +82,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Stock Quantity</label>
           <div class="col-md-9">
-            {{ Form::text('price', null, ['class' => 'form-control']) }}
+            {{ Form::text('qty_stock', null, ['class' => 'form-control']) }}
           </div>
         </div>        
 
@@ -99,5 +101,26 @@
 @endsection
 @section('after_footer')
 <script type="text/javascript">
+$(document).ready(function() {
+  // Disable stock quantity if user do not use stock
+  $use_stock = $('select[name=use_stock]');
+  $qty_stock = $('input[name=qty_stock]');
+  if ( $use_stock.val() == 'n' ) {
+    $qty_stock.prop('disabled', true);
+  }
+  else {
+    $qty_stock.prop('disabled', false);
+  }
+
+  $use_stock.change(function(event) {
+    if ( $use_stock.val() == 'n' ) {
+      $qty_stock.prop('disabled', true);
+    }
+    else {
+      $qty_stock.prop('disabled', false);
+    }
+  });
+
+});
 </script>
 @endsection

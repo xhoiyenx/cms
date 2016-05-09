@@ -52,8 +52,9 @@ $router->group(['namespace' => 'Catalog'], function($router) {
 
   # Products
   $router->get('catalog/product', 'Product@index')->name('catalog.product');
-  $router->get('catalog/product/update/{id?}', 'Product@update')->name('catalog.product.update');
+  $router->get('catalog/product/update/{id?}', 'Product@update')->name('catalog.product.update');  
   $router->get('catalog/product/delete/{id?}', 'Product@delete')->name('catalog.product.delete');
+  
   $router->post('catalog/product/action', 'Product@action')->name('catalog.product.action');
   $router->post('catalog/product/save', 'Product@save')->name('catalog.product.save');
 
