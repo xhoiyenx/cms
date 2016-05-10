@@ -24,9 +24,16 @@ use Library\Models\Taxonomy;
 
 use Library\Repository\ProductRepo;
 use Library\Repository\ProductTaxonomy;
+use Library\Repository\ProductMediaRepo;
 
 class Product extends BaseController
 {
+
+  /**
+   * Show product list
+   * @param  Request $request
+   * @return View
+   */
   public function index(Request $request)
   {
     $this->setPage('Products');
@@ -45,21 +52,24 @@ class Product extends BaseController
    */
   public function update( $product_id = null )
   {
-    $this->setPage('Add New Product');
+    $this->setPage('New Product');
 
+    # new
     if ( empty( $product_id ) ) {
       $product  = ProductRepo::setDraft();
     }
+    # update
     else {
       $product  = ProductRepo::getProduct( $product_id );
       $this->setPage($product->name);
     }
 
     $view = [
-      'form' => $product,
+      'form'  => $product,
+      'media' => ProductMediaRepo::getByProduct( $product->id )
     ];
 
-    return view()->make('catalog.products.update.general', $view);
+    return view()->make('catalog.products.update', $view);
   }
 
   /**

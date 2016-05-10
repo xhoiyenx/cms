@@ -12,7 +12,7 @@
  * Template
  * 
  * Description:
- * Products page
+ * Product update form
  */
 ?>
 @extends('inc.master')
@@ -26,25 +26,24 @@
     <a href="{{ route('manager.catalog.product') }}" class="btn btn-primary btn-quirk">Cancel</a>
   </div>  
 </h1>
-
+@include('inc.messages')
 <ul class="nav nav-tabs nav-line">
   <li class="active">
     <a href="#general" data-toggle="tab"><strong>General</strong></a>
   </li>
   <li>
-    <a href="#variation" data-toggle="tab"><strong>Variations</strong></a>
+    <a href="#images" data-toggle="tab"><strong>Images</strong></a>
   </li>
 </ul>
 
 <div class="tab-content">
   <div id="general" class="tab-pane active">
-    @include('catalog.products.general-update')
+    @include('catalog.products.form.general')
   </div>
-  <div id="variation" class="tab-pane">
-    @include('catalog.products.variation-update')
+  <div id="images" class="tab-pane">
+    @include('catalog.products.form.images')
   </div>
 </div>
-
 
 {{ Form::close() }}
 @endsection
@@ -52,37 +51,23 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-  $('input[name="attribute[]"]').on('change', function(event) {
+  // Disable stock quantity if user do not use stock
+  $use_stock = $('select[name=use_stock]');
+  $qty_stock = $('input[name=qty_stock]');
+  if ( $use_stock.val() == 'n' ) {
+    $qty_stock.prop('disabled', true);
+  }
+  else {
+    $qty_stock.prop('disabled', false);
+  }
 
-    var $checked_attr = $('input[name="attribute[]"]:checked').map(function(){
-      return $(this).val();
-    }).get();
-
-    $.post('{{ route('manager.catalog.product.save') }}', {attribute: $checked_attr, id: '{{ $form->id}}', action: 'attribute'}, function(data, textStatus, xhr) {
-      $('.ajax-attributes').html(data);
-    });
-    
-  });
-
-  $('.set-variation').on('click', function(event) {
-    event.preventDefault();
-    var attributes = $('.attributes:checked');
-    if ( attributes.length > 0 ) {
-      $.post($(this).attr('href'), {id: $(this).data('id'), attributes: attributes.map(function(){return $(this).val();}).get(), action: 'variation_group'}, function(data, textStatus, xhr) {
-        /*optional stuff to do after success */
-      });
+  $use_stock.change(function(event) {
+    if ( $use_stock.val() == 'n' ) {
+      $qty_stock.prop('disabled', true);
     }
     else {
-      alert('Please assign one or more attribute data');
+      $qty_stock.prop('disabled', false);
     }
-  });
-
-  $('.btn-form').click(function(event) {
-    $('.modal-dialog').removeClass('modal-lg');
-  });
-
-  $('.btn-variation').click(function(event) {
-    $('.modal-dialog').addClass('modal-lg');
   });
 
   $('.modal-content').on('submit', 'form', function(event) {
@@ -113,27 +98,14 @@ $(document).ready(function() {
     });
   });
 
-  /* load media */
-  loadMedia();
+  function loadMedia()
+  {
+    $('.filemanager').load('<?php echo route('manager.catalog.product.media-list')?>',{ id: <?php echo $form->id?> } ,
+      function(){
+      /* Stuff to do after the page is loaded */
+    });
+  }
 
-  /* load attributes */
-  loadAttributes();
-  
 });
-
-function loadMedia()
-{
-  $('.filemanager').load('<?php echo route('manager.catalog.product.media-list')?>',{ id: <?php echo $form->id?> } ,
-    function(){
-    /* Stuff to do after the page is loaded */
-  });
-}
-
-function loadAttributes()
-{
-  $.post('{{ route('manager.catalog.product.save') }}', {id: '{{ $form->id}}', action: 'getAttributes'}, function(data, textStatus, xhr) {
-    $('.ajax-attributes').html(data);
-  });
-}
 </script>
 @endsection

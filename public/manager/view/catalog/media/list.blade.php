@@ -17,7 +17,7 @@
 ?>
 @if ( count($media) > 0 )
   @foreach( $media as $file )
-  <div class="col-md-6">
+  <div class="col-sm-4 col-md-3 col-lg-2">
     <div class="thmb">
       <div class="btn-group fm-group">
         <button type="button" class="btn btn-default dropdown-toggle fm-toggle" data-toggle="dropdown">
