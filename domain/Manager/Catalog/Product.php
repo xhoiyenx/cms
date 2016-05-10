@@ -88,6 +88,11 @@ class Product extends BaseController
       return $this->ajaxSave($request);
     }
 
+    # validate
+    $this->validate( $request, [
+      'name' => 'required'
+    ]);
+
     # save product
     $product = ProductRepo::find( $request->id );
     $product->name        = $request->name;

@@ -56,11 +56,6 @@ class ProductRepo
     return $product;
   }
 
-  static function validate()
-  {
-    
-  }
-
   static function setProduct( $param )
   {
     extract($param);

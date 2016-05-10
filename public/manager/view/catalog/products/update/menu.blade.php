@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs nav-line mb20">
+<ul class="nav nav-tabs nav-line mb15">
 @if ($form->status == 'draft')
   <li{!! is_active('manager.catalog.product.update', ' class="active"') !!}>
     <a href="{{ route('manager.catalog.product.update') }}"><strong>General</strong></a>

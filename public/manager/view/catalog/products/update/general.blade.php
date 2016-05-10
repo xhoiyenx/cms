@@ -26,8 +26,8 @@
     <a href="{{ route('manager.catalog.product') }}" class="btn btn-primary btn-quirk">Cancel</a>
   </div>  
 </h1>
-@include('inc.messages')
 @include('catalog.products.update.menu')
+@include('inc.messages')
 <div class="row">
   <div class="col-md-9">
 
@@ -37,7 +37,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>Name:</label>
+              <label>Name: <span class="required">*</span></label>
               {{ Form::text('name', null, ['class' => 'form-control']) }}
             </div>
           </div>
