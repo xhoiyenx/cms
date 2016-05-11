@@ -60,5 +60,18 @@
   </div>  
   <div class="col-md-3">
     <!-- CATEGORIES -->
+    <div class="panel panel-primary">
+      <ul class="panel-options">
+        <li><a class="panel-minimize"><i class="fa fa-chevron-down"></i></a></li>
+      </ul>
+      <div class="panel-heading">
+        <h4 class="panel-title">Categories</h4>
+      </div>
+      <div class="panel-body max300">
+
+        {!! $categories !!}
+        
+      </div>
+    </div>
   </div>
 </div>

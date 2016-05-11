@@ -66,7 +66,8 @@ class Product extends BaseController
 
     $view = [
       'form'  => $product,
-      'media' => ProductMediaRepo::getByProduct( $product->id )
+      'media' => ProductMediaRepo::getByProduct( $product->id ),
+      'categories' => ProductTaxonomy::checkboxTree('category', $product->taxonomyArray('category'))
     ];
 
     return view()->make('catalog.products.update', $view);
@@ -113,6 +114,15 @@ class Product extends BaseController
     $product->qty_stock   = $request->qty_stock ?: 0;
     $product->status      = 'published';
     $product->save();
+    # end save product
+
+    # save category
+    $categories = [];
+    if ( $request->has('category') ) {
+      $categories = ProductRepo::syncTerms($request->category, 'category');
+    }
+    $product->categories()->sync($categories);
+    # end save category
 
     if ( $product ) {
       return redirect()->route('manager.catalog.product.update', ['id' => $product->id])
