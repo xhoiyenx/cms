@@ -22,8 +22,17 @@ use Domain\Manager\BaseController;
 
 class Configuration extends BaseController
 {
-  public function index( $type = 'general' )
+  public function index( Request $request, $type = 'general' )
   {
+  	if ( $request->isMethod('post') ) {
+  		$this->save();
+  	}
+  	
     return view()->make('setting.index');
+  }
+
+  private function save()
+  {
+
   }
 }

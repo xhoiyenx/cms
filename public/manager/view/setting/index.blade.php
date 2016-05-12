@@ -14,6 +14,7 @@
  * Description:
  * Configuration page
  */
+$label = 'control-label col-sm-3';
 ?>
 @extends('inc.master')
 @section('content')
@@ -22,25 +23,22 @@
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">General</h3>
-      </div>
-      <div class="panel-body">
+      <div class="panel-body form-horizontal form-set">
         <div class="form-group">
-          {{ Form::label('site_title', 'Site Title', ['class' => 'control-label col-sm-3']) }}
-          <div class="col-sm-8">
+          {{ Form::label('site_title', 'Site Title', ['class' => $label]) }}
+          <div class="col-md-9">
             {{ Form::text('site_title', null, ['class' => 'form-control']) }}
           </div>
         </div>
         <div class="form-group">
-          {{ Form::label('site_description', 'Site Description', ['class' => 'control-label col-sm-3']) }}
-          <div class="col-sm-8">
+          {{ Form::label('site_description', 'Site Description', ['class' => $label]) }}
+          <div class="col-md-9">
             {{ Form::text('site_description', null, ['class' => 'form-control']) }}
           </div>
         </div>
         <div class="form-group">
-          {{ Form::label('site_copyright', 'Copyright', ['class' => 'control-label col-sm-3']) }}
-          <div class="col-sm-8">
+          {{ Form::label('site_copyright', 'Copyright', ['class' => $label]) }}
+          <div class="col-md-9">
             {{ Form::text('site_copyright', null, ['class' => 'form-control']) }}
           </div>
         </div>

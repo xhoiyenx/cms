@@ -1236,7 +1236,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active { border-color: #259dab
 .alert-success { background-color: #9ed566; border-color: transparent; color: #456b1d; }
 .alert-success hr { border-top-color: rgba(0, 0, 0, 0); }
 .alert-success .alert-link { color: #2b4312; }
-.alert-info { background-color: #56c2e8; border-color: transparent; color: #0e4e64; }
+.alert-info { background-color: #44acd1; border-color: transparent; color: #FFF; }
 .alert-info hr { border-top-color: rgba(0, 0, 0, 0); }
 .alert-info .alert-link { color: #082b37; }
 .alert-warning { background-color: #fdcc51; border-color: transparent; color: #815c01; }

@@ -50,11 +50,11 @@
       </li>
     </ul>    
   </li>
-  <li class="nav-parent">
+  <li class="{!! is_active(['manager.configuration'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a>
     <ul class="children">
       <li>
-        <a href="{{ route('manager.configuration') }}">General</a>
+        <a href="{{ route('manager.configuration', ['type' => 'general']) }}">General</a>
       </li>
     </ul>
   </li>
