@@ -32,7 +32,7 @@ abstract class BaseController extends Controller
   private function init()
   {
     # define default view path for manager
-    view()->addLocation( public_path('honako/view') );
+    view()->addLocation( public_path('themes/shop') );
   }
 
   public function setPage( $text )
