@@ -65,9 +65,9 @@ class Product extends BaseController
     }
 
     $view = [
-      'form'  => $product,
-      'media' => ProductMediaRepo::getByProduct( $product->id ),
-      'categories' => ProductTaxonomy::checkboxTree('category', $product->taxonomyArray('category'))
+      'form'        => $product,
+      'media'       => ProductMediaRepo::getByProduct( $product->id ),
+      'categories'  => ProductTaxonomy::checkboxTree('category', $product->taxonomyArray('category'))
     ];
 
     return view()->make('catalog.products.update', $view);
@@ -101,7 +101,8 @@ class Product extends BaseController
 
     # validate
     $this->validate( $request, [
-      'name' => 'required'
+      'name' => 'required',
+      'sku' => 'required'
     ]);
 
     # save product

@@ -26,28 +26,28 @@
       <div class="panel-body form-horizontal form-set">
 
         <div class="form-group">
-          <label class="col-md-3 control-label">SKU</label>
+          <label class="col-md-3 control-label">SKU: <span class="required">*</span></label>
           <div class="col-md-9">
             {{ Form::text('sku', null, ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-md-3 control-label">Price</label>
+          <label class="col-md-3 control-label">Price:</label>
           <div class="col-md-9">
             {{ Form::text('price', null, ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-md-3 control-label">Stock Management</label>
+          <label class="col-md-3 control-label">Stock Management:</label>
           <div class="col-md-9">
             {{ Form::select('use_stock', ['n' => 'No', 'y' => 'Yes'], null, ['class' => 'form-control']) }}
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-md-3 control-label">Stock Quantity</label>
+          <label class="col-md-3 control-label">Stock Quantity:</label>
           <div class="col-md-9">
             {{ Form::text('qty_stock', null, ['class' => 'form-control']) }}
           </div>
