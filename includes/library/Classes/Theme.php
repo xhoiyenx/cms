@@ -31,14 +31,34 @@ class Theme
    */
   public $url;
 
+  /**
+   * Selected theme
+   * @var string
+   */
+  public $theme;
+
   public function __construct( Application $app )
   {
     $this->app = $app;
     $this->url = $app['url'];
+    $this->theme = 'shop';
   }
 
+  /**
+   * Get url path to selected theme folder
+   * @return string
+   */
   public function theme_url()
   {
-    dump($this->url);
+    return $this->url->asset('public/themes/' . $this->theme . '/');
+  }
+
+  /**
+   * Get absolute path to all themes folder
+   * @return [type] [description]
+   */
+  public function themes_path()
+  {
+    return public_path('themes');
   }
 }

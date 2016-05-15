@@ -21,11 +21,13 @@ abstract class BaseController extends Controller
 {
   protected $page;
   protected $app;
+  protected $theme;
   
   public function __construct(Application $app)
   {
     $this->init();
-    $this->app = $app;
+    $this->app    = $app;
+    $this->theme  = $app->make('theme');
   }
 
   /**
