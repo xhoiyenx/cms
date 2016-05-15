@@ -140,7 +140,7 @@ return [
 
 
         Library\Providers\RouteServiceProvider::class,
-        Library\Providers\MediaServiceProvider::class,
+        Library\Providers\AppServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,

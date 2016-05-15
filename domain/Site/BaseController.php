@@ -13,16 +13,19 @@
  */
 
 namespace Domain\Site;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 
 abstract class BaseController extends Controller
 {
   protected $page;
+  protected $app;
   
-  public function __construct()
+  public function __construct(Application $app)
   {
     $this->init();
+    $this->app = $app;
   }
 
   /**
