@@ -16,18 +16,17 @@ namespace Domain\Site;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Library\Models\ProductCategory;
 
 abstract class BaseController extends Controller
 {
   protected $page;
   protected $app;
-  protected $theme;
   
   public function __construct(Application $app)
   {
     $this->init();
     $this->app    = $app;
-    $this->theme  = $app->make('theme');
   }
 
   /**
@@ -44,5 +43,14 @@ abstract class BaseController extends Controller
   {
     $this->page = $text;
     view()->share('page', $this->page);
+  }
+
+  /**
+   * Init global variables
+   * @return void
+   */
+  public function global()
+  {
+    $categories = 
   }
 }

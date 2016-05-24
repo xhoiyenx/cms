@@ -15,6 +15,7 @@
  * Theme handler library
  */
 namespace Library\Classes;
+use Html;
 use Illuminate\Contracts\Foundation\Application;
 
 class Theme
@@ -48,9 +49,19 @@ class Theme
    * Get url path to selected theme folder
    * @return string
    */
-  public function theme_url()
+  public function theme_url( $path = '' )
   {
-    return $this->url->asset('public/themes/' . $this->theme . '/');
+    return $this->url->asset('public/themes/' . $this->theme . '/' . $path );
+  }
+
+  public function script( $path = '' )
+  {
+    return Html::script( $this->theme_url($path) );
+  }
+
+  public function style( $path = '' )
+  {
+    return Html::style( $this->theme_url($path) );
   }
 
   /**
@@ -61,4 +72,6 @@ class Theme
   {
     return public_path('themes');
   }
+
+
 }

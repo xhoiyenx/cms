@@ -23,8 +23,6 @@ class Dashboard extends BaseController
       'products' => ProductRepo::getData()
     ];
 
-    dump($this->theme->theme_url());
-
     return view('homepage', $view);
   }
 }
