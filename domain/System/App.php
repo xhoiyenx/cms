@@ -32,6 +32,7 @@ class App extends BaseController
 		$view = [
 			'timezones' => timezone_identifiers_list()
 		];
+
 		return view('system.install', $view);
 	}
 
@@ -60,7 +61,7 @@ class App extends BaseController
 				'username' => $request->dbuser,
 				'password' => $request->dbpass,
 				'database' => $request->dbname,
-				'collation' => 'utf8_unicode_ci',
+				'collation' => 'utf8_general_ci',
 				'charset' => 'utf8',
 			]);
 		}
@@ -116,6 +117,7 @@ class App extends BaseController
 
 		$role = new UserRole;
 		$role->name = $accounts['rolename'];
+		$role->is_admin = 1;
 		$role->save();
 
 		$user = new User;

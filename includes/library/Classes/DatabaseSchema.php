@@ -23,27 +23,6 @@ use Hash;
 
 class DatabaseSchema
 {
-  public function administrators()
-  {
-    Schema::dropIfExists('administrators');
-    Schema::create('administrators', function(Blueprint $table) {
-
-      $table->unsignedTinyInteger('id', true);
-      $table->string('username', 25)->unique();
-      $table->string('password', 60);
-      $table->string('usermail', 50)->unique();
-      $table->rememberToken();
-      $table->timestamps();
-
-    });
-
-    $administrator = new Administrator;
-    $administrator->username = 'admin';
-    $administrator->password = bcrypt('admin');
-    $administrator->usermail = 'hoiyen.2000@gmail.com';
-    $administrator->save();
-  }
-
   public function settings()
   {
     Schema::dropIfExists('settings');
@@ -176,7 +155,8 @@ class DatabaseSchema
     Schema::create('user_role', function(Blueprint $table) {
 
       $table->unsignedTinyInteger('id', true);
-      $table->string('name', 100);
+      $table->string('name', 100);      
+      $table->boolean('is_admin')->default(0);
       $table->timestamps();      
 
     });
@@ -193,12 +173,29 @@ class DatabaseSchema
 
   }
 
+  public function pages()
+  {
+    Schema::dropIfExists('page');
+    Schema::create('page', function(Blueprint $table) {
+
+      $table->mediumIncrements('id');
+      $table->unsignedMediumInteger('parent')->default(0);
+      $table->text('name');
+      $table->text('slug');
+      $table->text('description')->nullable();
+      $table->string('status', 10)->default('draft');
+      $table->timestamps();
+
+    });
+  }
+
   public function install()
   {
     #$this->administrators();
     $this->settings();
     $this->products();
     $this->users();
+    $this->pages();
   }
 
   public function upgrade()
