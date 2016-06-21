@@ -26,7 +26,7 @@
   <title>{{ $page or '' }}</title>
 
   <!-- FONTS -->
-  {{ Html::style('public/manager/assets/css/font-awesome.css') }}
+  {{ Html::style('public/manager/assets/css/font-awesome.min.css') }}
   {{ Html::style('public/manager/assets/css/font.css') }}
 
   <!-- PLUGINS -->
@@ -39,7 +39,8 @@
   {{ Html::style('public/manager/assets/css/custom.css') }}
 
   {{ Html::script('public/manager/assets/js/modernizr.js') }}
-  {{ Html::script('public/manager/assets/js/jquery-2.1.4.min.js') }}  
+  {{ Html::script('public/manager/assets/js/jquery-3.0.0.min.js') }}  
+  {{ Html::script('public/manager/assets/js/jquery-migrate-3.0.0.min.js') }}  
 </head>
 
 <body>

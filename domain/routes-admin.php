@@ -21,6 +21,16 @@
 $router->get('/', 'Dashboard@index')->name('dashboard');
 
 #
+# Media
+# 
+$router->group(['namespace' => 'Media', 'prefix' => 'media', 'as' => 'media.'], function($router) {
+
+  $router->post('upload', 'Upload@index')->name('upload');
+
+});
+
+
+#
 # Auth pages
 #
 $router->group(['namespace' => 'Auth'], function($router) {
@@ -41,9 +51,8 @@ $router->group(['namespace' => 'Config'], function($router) {
 $router->group(['namespace' => 'Catalog'], function($router) {
 
   # Categories
-  $router->get('catalog/category', 'Categories@index')->name('catalog.categories');
-  $router->post('catalog/category', 'Categories@update')->name('catalog.categories.update');
-  $router->post('catalog/category/action', 'Categories@action')->name('catalog.categories.action');
+  $router->any('catalog/category', 'Categories@index')->name('catalog.categories');
+  $router->post('catalog/category/update', 'Categories@update')->name('catalog.categories.update');
 
   # Attributes
   $router->get('catalog/attribute', 'Attributes@index')->name('catalog.attributes');
@@ -85,5 +94,21 @@ $router->group(['namespace' => 'User'], function($router) {
   $router->get('roles/update/{id?}', 'Roles@update')->name('roles.update');
   $router->get('roles/delete/{id}', 'Roles@delete')->name('roles.delete');
   $router->post('roles/save', 'Roles@save')->name('roles.save');
+
+});
+
+#
+# CMS
+#
+$router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], function($router) {
+
+  #
+  # PAGES
+  #
+  $router->any('pages', 'Pages@index')->name('page');
+  $router->get('pages/create', 'Pages@form')->name('page.create');
+  $router->get('pages/update/{id?}', 'Pages@form')->name('page.update');
+  $router->get('pages/delete/{id?}', 'Pages@delete')->name('page.delete');
+  $router->post('pages/save', 'Pages@save')->name('page.save');
 
 });

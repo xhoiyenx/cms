@@ -21,6 +21,20 @@
   </li>
 </ul>
 
+<h5 class="sidebar-title">CMS</h5>
+<ul class="nav nav-pills nav-stacked nav-quirk">
+  <li class="{!! is_active(['manager.cms.page', 'manager.cms.page.update'], 'active ') !!}nav-parent">
+    <a href="#"><i class="fa fa-list"></i> <span>Pages</span></a>
+    <ul class="children">
+      <li class="{!! is_active(['manager.cms.page', 'manager.cms.page.update'], 'active ') !!}">
+        <a href="{{ route('manager.cms.page') }}">List</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+<h5 class="sidebar-title">Catalog</h5>
 <ul class="nav nav-pills nav-stacked nav-quirk">
   <li class="{!! is_active(['manager.catalog.categories', 'manager.catalog.product', 'manager.catalog.product.update', 'manager.catalog.attributes'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-shopping-basket"></i> <span>Catalog</span></a>

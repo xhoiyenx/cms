@@ -14,7 +14,6 @@
  * Description:
  * Product Taxonomy model
  */
-
 namespace Library\Models;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,7 +26,12 @@ class Taxonomy extends Model
     return $this->hasMany('Library\Models\Taxonomy', 'parent', 'id');
   }
 
-  public function attributeOf( \Library\Models\Product $product )
+  public function products()
+  {
+    return $this->belongsToMany('Library\Models\Product', 'product_term_relation', 'term_id');
+  }
+
+  public function attributeOf( Product $product )
   {
     $attributes = $product->attr->lists('id')->toArray();
 
@@ -36,18 +40,12 @@ class Taxonomy extends Model
     });
   }
 
-  /*
-  public function products()
-  {
-    return $this->belongsToMany('Library\Models\Product', 'product_to_category', 'product_category_id', 'product_id');
-  }
-
   public function delete()
   {
     # category have children
-    if ( ! $this->sub->isEmpty() ) {
+    if ( ! $this->children->isEmpty() ) {
       # let category parent adopt the children
-      foreach ( $this->sub as $child ) {
+      foreach ( $this->children as $child ) {
         $child->parent_id = $this->parent_id;
         $child->save();
       }
@@ -62,5 +60,4 @@ class Taxonomy extends Model
     # delete the category
     parent::delete();
   }
-  */
 }

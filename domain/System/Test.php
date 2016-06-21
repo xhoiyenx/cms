@@ -18,16 +18,25 @@ use Library\Classes\DatabaseSchema;
 use Library\Repository\ProductTaxonomy;
 use Library\Models\Taxonomy;
 use Library\Models\Product;
+use Library\Models\Page;
 
 class Test extends BaseController
 {
 	public function index()
 	{
-    $product = Product::find(1);
+    $id   = 4;
+    $slug = 'hello-world';
 
-    $groups = $product->attributeGroups();
-    foreach ( $groups as $group ) {
-    	dump( $group->attributeOf( $product ) );
+    $check = 1;
+
+    $i = 1;
+    while ( $check = Page::where('slug', $slug)->where('id', '<>', $id)->count() ) {
+      if ($i == 10) {
+        break;
+      }
+      $slug = $slug . '-' . $i;
+      $i++;
     }
+
 	}
 }

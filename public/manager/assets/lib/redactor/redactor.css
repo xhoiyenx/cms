@@ -37,6 +37,7 @@
 
 .redactor-box textarea:focus {
   outline: none;
+  background-color: #111;
 }
 
 .redactor-editor,
@@ -79,6 +80,7 @@ body .redactor-box-fullscreen {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 9999;
 }
 
 /*
@@ -249,7 +251,7 @@ body .redactor-box-fullscreen {
   Icons
 */
 .re-icon {
-  font-family: 'RedactorFont';
+  font-family: 'FontAwesome';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -270,7 +272,7 @@ body .redactor-box-fullscreen {
 }
 
 .re-unorderedlist:before {
-  content: "\e601";
+  content: "\f0ca";/*content: "\e601";*/
 }
 
 .re-undo:before {
@@ -302,27 +304,27 @@ body .redactor-box-fullscreen {
 }
 
 .re-outdent:before {
-  content: "\e609";
+  content: "\f03b";/*content: "\e609";*/
 }
 
 .re-orderedlist:before {
-  content: "\e60a";
+  content: "\f0cb";/*content: "\e60a";*/
 }
 
 .re-link:before {
-  content: "\e60b";
+  content: "\f0c1";/*content: "\e60b";*/
 }
 
 .re-horizontalrule:before {
-  content: "\e60c";
+  content: "\f068";/*content: "\e60c";*/
 }
 
 .re-italic:before {
-  content: "\e60d";
+  content: "\f033";/*content: "\e60d";*/
 }
 
 .re-indent:before {
-  content: "\e60e";
+  content: "\f03c";/*content: "\e60e";*/
 }
 
 .re-image:before {
@@ -330,15 +332,15 @@ body .redactor-box-fullscreen {
 }
 
 .re-fullscreen:before {
-  content: "\e610";
+  content: "\f065";/*content: "\e610";*/
 }
 
 .re-normalscreen:before {
-  content: "\e611";
+  content: "\f066";/*content: "\e611";*/
 }
 
 .re-formatting:before {
-  content: "\e612";
+  content: "\f1dd";/*content: "\e612";*/
 }
 
 .re-fontsize:before {
@@ -350,11 +352,11 @@ body .redactor-box-fullscreen {
 }
 
 .re-deleted:before {
-  content: "\e615";
+  content: "\f0cc";/*content: "\e615";*/
 }
 
 .re-html:before {
-  content: "\e616";
+  content: "\f121";/*content: "\e616";*/
 }
 
 .re-clips:before {
@@ -362,7 +364,7 @@ body .redactor-box-fullscreen {
 }
 
 .re-bold:before {
-  content: "\e618";
+  content: "\f032";/*content: "\e618";*/
 }
 
 .re-backcolor:before {
@@ -379,7 +381,7 @@ body .redactor-box-fullscreen {
 
 .re-alignment:before,
 .re-alignleft:before {
-  content: "\e61c";
+  content: "\f036";/*content: "\e61c";*/
 }
 
 .re-alignjustify:before {
@@ -432,7 +434,7 @@ body .redactor-box-fullscreen {
 
 .redactor-dropdown a {
   display: block;
-  padding: 10px 15px;
+  padding: 5px 15px;
   color: #000;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);

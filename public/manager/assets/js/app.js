@@ -40,4 +40,8 @@ $(document).ready(function() {
     );
   });
 
+  $('.delete').click(function(event) {
+    return confirm('Please confirm deleting data!!');
+  });
+
 });

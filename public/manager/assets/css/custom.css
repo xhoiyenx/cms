@@ -31,6 +31,7 @@ body {
   padding: 0 0 15px 0;
   line-height: 30px;
   border-bottom: 2px solid #000;
+  font-weight: 500;
 }
 
 .manager-title i {
@@ -43,6 +44,10 @@ body {
 
 .required {
   color: #F00;
+}
+
+.help {
+  color: #aaacb2;
 }
 
 
@@ -139,6 +144,33 @@ body {
 .pagination {
   margin-top: 0;
   float: right;
+}
+
+/** LIST PAGE **/
+.input-group .btn {
+  padding: 8px 12px 7px;
+}
+
+.action-block {
+  height: 17.15px;
+}
+
+.action-block a {
+  font-weight: 300;
+  color: #666;
+  visibility: hidden;
+}
+
+.action-block a:hover {
+  color: #999;
+}
+
+.table td:hover .action-block a {
+  visibility: inherit;
+}
+
+.breadcrumb-quirk {
+  line-height: 34.15px;
 }
 
 /** LOGIN PAGE **/

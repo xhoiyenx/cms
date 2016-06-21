@@ -180,6 +180,7 @@ class DatabaseSchema
 
       $table->mediumIncrements('id');
       $table->unsignedMediumInteger('parent')->default(0);
+      $table->string('type', 50)->default('page');
       $table->text('name');
       $table->text('slug');
       $table->text('description')->nullable();
@@ -200,5 +201,6 @@ class DatabaseSchema
 
   public function upgrade()
   {
+    $this->pages();
   }
 }

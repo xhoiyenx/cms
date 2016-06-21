@@ -22,7 +22,7 @@
   <a class="btn btn-primary btn-quirk btn-form pull-right" href="{{ route('manager.catalog.categories.update') }}">Add New</a>
 </h1>
 @include('inc.messages')
-{{ Form::open(['route' => 'manager.catalog.categories.action']) }}
+{{ Form::open(['route' => 'manager.catalog.categories']) }}
 <div class="panel">
 <table class="table table-bordered table-primary">
   <thead>

@@ -32,6 +32,13 @@ class Categories extends BaseController
 {
   public function index(Request $request)
   {
+    # handle delete all
+    if ($request->isMethod('post') && $request->has('delete')) {
+      if ( Taxonomy::destroy($request->delete) > 0 ) {
+        return redirect()->back()->with('message', 'Selected item/s deleted');
+      }
+    }
+
     $this->setPage('Categories');
 
     $data = array();
@@ -49,7 +56,7 @@ class Categories extends BaseController
       'list' => $data,
     ];
 
-    return view('catalog.categories.index', $view);
+    return view('catalog.categories.list', $view);
   }
 
   /**
@@ -84,7 +91,7 @@ class Categories extends BaseController
 
         # validate fail
         if ( $validator->fails() ) {
-          return view('catalog.categories.ajax-update', $view)->withErrors($validator);
+          return view('catalog.categories.ajax', $view)->withErrors($validator);
         }
         # validation success
         else {
@@ -104,34 +111,18 @@ class Categories extends BaseController
           $data->type   = 'category';
           $data->save();
 
+          $request->session()->flash('message', 'Category updated');
+
           return 1;
         }
       }
 
-      return view('catalog.categories.ajax-update', $view);
+      return view('catalog.categories.ajax', $view);
     }
     else
     {
       # maybe show 404
       return abort(404);
     }
-  }
-
-  public function action( Request $request )
-  {
-    # delete request
-    if ( $request->has('delete') ) {
-      $categories = Taxonomy::findMany($request->delete);
-
-      if ( ! $categories->isEmpty() ) {
-        foreach ( $categories as $category ) {
-          $category->delete();
-        }
-      }
-      return back()->withMessage('Item/s Deleted');
-    }
-    else {
-      return back()->withMessage('Please select item');
-    }    
   }
 }
