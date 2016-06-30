@@ -21,9 +21,20 @@ use Illuminate\Http\Request;
 class Upload extends BaseController
 {
 
-  public function index( Request $request )
+  public function index( Request $request, $type )
   {
-    var_dump($request->all());
+    # check if user upload an image
+    if ( $request->hasFile('redactor-image') ) {
+      $image = $request->file('redactor-image');
+      if ( $image->isValid() ) {
+        if ( $image->move( public_path('uploads/images'), $image->getClientOriginalName() )) {
+          $info = [
+            'filelink' => url('public/uploads/images/' . $image->getClientOriginalName())
+          ];
+          echo stripslashes(json_encode($info));
+        }
+      }
+    }
   }
 
 }

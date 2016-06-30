@@ -71,7 +71,10 @@ function redactor( $name )
 	$(document).ready(function() {
 		$('textarea[name=<?php echo $name?>]').redactor({
 			minHeight: 200,
-      imageUpload: '/manager/media/upload',
+      imageUpload: '/manager/media/upload/image',
+      imageUploadParam: 'redactor-image',
+      fileUpload: '/manager/media/upload/file',
+      fileUploadParam: 'redactor-file',
       plugins: ['imagemanager', 'fullscreen']
 		});
 	});

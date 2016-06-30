@@ -101,7 +101,6 @@ class DatabaseSchema
       $table->string('type', 50);
 
     });
-
   }
 
   public function users()
@@ -175,8 +174,8 @@ class DatabaseSchema
 
   public function pages()
   {
-    Schema::dropIfExists('page');
-    Schema::create('page', function(Blueprint $table) {
+    Schema::dropIfExists('pages');
+    Schema::create('pages', function(Blueprint $table) {
 
       $table->mediumIncrements('id');
       $table->unsignedMediumInteger('parent')->default(0);
@@ -185,7 +184,27 @@ class DatabaseSchema
       $table->text('slug');
       $table->text('description')->nullable();
       $table->string('status', 10)->default('draft');
+      $table->tinyInteger('sort')->default(0);
       $table->timestamps();
+
+    });
+  }
+
+  public function items()
+  {
+    Schema::dropIfExists('products');
+    Schema::create('products', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->string('sku', 150)->unique();
+      $table->text('name');
+      $table->text('slug');
+      $table->text('description')->nullable();
+      $table->text('short_description')->nullable();
+      $table->decimal('price', 10, 2)->default('0.00');      
+      $table->string('status', 20)->default('active');
+      $table->timestamps();
+      $table->softDeletes();
 
     });
   }
@@ -202,5 +221,6 @@ class DatabaseSchema
   public function upgrade()
   {
     $this->pages();
+    $this->items();
   }
 }

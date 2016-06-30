@@ -25,7 +25,7 @@ $router->get('/', 'Dashboard@index')->name('dashboard');
 # 
 $router->group(['namespace' => 'Media', 'prefix' => 'media', 'as' => 'media.'], function($router) {
 
-  $router->post('upload', 'Upload@index')->name('upload');
+  $router->post('upload/{type}', 'Upload@index')->name('upload');
 
 });
 
@@ -110,5 +110,12 @@ $router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], functi
   $router->get('pages/update/{id?}', 'Pages@form')->name('page.update');
   $router->get('pages/delete/{id?}', 'Pages@delete')->name('page.delete');
   $router->post('pages/save', 'Pages@save')->name('page.save');
+
+});
+
+#
+# E-COMMERCE
+#
+$router->group(['namespace' => 'Commerce', 'prefix' => 'commerce', 'as' => 'commerce.'], function($router) {
 
 });

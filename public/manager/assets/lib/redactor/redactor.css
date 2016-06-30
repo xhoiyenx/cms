@@ -328,7 +328,7 @@ body .redactor-box-fullscreen {
 }
 
 .re-image:before {
-  content: "\e60f";
+  content: "\f03e";/*content: "\e60f";*/
 }
 
 .re-fullscreen:before {
@@ -372,7 +372,7 @@ body .redactor-box-fullscreen {
 }
 
 .re-file:before {
-  content: "\e61a";
+  content: "\f016";/*content: "\e61a";*/
 }
 
 .re-alignright:before {
@@ -544,7 +544,8 @@ body .redactor-box-fullscreen {
 #redactor-droparea {
   position: relative;
   overflow: hidden;
-  padding: 140px 20px;
+  padding: 30px 20px;
+  text-align: center;
   border: 3px dashed rgba(0, 0, 0, 0.1);
 }
 
@@ -560,6 +561,10 @@ body .redactor-box-fullscreen {
   text-align: center;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.7);
+}
+
+#redactor-droparea-placeholder input {
+  margin: auto;
 }
 
 /*
@@ -657,18 +662,19 @@ body .redactor-box-fullscreen {
   background: #fff;
   color: #000;
   font-size: 14px !important;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   box-shadow: 0 1px 70px rgba(0, 0, 0, 0.5);
 }
 
 #redactor-modal header {
-  padding: 30px 40px 5px 40px;
-  font-size: 18px;
-  font-weight: bold;
+  padding: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #EDEDED;
+  border-bottom: 1px solid #E5E5E5;
 }
 
 #redactor-modal section {
-  padding: 30px 40px 50px 40px;
+  padding: 15px;
 }
 
 #redactor-modal label {
@@ -799,7 +805,7 @@ body .redactor-box-fullscreen {
 
 #redactor-modal-close {
   position: absolute;
-  top: 10px;
+  top: 4px;
   right: 10px;
   width: 30px;
   height: 30px;
