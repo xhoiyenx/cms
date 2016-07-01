@@ -1,3 +1,0 @@
-sudo keytool -genkey -v -keystore cemsapp.keystore -alias cemsapp -keyalg RSA -keysize 2048 -validity 10000
-sudo jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cemsapp.keystore sije-release.apk cemsapp
-sudo ~/Library/Android/sdk/build-tools/23.0.3/zipalign -v 4 sije-release.apk sije.apk
