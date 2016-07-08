@@ -15,7 +15,7 @@
  * Administrators model
  */
 
-namespace Library\Models;
+namespace Library\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable

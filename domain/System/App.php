@@ -18,8 +18,8 @@ use Illuminate\Http\Request;
 use Library\Classes\DatabaseSchema;
 use Illuminate\Database\Connectors\MySqlConnector;
 
-use Library\Models\User;
-use Library\Models\UserRole;
+use Library\Model\User;
+use Library\Model\UserRole;
 
 class App extends BaseController
 {
@@ -90,7 +90,7 @@ class App extends BaseController
 	{
 		$env  = 'APP_ENV=production' . PHP_EOL;
 		$env .= 'APP_DEBUG=false' . PHP_EOL;
-		$env .= 'APP_KEY=' . base64_encode(random_bytes(32)) . PHP_EOL;
+		$env .= 'APP_KEY=' . base64_encode(random_bytes(32)) . PHP_EOL . PHP_EOL;
 
 		$host = $request->dbhost ?: 'localhost';
 		$env .= 'DB_HOST=' . $host  . PHP_EOL;

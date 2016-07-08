@@ -15,7 +15,7 @@
  * Page model
  */
 
-namespace Library\Models;
+namespace Library\Model;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model

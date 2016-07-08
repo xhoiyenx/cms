@@ -14,7 +14,8 @@ $app = new Core\Foundation\Application( BASE_PATH );
 
 # check if base configuration file exists
 if ( file_exists( $app->environmentFilePath() ) ) {
-  (new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile()))->load();  
+  $env = new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile());
+  $env->load();
 }
 # need to do installation process
 else {

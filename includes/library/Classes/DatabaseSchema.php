@@ -111,7 +111,7 @@ class DatabaseSchema
       $table->mediumIncrements('id');
       $table->unsignedSmallInteger('role_id');      
       $table->string('usermail', 50)->unique();
-      $table->string('username', 25)->unique();
+      $table->string('username', 50)->unique();
       $table->string('password', 60);
       $table->string('status', 25);
       $table->string('registration_key', 60);
@@ -120,6 +120,7 @@ class DatabaseSchema
 
     });
 
+/*
     Schema::dropIfExists('user_detail');
     Schema::create('user_detail', function(Blueprint $table) {
 
@@ -139,6 +140,7 @@ class DatabaseSchema
       $table->tinyInteger('sort')->default(0);
 
     });
+*/
 
     Schema::dropIfExists('user_eav');
     Schema::create('user_eav', function(Blueprint $table) {
@@ -196,7 +198,7 @@ class DatabaseSchema
     Schema::create('products', function(Blueprint $table) {
 
       $table->increments('id');
-      $table->string('sku', 150)->unique();
+      $table->string('sku', 100)->unique();
       $table->text('name');
       $table->text('slug');
       $table->text('description')->nullable();
@@ -213,9 +215,10 @@ class DatabaseSchema
   {
     #$this->administrators();
     $this->settings();
-    $this->products();
+    #$this->products();
     $this->users();
     $this->pages();
+    $this->items();
   }
 
   public function upgrade()

@@ -15,7 +15,7 @@
  * Administrators model
  */
 
-namespace Library\Models;
+namespace Library\Model;
 use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
