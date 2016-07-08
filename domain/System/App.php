@@ -18,8 +18,8 @@ use Illuminate\Http\Request;
 use Library\Classes\DatabaseSchema;
 use Illuminate\Database\Connectors\MySqlConnector;
 
-use Library\Model\User;
-use Library\Model\UserRole;
+use Library\Model\Manager;
+use Library\Model\ManagerRole;
 
 class App extends BaseController
 {
@@ -57,12 +57,12 @@ class App extends BaseController
 
 		try {
 			$connection = $mysql->connect([
-				'host' => $request->dbhost ?: 'localhost',
-				'username' => $request->dbuser,
-				'password' => $request->dbpass,
-				'database' => $request->dbname,
+				'host' 			=> $request->dbhost ?: 'localhost',
+				'username' 	=> $request->dbuser,
+				'password' 	=> $request->dbpass,
+				'database' 	=> $request->dbname,
 				'collation' => 'utf8_general_ci',
-				'charset' => 'utf8',
+				'charset' 	=> 'utf8',
 			]);
 		}
 		catch( PDOException $e) {
@@ -115,12 +115,12 @@ class App extends BaseController
 		# create administrator role
 		$accounts = session('accounts');
 
-		$role = new UserRole;
+		$role = new ManagerRole;
 		$role->name = $accounts['rolename'];
 		$role->is_admin = 1;
 		$role->save();
 
-		$user = new User;
+		$user = new Manager;
 		$user->username = $accounts['username'];
 		$user->password = bcrypt($accounts['password']);
 		$user->usermail = '';

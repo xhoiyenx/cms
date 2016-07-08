@@ -17,12 +17,12 @@
 namespace Library\Classes;
 
 use Illuminate\Database\Schema\Blueprint;
-use Library\Models\Administrator;
 use Schema;
 use Hash;
 
 class DatabaseSchema
 {
+
   public function settings()
   {
     Schema::dropIfExists('settings');
@@ -211,14 +211,39 @@ class DatabaseSchema
     });
   }
 
+  public function managers()
+  {
+    Schema::dropIfExists('managers');
+    Schema::create('managers', function(Blueprint $table) {
+
+      $table->mediumIncrements('id');
+      $table->unsignedSmallInteger('manager_role_id');      
+      $table->string('usermail', 50)->nullable();
+      $table->string('username', 50)->unique();
+      $table->string('password', 60);
+      $table->string('status', 25);
+      $table->rememberToken();
+      $table->timestamps();
+
+    });    
+
+    Schema::dropIfExists('manager_roles');
+    Schema::create('manager_roles', function(Blueprint $table) {
+
+      $table->unsignedSmallInteger('id', true);
+      $table->string('name', 100);      
+      $table->boolean('is_admin')->default(0);
+      $table->text('permissions')->nullable();
+      $table->timestamps();      
+
+    });
+  }
+
   public function install()
   {
-    #$this->administrators();
+    $this->managers();
     $this->settings();
-    #$this->products();
-    $this->users();
     $this->pages();
-    $this->items();
   }
 
   public function upgrade()
