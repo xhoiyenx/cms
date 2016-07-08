@@ -18,7 +18,7 @@
 namespace Library\Repository;
 
 use Illuminate\Http\Request;
-use Library\Models\Page as Model;
+use Library\Model\Page as Model;
 
 class Page
 {

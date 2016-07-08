@@ -21,7 +21,7 @@ use Illuminate\Support\MessageBag;
 
 use Domain\Manager\BaseController;
 
-use Library\Models\Page;
+use Library\Model\Page;
 use Library\Repository\Page as PageRepo;
 
 class Pages extends BaseController
