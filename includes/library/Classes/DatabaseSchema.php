@@ -103,55 +103,6 @@ class DatabaseSchema
     });
   }
 
-  public function users()
-  {
-    Schema::dropIfExists('user');
-    Schema::create('user', function(Blueprint $table) {
-
-      $table->mediumIncrements('id');
-      $table->unsignedSmallInteger('role_id');      
-      $table->string('usermail', 50)->unique();
-      $table->string('username', 50)->unique();
-      $table->string('password', 60);
-      $table->string('status', 25);
-      $table->string('registration_key', 60);
-      $table->rememberToken();
-      $table->timestamps();
-
-    });
-
-    Schema::dropIfExists('user_eav');
-    Schema::create('user_eav', function(Blueprint $table) {
-
-      $table->increments('id');
-      $table->unsignedMediumInteger('user_id');
-      $table->string('eav_key', 100);
-      $table->text('eav_val');
-
-    });
-
-    Schema::dropIfExists('user_role');
-    Schema::create('user_role', function(Blueprint $table) {
-
-      $table->unsignedTinyInteger('id', true);
-      $table->string('name', 100);      
-      $table->boolean('is_admin')->default(0);
-      $table->timestamps();      
-
-    });
-
-    Schema::dropIfExists('user_permission');
-    Schema::create('user_permission', function(Blueprint $table) {
-
-      $table->mediumIncrements('id');
-      $table->unsignedSmallInteger('role_id');
-      $table->boolean('active')->default(1);
-      $table->string('permission', 200);
-
-    });    
-
-  }
-
   public function pages()
   {
     Schema::dropIfExists('pages');
@@ -166,6 +117,33 @@ class DatabaseSchema
       $table->string('page_status', 20)->default('draft');
       $table->tinyInteger('sort')->default(0);
       $table->timestamps();
+
+    });
+  }
+
+  public function menus()
+  {
+    Schema::dropIfExists('menus');
+    Schema::create('menus', function(Blueprint $table) {
+
+      $table->mediumIncrements('id');
+      $table->unsignedMediumInteger('menu_parent')->default(0);
+      $table->string('menu_type', 50);
+      $table->string('menu_name', 50);
+      $table->text('menu_link');
+      $table->boolean('new_tab')->default(0);
+      $table->string('status', 20)->default('enabled');
+      $table->tinyInteger('sort')->default(0);
+      $table->timestamps();
+
+    });
+
+    Schema::dropIfExists('menus_meta');
+    Schema::create('menus_meta', function(Blueprint $table) {
+
+      $table->increments('id');
+      $table->string('meta_key', 100);
+      $table->text('meta_val');
 
     });
   }
@@ -226,7 +204,6 @@ class DatabaseSchema
 
   public function upgrade()
   {
-    $this->pages();
-    $this->items();
+    $this->menus();
   }
 }
