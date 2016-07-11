@@ -2,8 +2,8 @@
 /**
  * HONAKO APPLICATION
  * By: Hoiyen
- * Ver: 0.0.1
- * Last Update: 23/03/2016
+ * Ver: 1.0.0
+ * Last Update: 07/09/2016
  *
  * Domain: 
  * Manager
@@ -12,17 +12,17 @@
  * Template
  * 
  * Description:
- * Product Categories page
+ * CMS Page
  */
 ?>
 @extends('inc.master')
 @section('content')
 <h1 class="manager-title clearfix">
   <i class="fa fa-fw fa-list"></i>{{ $page }}
-  @if (Request::has('parent'))
-  <a class="btn btn-primary btn-quirk pull-right" href="{{ route('manager.cms.page.create', ['parent' => Request::get('parent')]) }}">Add New</a>
+  @if (Request::has('sub'))
+  <a class="btn btn-primary btn-quirk pull-right" href="{{ route('manager.cms.page.create', ['sub' => Request::get('sub')]) }}">Add New</a>
   @else
-  <a class="btn btn-primary btn-quirk pull-right" href="{{ route('manager.cms.page.update') }}">Add New</a>
+  <a class="btn btn-primary btn-quirk pull-right" href="{{ route('manager.cms.page.create') }}">Add New</a>
   @endif
 </h1>
 {{ Form::open(['route' => 'manager.cms.page']) }}
@@ -34,9 +34,9 @@
       <li><a href="{{ route('manager.cms.page') }}">Pages</a></li>
     @foreach ( $breadcrumb as $i => $crumb )
       @if ( count($breadcrumb) == ($i+1) )
-      <li class="active">{{ $crumb->name }}</li>
+      <li class="active">{{ $crumb->page_name }}</li>
       @else
-      <li><a href="{{ route('manager.cms.page', ['parent' => $crumb->id]) }}">{{ $crumb->name }}</a></li>
+      <li><a href="{{ route('manager.cms.page', ['sub' => $crumb->id]) }}">{{ $crumb->page_name }}</a></li>
       @endif
     @endforeach
     </ol>
@@ -66,9 +66,9 @@
     <tr>
       <td class="cbox"><input type="checkbox" name="delete[]" value="{{ $data->id }}"></td>
       <td>
-        <a href="{{ route('manager.cms.page.update', ['id' => $data->id]) }}" title="Edit {{ $data->name }}"><strong>{{ $data->name }}</strong></a>
+        <a href="{{ route('manager.cms.page.update', ['id' => $data->id]) }}" title="Edit {{ $data->page_name }}"><strong>{{ $data->page_name }}</strong></a>
         <div class="action-block">
-          <a href="{{ route('manager.cms.page', ['parent' => $data->id]) }}">subpage</a>
+          <a href="{{ route('manager.cms.page', ['sub' => $data->id]) }}">subpage</a>
         </div>
       </td>
     </tr>

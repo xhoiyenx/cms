@@ -73,7 +73,7 @@ return [
 
         'administrators' => [
             'driver'    => 'eloquent',
-            'model'     => Library\Model\User::class,
+            'model'     => Library\Model\Manager::class,
         ],
 
         'users' => [

@@ -120,28 +120,6 @@ class DatabaseSchema
 
     });
 
-/*
-    Schema::dropIfExists('user_detail');
-    Schema::create('user_detail', function(Blueprint $table) {
-
-      $table->mediumIncrements('id');
-      $table->unsignedMediumInteger('user_id');
-      $table->string('type', 50);
-      $table->string('fullname', 200);
-      $table->string('company', 200)->nullable();
-      $table->text('address')->nullable();
-      $table->string('region', 200)->nullable();
-      $table->string('city', 200)->nullable();
-      $table->string('country', 200)->nullable();
-      $table->string('postcode', 10)->nullable();
-      $table->string('phone', 25)->nullable();
-      $table->string('mobile', 25)->nullable();
-      $table->string('fax', 25)->nullable();
-      $table->tinyInteger('sort')->default(0);
-
-    });
-*/
-
     Schema::dropIfExists('user_eav');
     Schema::create('user_eav', function(Blueprint $table) {
 
@@ -180,12 +158,12 @@ class DatabaseSchema
     Schema::create('pages', function(Blueprint $table) {
 
       $table->mediumIncrements('id');
-      $table->unsignedMediumInteger('parent')->default(0);
-      $table->string('type', 50)->default('page');
-      $table->text('name');
-      $table->text('slug');
-      $table->text('description')->nullable();
-      $table->string('status', 10)->default('draft');
+      $table->unsignedMediumInteger('page_parent')->default(0);
+      $table->string('page_type', 50)->default('page');
+      $table->text('page_name');
+      $table->text('page_slug');
+      $table->text('page_desc')->nullable();
+      $table->string('page_status', 20)->default('draft');
       $table->tinyInteger('sort')->default(0);
       $table->timestamps();
 
@@ -231,7 +209,7 @@ class DatabaseSchema
     Schema::create('manager_roles', function(Blueprint $table) {
 
       $table->unsignedSmallInteger('id', true);
-      $table->string('name', 100);      
+      $table->string('manager_name', 100);      
       $table->boolean('is_admin')->default(0);
       $table->text('permissions')->nullable();
       $table->timestamps();      

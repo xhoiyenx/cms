@@ -111,6 +111,7 @@ return [
         'dbuser' => 'mysql username',
         'dbpass' => 'mysql password',
         'rolename'  => 'administrator role name',
+        'usermail'  => 'administrator email address',
         'username'  => 'administrator username',
         'password'  => 'administrator password',
     ],

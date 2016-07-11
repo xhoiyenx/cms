@@ -26,16 +26,16 @@ class Page extends Model
    */
   public function sub()
   {
-    return $this->hasMany(Page::class, 'parent');
+    return $this->hasMany(Page::class, 'page_parent');
   }
 
   /**
    * Page parents
    * @return Collection
    */
-  public function par()
+  public function parent()
   {
-    return $this->belongsTo(Page::class, 'parent');
+    return $this->belongsTo(Page::class, 'page_parent');
   }
 
   /**
@@ -48,7 +48,7 @@ class Page extends Model
     if ( ! $this->sub->isEmpty() ) {
       # let page parent adopt the children
       foreach ( $this->sub as $child ) {
-        $child->parent = $this->parent;
+        $child->page_parent = $this->page_parent;
         $child->save();
       }
     }

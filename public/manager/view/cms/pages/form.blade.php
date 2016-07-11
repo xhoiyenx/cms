@@ -19,12 +19,12 @@
 @section('content')
 {{ Form::model($form, ['route' => 'manager.cms.page.save']) }}
 {{ Form::hidden('id', $form->id) }}
-{{ Form::hidden('parent', $form->parent) }}
+{{ Form::hidden('page_parent', $form->page_parent) }}
 <h1 class="manager-title clearfix">
   <i class="fa fa-fw fa-file-o"></i>{{ $page }}
   <div class="btn-toolbar pull-right">
     <button type="submit" class="btn btn-success btn-quirk">Save</button>
-    <a href="{{ route('manager.cms.page') }}" class="btn btn-primary btn-quirk">Cancel</a>
+    <a href="{{ route('manager.cms.page', ['sub' => Request::get('sub')]) }}" class="btn btn-primary btn-quirk">Cancel</a>
   </div>  
 </h1>
 @include('inc.messages')
@@ -38,7 +38,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label>Title: <span class="required">*</span></label>
-              {{ Form::text('name', null, ['class' => 'form-control']) }}
+              {{ Form::text('page_name', null, ['class' => 'form-control']) }}
             </div>
           </div>
 
@@ -48,7 +48,7 @@
               <label>Url: <span class="help">lowercase and dash text only</span></label>
               <div class="input-group">
                 <div class="input-group-addon">{{ url('/') }}/</div>
-                {{ Form::text('slug', null, ['class' => 'form-control']) }}
+                {{ Form::text('page_slug', null, ['class' => 'form-control']) }}
               </div>
             </div>
           </div>
@@ -57,8 +57,8 @@
           <div class="col-md-12">
             <div class="form-group nomargin">
               <label>Description:</label>
-              {{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => 4]) }}
-              {!! redactor('description') !!}
+              {{ Form::textarea('page_desc', null, ['class' => 'form-control', 'rows' => 4]) }}
+              {!! redactor('page_desc') !!}
             </div>
           </div>
 
@@ -68,7 +68,13 @@
 
   </div>
 </div>
-
-
 {{ Form::close() }}
+@endsection
+
+@section('after_footer')
+<script type="text/javascript">
+$(document).ready(function() {
+  $('input[name=page_name]').focus();
+});
+</script>
 @endsection

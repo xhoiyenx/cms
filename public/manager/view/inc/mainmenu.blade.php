@@ -23,23 +23,12 @@
 
 <h5 class="sidebar-title">CMS</h5>
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li class="{!! is_active(['manager.cms.page', 'manager.cms.page.update'], 'active ') !!}">
+  <li class="{!! is_active(['manager.cms.page', 'manager.cms.page.create', 'manager.cms.page.update'], 'active ') !!}">
     <a href="{{ route('manager.cms.page') }}"><i class="fa fa-list"></i> <span>Pages</span></a>
   </li>
 </ul>
 
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li class="{!! is_active(['manager.users', 'manager.roles', 'manager.users.update', 'manager.roles.update'], 'active ') !!}nav-parent">
-    <a href="#"><i class="fa fa-user"></i> <span>Users</span></a>
-    <ul class="children">
-      <li class="{!! is_active(['manager.users', 'manager.users.update'], 'active ') !!}">
-        <a href="{{ route('manager.users') }}">User</a>
-      </li>
-      <li class="{!! is_active(['manager.roles', 'manager.roles.update'], 'active ') !!}">
-        <a href="{{ route('manager.roles') }}">User Roles</a>
-      </li>
-    </ul>    
-  </li>
   <li class="{!! is_active(['manager.configuration'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a>
     <ul class="children">

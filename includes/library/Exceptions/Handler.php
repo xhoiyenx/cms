@@ -1,8 +1,24 @@
 <?php
+/**
+ * HONAKO APPLICATION
+ * By: Hoiyen
+ * Ver: 1.0.0
+ * Last Update: 09/07/2016
+ *
+ * Domain: 
+ * Library
+ * 
+ * Type: 
+ * Exception Handler
+ * 
+ * Description:
+ * Handle errors here
+ */
 
 namespace Library\Exceptions;
 
 use Exception;
+use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -33,7 +49,9 @@ class Handler extends ExceptionHandler
    */
   public function report(Exception $e)
   {
-    parent::report($e);
+    if ($this->shouldReport($e)) {
+      $this->log->error($e->getMessage());
+    }
   }
 
   /**
@@ -47,7 +65,6 @@ class Handler extends ExceptionHandler
   {
     # handle url not found
     if ( $e instanceof HttpException ) {
-
       # administrators
       if ( $request->is('manager/*') ) {
         # define default view path for manager
@@ -58,7 +75,11 @@ class Handler extends ExceptionHandler
       else {
 
       }
+    }
 
+    # handle mysql exception
+    if ( $e instanceof \Illuminate\Database\QueryException ) {
+      return redirect()->back()->withInput()->with('errors', new MessageBag([$e->getMessage()]));
     }
 
     return parent::render($request, $e);

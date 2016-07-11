@@ -12,6 +12,26 @@
 
 $app = new Core\Foundation\Application( BASE_PATH );
 
+/*
+|--------------------------------------------------------------------------
+| Configure Logging
+|--------------------------------------------------------------------------
+*/
+
+/*
+$app->configureMonologUsing(function($monolog) use ($app) {
+
+  $monolog_formatter = new \Monolog\Formatter\LineFormatter(null, null, true, true);
+  $monolog_formatter->includeStacktraces(true);
+
+  $monolog_handler = new \Monolog\Handler\RotatingFileHandler( $app->storagePath().'/logs/honako.log', $app->make('config')->get('app.log_max_files', 5), 'INFO');
+  $monolog_handler->setFormatter( $monolog_formatter );
+
+  $monolog->pushHandler($monolog_handler);
+
+});
+*/
+
 # check if base configuration file exists
 if ( file_exists( $app->environmentFilePath() ) ) {
   $env = new Dotenv\Dotenv($app->environmentPath(), $app->environmentFile());

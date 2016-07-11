@@ -82,11 +82,11 @@ body {
 }
 
 .table > tbody > tr > td {
-  color: #000;
   border-top-color: #DDD;
+  color: #000;
 }
 
-.table > tbody > tr > td > strong {
+.table > tbody > tr > td strong {
   font-weight: 500;
 }
 
@@ -156,13 +156,14 @@ body {
 }
 
 .action-block a {
-  font-weight: 300;
   color: #666;
+  font-size: 12px;  
+  font-weight: 300;
   visibility: hidden;
 }
 
 .action-block a:hover {
-  color: #999;
+  color: #000;
 }
 
 .table td:hover .action-block a {

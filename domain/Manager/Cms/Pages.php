@@ -26,7 +26,10 @@ use Library\Repository\Page as PageRepo;
 
 class Pages extends BaseController
 {
+  protected $page_type = 'page';
+
   /**
+   * Show list
    * @param  Request
    * @return View
    */
@@ -35,15 +38,15 @@ class Pages extends BaseController
     # handle delete all
     if ($request->isMethod('post') && $request->has('delete')) {
       if ( Page::destroy($request->delete) > 0 ) {
-        return redirect()->back()->with('message', 'Selected pages deleted');
+        return redirect()->back()->with('message', 'Selected pages is deleted');
       }
     }
 
     $this->setPage('Pages');
 
     $view = [
-      'list' => PageRepo::all($request),
-      'breadcrumb' => $this->breadcrumb( $request->get('parent', 0) )
+      'list' => PageRepo::all($request, $this->page_type),
+      'breadcrumb' => $this->breadcrumb( $request->get('sub', 0) )
     ];
 
     return view('cms.pages.list', $view);
@@ -51,21 +54,28 @@ class Pages extends BaseController
 
 
   /**
-   * @param  Page ID
-   * @return Form
+   * Show form
+   * @param  Library\Model\Page
+   * @return View
    */
-  public function form( Request $request, $id = null )
+  public function form( Request $request, Page $page = null )
   {
-    $this->setPage('Add / Edit Page');
+    $this->setPage('Create Page');
 
-    $data = Page::findOrNew($id);
-
-    if ( $request->has('parent') ) {
-      $data->parent = $request->parent;
+    if ( $page->exists ) {
+      $this->setPage('Edit Page');
+    }
+    else {
+      if ( $request->has('sub') ) {
+        $page->page_parent = $request->sub;
+      }
+      else {
+        $page->page_parent = 0;
+      }
     }
 
     $view = [
-      'form' => $data
+      'form' => $page
     ];
 
     return view('cms.pages.form', $view);
@@ -73,45 +83,40 @@ class Pages extends BaseController
 
   public function save(Request $request)
   {
-
     # validate
     $this->validate($request, [
-      'name' => 'required'
+      'page_name' => 'required'
     ]);
 
     # validation passed
     $data = Page::findOrNew($request->id);
-    $data->type = 'page';
-    $data->name = $request->name;
+    $data->page_type    = $this->page_type;
+    $data->page_name    = $request->page_name;
+    $data->page_desc    = $request->page_desc;
+    $data->page_status  = 'published';
+    $data->page_parent  = $request->page_parent;
 
-    if ( $request->has('slug') ) {
-      $data->slug = PageRepo::slug($request->slug, $data->id);
+    # process slug generation
+    if ( $request->has('page_slug') ) {
+      $data->page_slug = PageRepo::slug($request->page_slug, $data->id);
     }
     else {
-      $data->slug = PageRepo::slug($data->name);
+      $data->page_slug = PageRepo::slug($data->page_name);
     }
 
-    $data->description = $request->description;
-    $data->status = 'published';
-    $data->parent = $request->parent;
     $data->save();
 
     # redirect back to list
-    return redirect()->route('manager.cms.page')->with('message', 'Data updated');
+    return redirect()->route('manager.cms.page', ['sub' => $request->page_parent])->with('message', 'Data updated');
 
   }
 
-  public function delete( $id )
-  {
-    try {
-      $data = Page::findOrFail( $id );
-    }
-    catch ( \Exception $e ) {
-      return redirect()->back()->with('errors', new MessageBag(['No data found']));
-    }
-  }
-
-  private function breadcrumb( $id = null)
+  /**
+   * Generate breadcrumb for page with sub-page
+   * @param  int $id current page ID
+   * @return array
+   */
+  private function breadcrumb( $id = null )
   {
     if ( empty($id) )
       return;
@@ -121,7 +126,7 @@ class Pages extends BaseController
     $breadcrumb[] = $page;
 
     $i = 1;
-    while ( $page = $page->par ) {
+    while ( $page = $page->parent ) {
       if ($i >= 5) {
         break;
       }

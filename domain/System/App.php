@@ -46,6 +46,7 @@ class App extends BaseController
 			'dbuser' 		=> 'required',
 			'dbpass' 		=> 'required',
 			'rolename' 	=> 'required',
+			'usermail' 	=> 'required|email',
 			'username' 	=> 'required',
 			'password' 	=> 'required',
 		]);
@@ -79,6 +80,7 @@ class App extends BaseController
 
 		session(['accounts' => array(
 			'rolename' => $request->rolename,
+			'usermail' => $request->usermail,
 			'username' => $request->username,
 			'password' => $request->password
 		)]);
@@ -93,10 +95,14 @@ class App extends BaseController
 		$env .= 'APP_KEY=' . base64_encode(random_bytes(32)) . PHP_EOL . PHP_EOL;
 
 		$host = $request->dbhost ?: 'localhost';
+
+		if ($request->has('prefix'))
+			$env .= 'DB_PREFIX=' . $request->prefix . PHP_EOL;
+
 		$env .= 'DB_HOST=' . $host  . PHP_EOL;
 		$env .= 'DB_NAME=' . $request->dbname . PHP_EOL;
 		$env .= 'DB_USER=' . $request->dbuser . PHP_EOL;
-		$env .= 'DB_PASS=' . $request->dbpass . PHP_EOL;
+		$env .= 'DB_PASS=' . $request->dbpass . PHP_EOL . PHP_EOL;
 
 		$env .= 'TIMEZONE=' . $request->timezone . PHP_EOL;
 
@@ -116,19 +122,19 @@ class App extends BaseController
 		$accounts = session('accounts');
 
 		$role = new ManagerRole;
-		$role->name = $accounts['rolename'];
+		$role->manager_name = $accounts['rolename'];
 		$role->is_admin = 1;
 		$role->save();
 
 		$user = new Manager;
 		$user->username = $accounts['username'];
 		$user->password = bcrypt($accounts['password']);
-		$user->usermail = '';
+		$user->usermail = $accounts['usermail'];
 		$user->status 	= 'active';
-		$user->role_id 	= $role->id;
+		$user->manager_role_id 	= $role->id;
 		$user->save();
 
-		return redirect()->route('manager.login');
+		return redirect()->route('manager.login')->with('message', 'Application successfully installed, please login');
 	}
 
 	public function upgrade()

@@ -22,21 +22,23 @@ use Library\Model\Page as Model;
 
 class Page
 {
-  static function all( Request $request = null, $page = 20 )
+  static function all( Request $request = null, $type = 'page', $page = 20 )
   {
     $data = Model::query();
 
     # handle parameters here
     if ( $request->has('search') ) {
-      $data->where('name', 'LIKE', '%'. $request->search .'%');
+      $data->where('page_name', 'LIKE', '%'. $request->search .'%');
     }
 
-    if ( $request->has('parent') ) {
-      $data->where('parent', $request->parent);
+    if ( $request->has('sub') ) {
+      $data->where('page_parent', $request->sub);
     }
     else {
-      $data->where('parent', 0);
+      $data->where('page_parent', 0);
     }
+
+    $data->where('page_type', $type);
 
     # default sort
     $data->orderBy('sort');
@@ -61,7 +63,7 @@ class Page
       $query->where('id', '<>', $id);
     }
 
-    while ( $check = $query->where('slug', $slug)->count() ) {
+    while ( $check = $query->where('page_slug', $slug)->count() ) {
       if ($i >= 10) {
         break;
       }

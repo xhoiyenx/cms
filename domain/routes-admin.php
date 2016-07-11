@@ -43,25 +43,6 @@ $router->group(['namespace' => 'Config'], function($router) {
 });
 
 #
-# User pages
-#
-$router->group(['namespace' => 'User'], function($router) {
-
-  # Users
-  $router->get('users', 'Users@index')->name('users');
-  $router->get('users/update/{id?}', 'Users@update')->name('users.update');
-  $router->get('users/delete/{id}', 'Users@delete')->name('users.delete');
-  $router->post('users/save', 'Users@save')->name('users.save');
-
-  # Roles
-  $router->get('roles', 'Roles@index')->name('roles');
-  $router->get('roles/update/{id?}', 'Roles@update')->name('roles.update');
-  $router->get('roles/delete/{id}', 'Roles@delete')->name('roles.delete');
-  $router->post('roles/save', 'Roles@save')->name('roles.save');
-
-});
-
-#
 # CMS
 #
 $router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], function($router) {
@@ -71,8 +52,7 @@ $router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], functi
   #
   $router->any('pages', 'Pages@index')->name('page');
   $router->get('pages/create', 'Pages@form')->name('page.create');
-  $router->get('pages/update/{id?}', 'Pages@form')->name('page.update');
-  $router->get('pages/delete/{id?}', 'Pages@delete')->name('page.delete');
+  $router->get('pages/{page}/update', 'Pages@form')->name('page.update');
   $router->post('pages/save', 'Pages@save')->name('page.save');
 
 });

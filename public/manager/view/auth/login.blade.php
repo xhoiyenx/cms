@@ -53,6 +53,11 @@
         @endforeach
       </div>
       @endif
+      @if ( session('message') )
+      <div class="alert alert-info">
+        {{ session('message') }}
+      </div>
+      @endif
       {{ Form::open([ 'route' => 'manager.login' ]) }}
       <div class="form-group mb10">
         <div class="input-group">

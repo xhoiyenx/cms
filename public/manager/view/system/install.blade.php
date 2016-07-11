@@ -30,6 +30,7 @@
   {{ Html::style('public/manager/assets/css/font.css') }}
 
   <!-- CORE -->
+  {{ Html::style('public/manager/assets/css/select2.css') }}  
   {{ Html::style('public/manager/assets/css/style.css') }}
   {{ Html::style('public/manager/assets/css/custom.css') }}
   {{ Html::script('public/manager/assets/js/modernizr.js') }}
@@ -96,6 +97,10 @@
                   {{ Form::text('rolename', 'Administrator', ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group mb10">
+                  <label>Email Address: *</label>
+                  {{ Form::text('usermail', null, ['class' => 'form-control']) }}
+                </div>
+                <div class="form-group mb10">
                   <label>Username: *</label>
                   {{ Form::text('username', null, ['class' => 'form-control']) }}
                 </div>
@@ -135,5 +140,11 @@
     </div>
   </div>
   {{ Html::script('public/manager/assets/js/jquery-2.1.4.min.js') }}
+  {{ Html::script('public/manager/assets/js/select2.js') }}
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('select').select2();
+  });
+  </script>
 </body>
 </html>

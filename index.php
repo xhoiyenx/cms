@@ -38,6 +38,7 @@ require 'includes/vendor/autoload.php';
 */
 
 $compiledPath = 'resources/cache/compiled.php';
+
 if (file_exists($compiledPath)) {
   require $compiledPath;
 }
@@ -57,7 +58,8 @@ $app = require_once 'includes/app.php';
 */
 
 $kernel   = $app->make( Illuminate\Contracts\Http\Kernel::class );
-$response = $kernel->handle( $request = Illuminate\Http\Request::capture() );
+$request  = Illuminate\Http\Request::capture();
+$response = $kernel->handle( $request );
 $response->send();
 
 $kernel->terminate($request, $response);
