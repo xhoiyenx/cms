@@ -64,6 +64,11 @@ class Theme
     return Html::style( $this->theme_url($path) );
   }
 
+  public function url( $path = '' )
+  {
+    return $this->theme_url( $path );
+  }
+
   /**
    * Get absolute path to all themes folder
    * @return [type] [description]

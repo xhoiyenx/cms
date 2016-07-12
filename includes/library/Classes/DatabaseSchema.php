@@ -200,6 +200,7 @@ class DatabaseSchema
     $this->managers();
     $this->settings();
     $this->pages();
+    $this->menus();    
   }
 
   public function upgrade()

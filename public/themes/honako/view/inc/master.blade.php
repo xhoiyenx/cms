@@ -22,13 +22,31 @@
 
           <div id="honako">
             <div class="header">
-              <div class="container">
                 
-                <div class="top-bar">
-                  
+              <div class="top-bar">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8"></div>
+                  </div>
                 </div>
-
               </div>
+
+              <header>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="logo">
+                        <a href="#"><img src="{{ Theme::url('asset/img/logo-placeholder.png') }}"></a>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                      
+                    </div>
+                  </div>
+                </div>
+              </header>
+
             </div>
           </div>
           
