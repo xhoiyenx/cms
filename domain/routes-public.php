@@ -15,4 +15,4 @@
  * All public routes assigned here
  */
 
-$router->get('/', 'Dashboard@homepage')->name('homepage');
+$router->get('/', 'Home@homepage')->name('home');

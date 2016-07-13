@@ -12,7 +12,7 @@
  * Controller
  * 
  * Description:
- * Product page
+ * CMS Pages page
  */
 namespace Domain\Manager\Cms;
 

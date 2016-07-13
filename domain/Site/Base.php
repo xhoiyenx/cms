@@ -13,12 +13,13 @@
  */
 
 namespace Domain\Site;
+use View;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Library\Models\ProductCategory;
 
-abstract class BaseController extends Controller
+abstract class Base extends Controller
 {
   protected $page;
   protected $app;
@@ -36,21 +37,12 @@ abstract class BaseController extends Controller
   private function init()
   {
     # define default view path for manager
-    view()->addLocation( public_path('themes/shop') );
+    View::addLocation( public_path('themes/honako/view') );
   }
 
   public function setPage( $text )
   {
     $this->page = $text;
-    view()->share('page', $this->page);
-  }
-
-  /**
-   * Init global variables
-   * @return void
-   */
-  public function global()
-  {
-    $categories = 
+    View::share('page', $this->page);
   }
 }

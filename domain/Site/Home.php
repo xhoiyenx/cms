@@ -15,14 +15,13 @@ namespace Domain\Site;
 
 use Library\Repository\ProductRepo;
 
-class Dashboard extends BaseController
+class Home extends Base
 {
   public function homepage()
   {
     $view = [
-      'products' => ProductRepo::getData()
     ];
 
-    return view('homepage', $view);
+    return view('home', $view);
   }
 }

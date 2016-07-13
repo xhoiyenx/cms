@@ -24,7 +24,7 @@
   <i class="fa fa-fw fa-file-o"></i>{{ $page }}
   <div class="btn-toolbar pull-right">
     <button type="submit" class="btn btn-success btn-quirk">Save</button>
-    <a href="{{ route('manager.cms.page', ['sub' => Request::get('sub')]) }}" class="btn btn-primary btn-quirk">Cancel</a>
+    <a href="{{ route('manager.cms.page', ['sub' => Request::get('sub')]) }}" class="btn btn-primary btn-quirk">Exit</a>
   </div>  
 </h1>
 @include('inc.messages')

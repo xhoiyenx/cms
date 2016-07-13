@@ -42,7 +42,7 @@ class Theme
   {
     $this->app = $app;
     $this->url = $app['url'];
-    $this->theme = 'shop';
+    $this->theme = 'honako';
   }
 
   /**
