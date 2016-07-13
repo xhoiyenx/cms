@@ -34,4 +34,5 @@
     {{ Form::select('menu', config('cms.menus'), Request::get('menu'), ['class' => 'form-control']) }}
   </div>
 </div>
+@include('inc.messages')
 @endsection

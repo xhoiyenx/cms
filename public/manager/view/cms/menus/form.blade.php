@@ -62,6 +62,10 @@
           <label>Menu:</label>
           {{ Form::select('menu_type', config('cms.menus'), null, ['class' => 'form-control']) }}
         </div>
+        <div class="form-group">
+          <label>Sort:</label>
+          {{ Form::text('sort', null, ['class' => 'form-control']) }}
+        </div>
       </div>
     </div>
 

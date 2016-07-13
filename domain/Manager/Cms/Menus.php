@@ -56,4 +56,25 @@ class Menus extends BaseController
 
   }
 
+  public function save(Request $request)
+  {
+    # validate
+    $this->validate($request, [
+      'menu_name' => 'required'
+    ]);
+
+    # validation passed
+    $data = Menu::findOrNew($request->id);
+    $data->menu_type    = $request->menu_type;
+    $data->menu_name    = $request->menu_name;
+    $data->status  = 'active';
+    $data->menu_parent  = (int) $request->menu_parent;
+
+    $data->menu_link    = $request->menu_link;
+    $data->save();
+
+    # redirect back to list
+    return redirect()->route('manager.cms.menu', ['sub' => $request->menu_parent])->with('message', 'Data updated');
+  }
+
 }
