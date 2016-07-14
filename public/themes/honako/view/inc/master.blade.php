@@ -19,6 +19,18 @@
 
         <!-- site template -->
         <div class="main">
+
+          <div id="honako">
+            <div class="header">
+              <div class="container">
+                
+                <div class="top-bar">
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
           
         </div>
         <!-- site template -->
