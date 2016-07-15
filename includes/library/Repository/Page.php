@@ -74,4 +74,9 @@ class Page
     return $slug;
   }
 
+  static function getList( $type = 'page' )
+  {
+
+  }
+
 }

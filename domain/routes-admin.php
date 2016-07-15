@@ -55,4 +55,11 @@ $router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], functi
   $router->get('pages/{page}/update', 'Pages@form')->name('page.update');
   $router->post('pages/save', 'Pages@save')->name('page.save');
 
+  #
+  # MENUS
+  #
+  $router->any('menus', 'Menus@index')->name('menu');
+  $router->any('menus/create', 'Menus@form')->name('menu.create');
+  $router->post('menus/save', 'Menus@save')->name('menu.save');
+
 });
