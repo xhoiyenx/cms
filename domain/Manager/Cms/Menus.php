@@ -65,8 +65,8 @@ class Menus extends BaseController
 
     $view = [
       'form' => $menu,
-      'menu_type' => MenuRepo::getMenuType(),
-      'page_list'  => PageRepo::all($request, 'page', -1)
+      'menu_type'   => MenuRepo::getMenuType(),
+      'page_list'   => PageRepo::getList('page'),
     ];
 
     return view('cms.menus.form', $view);

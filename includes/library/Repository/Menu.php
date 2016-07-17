@@ -60,6 +60,11 @@ class Menu
     return $list;
   }
 
+  public static function processLink()
+  {
+
+  }
+
   public static function menuTree( $type = null )
   {
 

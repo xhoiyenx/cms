@@ -75,7 +75,7 @@ class Page
 
   static function getList( $type = 'page' )
   {
-
+    return Model::where('page_type', $type)->lists('page_name', 'id');
   }
 
 }

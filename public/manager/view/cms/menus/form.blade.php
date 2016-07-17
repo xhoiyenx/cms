@@ -56,6 +56,12 @@
             {{ Form::text('menu_link', null, ['class' => 'form-control']) }}
           </div>
         </div>
+        <div class="link-types page">
+          <div class="form-group">
+            <label>Page:</label>
+            {{ Form::select('menu_page', $page_list, null, ['class' => 'form-control']) }}
+          </div>          
+        </div>
       </div>
     </div>
 
