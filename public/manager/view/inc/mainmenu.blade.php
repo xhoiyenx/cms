@@ -23,11 +23,11 @@
 
 <h5 class="sidebar-title">CMS</h5>
 <ul class="nav nav-pills nav-stacked nav-quirk">
-  <li class="{!! is_active(['manager.cms.page', 'manager.cms.page.create', 'manager.cms.page.update'], 'active ') !!}">
-    <a href="{{ route('manager.cms.page') }}"><i class="fa fa-list"></i> <span>Page</span></a>
-  </li>
   <li class="{!! is_active(['manager.cms.menu', 'manager.cms.menu.create', 'manager.cms.menu.update'], 'active ') !!}">
     <a href="{{ route('manager.cms.menu') }}"><i class="fa fa-table"></i> <span>Menu</span></a>
+  </li>
+  <li class="{!! is_active(['manager.cms.page', 'manager.cms.page.create', 'manager.cms.page.update'], 'active ') !!}">
+    <a href="{{ route('manager.cms.page') }}"><i class="fa fa-list"></i> <span>Page</span></a>
   </li>
 </ul>
 

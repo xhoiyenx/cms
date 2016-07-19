@@ -28,11 +28,10 @@ class DatabaseSchema
     Schema::dropIfExists('settings');
     Schema::create('settings', function(Blueprint $table) {
 
-      $table->smallIncrements('id');
       $table->string('name', 50)->unique();
       $table->text('value');
       $table->char('autoload', 1)->default('0');
-      $table->timestamps();
+      $table->primary('name');
 
     });
   }
@@ -205,6 +204,8 @@ class DatabaseSchema
 
   public function upgrade()
   {
-    $this->menus();
+    Schema::table('menus', function ($table) {
+      $table->string('link_type', 50)->nullable()->after('menu_link');
+    });
   }
 }

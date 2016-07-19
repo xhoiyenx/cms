@@ -23,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>{{ $page or '' }}</title>
+  <title>{{ $page or '' }} - {{ option('site_title') }}</title>
 
   <!-- FONTS -->
   {{ Html::style('public/manager/assets/css/font-awesome.min.css') }}

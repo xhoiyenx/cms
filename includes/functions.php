@@ -81,3 +81,24 @@ function redactor( $name )
 	</script>
 	<?php
 }
+
+function option( $key, $default = '' )
+{
+  $options = app('options');
+  if ( isset($options[$key]) ) {
+    return $options[$key];
+  }
+  else {
+    if ( $option = DB::table('settings')->where('name', $key)->first() ) {
+      return $option->name;
+    }
+    else {
+      return $default;
+    }
+  }
+}
+
+function update_option( $key, $val, $autoload = '1' )
+{
+  return DB::insert('INSERT INTO settings (name, value, autoload) values (?, ?, ?) ON DUPLICATE KEY UPDATE value = ?', [$key, $val, $autoload, $val]);
+}

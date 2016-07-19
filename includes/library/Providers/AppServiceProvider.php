@@ -16,9 +16,18 @@
  */
 namespace Library\Providers;
 use Illuminate\Support\ServiceProvider;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
+  public function boot()
+  {
+    $this->app->singleton('options', function ($app){
+      $options = DB::table('settings')->where('autoload', 1)->lists('value', 'name');
+      return $options;
+    });
+  }
+
   public function register()
   {
     $this->app->register(MediaServiceProvider::class);

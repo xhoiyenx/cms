@@ -43,11 +43,17 @@
         </div>
         <div class="link-types link">
           <div class="form-group">
-            <label>Url: <span class="required">*</span></label>
+            <label>Link: <span class="required">*</span></label>
             <div class="input-group">
               <div class="input-group-addon">{{ url('/') }}/</div>
               {{ Form::text('menu_link', null, ['class' => 'form-control']) }}
             </div>
+          </div>
+        </div>
+        <div class="link-types external_link">
+          <div class="form-group">
+            <label>Link: <span class="required">*</span></label>
+            {{ Form::text('menu_link', null, ['class' => 'form-control']) }}
           </div>
         </div>
       </div>
@@ -66,6 +72,16 @@
           <label>Sort:</label>
           {{ Form::text('sort', null, ['class' => 'form-control']) }}
         </div>
+        <div class="form-group">
+          <label>Status:</label>
+          {{ Form::select('status', config('cms.menu_status'), null, ['class' => 'form-control']) }}
+        </div>
+        <div class="form-group">
+          <label>Show in new tab:</label>
+          <label class="ckbox">
+            {{ Form::checkbox('new_tab', 1) }}<span>Yes</span>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -77,7 +93,28 @@
 @section('after_footer')
 <script type="text/javascript">
 $(document).ready(function() {
+
+  /**
+   * Show link field depends on selected menu type
+   */
+  var $link_type = $('select[name=link_type]').val();
+  $('.' + $link_type).show();
+  $('.link-types:hidden').find('input').attr('disabled', '');
+
+  $('select[name=link_type]').change(function(event) {
+    $('.link-types').hide();
+    $('.' + $(this).val()).show();
+    $('.link-types:hidden').find('input').attr('disabled', '');
+    $('.' + $(this).val()).find('input').removeAttr('disabled');
+  });
+
+  /**
+   * Focus on menu name onload
+   */
   $('input[name=menu_name]').focus();
+
+
+  $('select').select2();
 });
 </script>
 @endsection

@@ -31,12 +31,7 @@ class Page
       $data->where('page_name', 'LIKE', '%'. $request->search .'%');
     }
 
-    if ( $request->has('sub') ) {
-      $data->where('page_parent', $request->sub);
-    }
-    else {
-      $data->where('page_parent', 0);
-    }
+    $data->where('page_parent', $request->get('sub', 0));
 
     $data->where('page_type', $type);
 
@@ -44,9 +39,13 @@ class Page
     $data->orderBy('sort');
     $data->orderBy('id');
 
-
-    $list = $data->paginate($page);
-    $list->setPath('');
+    if ( $page == '-1' ) {
+      $list = $data->get();
+    }
+    else {
+      $list = $data->paginate($page);
+      $list->setPath('');
+    }
 
     return $list;
   }

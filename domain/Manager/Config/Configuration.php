@@ -25,14 +25,23 @@ class Configuration extends BaseController
   public function index( Request $request, $type = 'general' )
   {
   	if ( $request->isMethod('post') ) {
-  		$this->save();
+  		return $this->save($request);
   	}
-  	
+
+    $this->setPage( ucfirst($type) . ' Settings' );
+
     return view()->make('setting.index');
   }
 
-  private function save()
+  private function save(Request $request)
   {
+    $posts = $request->all();
+    foreach ( $posts as $key => $val ) {
+      if ( $key != '_token' ) {
+        update_option($key, $val);
+      }
+    }
 
+    return back()->with('message', 'Configuration saved');
   }
 }

@@ -56,4 +56,12 @@ class Menu extends Model
     # delete the page
     parent::delete();
   }
+
+  #############
+  # MUTATORS  #
+  #############
+  public function getSortAttribute( $value )
+  {
+    return (int) $value;
+  }
 }

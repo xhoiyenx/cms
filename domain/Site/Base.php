@@ -37,7 +37,7 @@ abstract class Base extends Controller
   private function init()
   {
     # define default view path for manager
-    View::addLocation( public_path('themes/honako/view') );
+    View::addLocation( public_path('themes/' . config('cms.theme')) );
   }
 
   public function setPage( $text )

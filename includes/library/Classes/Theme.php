@@ -40,9 +40,9 @@ class Theme
 
   public function __construct( Application $app )
   {
-    $this->app = $app;
-    $this->url = $app['url'];
-    $this->theme = 'honako';
+    $this->app    = $app;
+    $this->url    = $app['url'];
+    $this->theme  = config('cms.theme');
   }
 
   /**
@@ -56,12 +56,12 @@ class Theme
 
   public function script( $path = '' )
   {
-    return Html::script( $this->theme_url($path) );
+    return Html::script( $this->theme_url($path) . '.js' );
   }
 
   public function style( $path = '' )
   {
-    return Html::style( $this->theme_url($path) );
+    return Html::style( $this->theme_url($path) . '.css' );
   }
 
   public function url( $path = '' )
