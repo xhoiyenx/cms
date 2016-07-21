@@ -56,4 +56,20 @@ class Page extends Model
     # delete the page
     parent::delete();
   }
+
+  #############
+  # LIBRARY   #
+  #############
+  public function getLink()
+  {
+    switch ($this->page_type) {
+      case 'page':
+        return 'page/' . $this->page_slug;
+        break;
+      
+      default:
+        return '';
+        break;
+    }
+  }  
 }

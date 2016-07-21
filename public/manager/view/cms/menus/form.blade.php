@@ -59,7 +59,7 @@
         <div class="link-types page">
           <div class="form-group">
             <label>Page:</label>
-            {{ Form::select('menu_page', $page_list, null, ['class' => 'form-control']) }}
+            {{ Form::select('menu_link', $page_list, null, ['style' => 'width:100%']) }}
           </div>          
         </div>
       </div>
@@ -119,8 +119,16 @@ $(document).ready(function() {
    */
   $('input[name=menu_name]').focus();
 
+  /**
+   * Initialize select2
+   */
+  $('select[name=menu_link]').select2({
+    placeholder: 'Select an option'
+  });
 
-  $('select').select2();
+  $('select.form-control').select2({
+    minimumResultsForSearch: Infinity
+  });
 });
 </script>
 @endsection

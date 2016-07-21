@@ -16,6 +16,7 @@
  */
 namespace Domain\Manager\Cms;
 
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
@@ -63,9 +64,11 @@ class Menus extends BaseController
       $menu->menu_type = MenuRepo::getDefaultMenu();
     }
 
+    dump($menu);
+
     $view = [
       'form' => $menu,
-      'menu_type'   => MenuRepo::getMenuType(),
+      'menu_type'   => MenuRepo::getLinkType(),
       'page_list'   => PageRepo::getList('page'),
     ];
 
@@ -87,12 +90,29 @@ class Menus extends BaseController
     $data->status       = 'active';
     $data->menu_parent  = (int) $request->menu_parent;
 
-    $data->menu_link    = $request->menu_link;
+    $data->menu_link    = MenuRepo::processLink($request->link_type, $request->menu_link);
     $data->link_type    = $request->link_type;
     $data->new_tab      = $request->get('new_tab', 0);
     $data->sort         = $request->sort;
     $data->status       = $request->status;
     $data->save();
+
+    # if link type is not link or external_link
+    # save additional data
+    
+    $link_id = DB::table('menus_meta')->where('meta_key', 'link_id')->where('menu_id', $data->id)->first();
+    if ( ! $link_id ) {
+      DB::table('menus_meta')->insert([
+        'meta_key'  => 'link_id',
+        'menu_id'   => $data->id,
+        'meta_val'  => $request->menu_link
+      ]);
+    }
+    else {
+      DB::table('menus_meta')->where('meta_key', 'link_id')->where('menu_id', $data->id)->update([
+        'meta_val'  => $request->menu_link
+      ]);
+    }
 
     # redirect back to list
     return redirect()->route('manager.cms.menu', ['sub' => $request->menu_parent])->with('message', 'Data updated');

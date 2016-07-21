@@ -141,6 +141,7 @@ class DatabaseSchema
     Schema::create('menus_meta', function(Blueprint $table) {
 
       $table->increments('id');
+      $table->unsignedMediumInteger('menu_id');
       $table->string('meta_key', 100);
       $table->text('meta_val');
 

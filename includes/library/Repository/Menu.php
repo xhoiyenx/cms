@@ -19,10 +19,11 @@ namespace Library\Repository;
 
 use Illuminate\Http\Request;
 use Library\Model\Menu as Model;
+use Library\Model\Page;
 
 class Menu
 {
-  public static function getMenuType()
+  public static function getLinkType()
   {
     $type = [
       'link' => 'Link',
@@ -60,9 +61,26 @@ class Menu
     return $list;
   }
 
-  public static function processLink()
+  /**
+   * Process link based on submitted link type and value
+   * @param  [string] $link_type [link type as described on getLinkType]
+   * @param  [string] $value     [submitted link value]
+   * @return [string] processed link
+   */
+  public static function processLink( $link_type, $value )
   {
-
+    # for link type [link and external_link] no need to process because as it is
+    switch ($link_type) {
+      # process CMS Page type
+      case 'page':
+        $page = Page::findOrNew($value);
+        return $page->getLink();
+        break;
+      
+      default:
+        return $value;
+        break;
+    }
   }
 
   public static function menuTree( $type = null )

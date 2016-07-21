@@ -16,6 +16,8 @@
  */
 
 namespace Library\Model;
+
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
@@ -63,5 +65,13 @@ class Menu extends Model
   public function getSortAttribute( $value )
   {
     return (int) $value;
+  }
+
+  public function setMenuLinkAttribute( $value )
+  {
+    if ( $this->link_type != 'link' OR $this->link_type != 'external_link') {
+      $link_id = DB::table('menus_meta')->where('meta_key', 'link_id')->where('menu_id', $this->id)->first();
+      $this->attributes['menu_link'] = $link_id->meta_val;
+    }
   }
 }
