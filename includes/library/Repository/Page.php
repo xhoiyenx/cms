@@ -78,4 +78,12 @@ class Page
     return Model::where('page_type', $type)->lists('page_name', 'id');
   }
 
+  static function getSelect( $type = 'page' )
+  {
+    $collection = static::getList($type);
+    $collection->prepend( 'Select Page', '' );
+
+    return $collection;
+  }
+
 }

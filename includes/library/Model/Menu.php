@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
+  protected $appends = ['meta'];
+
   /**
    * Menu children
    * @return Collection
@@ -55,7 +57,10 @@ class Menu extends Model
       }
     }
 
-    # delete the page
+    # delete menu meta
+    DB::table('menus_meta')->where('menu_id', $this->id)->delete();
+
+    # delete the menu
     parent::delete();
   }
 
@@ -67,11 +72,8 @@ class Menu extends Model
     return (int) $value;
   }
 
-  public function setMenuLinkAttribute( $value )
+  public function getMetaAttribute()
   {
-    if ( $this->link_type != 'link' OR $this->link_type != 'external_link') {
-      $link_id = DB::table('menus_meta')->where('meta_key', 'link_id')->where('menu_id', $this->id)->first();
-      $this->attributes['menu_link'] = $link_id->meta_val;
-    }
+    return DB::table('menus_meta')->where('menu_id', $this->id)->lists('meta_val', 'meta_key');
   }
 }

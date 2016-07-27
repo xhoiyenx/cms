@@ -22,6 +22,7 @@ use Illuminate\Support\MessageBag;
 
 use Domain\Manager\BaseController;
 use Library\Model\Menu;
+use Library\Model\Page;
 use Library\Repository\Menu as MenuRepo;
 use Library\Repository\Page as PageRepo;
 
@@ -52,6 +53,8 @@ class Menus extends BaseController
   {
     $this->setPage('Create Menu');
 
+
+
     if ( !$menu->exists ) {
       $menu->menu_parent = $request->sub;
     }
@@ -64,13 +67,12 @@ class Menus extends BaseController
       $menu->menu_type = MenuRepo::getDefaultMenu();
     }
 
-    dump($menu);
-
     $view = [
-      'form' => $menu,
+      'form'        => $menu,
       'menu_type'   => MenuRepo::getLinkType(),
-      'page_list'   => PageRepo::getList('page'),
+      'page_list'   => new PageRepo,
     ];
+
 
     return view('cms.menus.form', $view);
 
@@ -90,33 +92,58 @@ class Menus extends BaseController
     $data->status       = 'active';
     $data->menu_parent  = (int) $request->menu_parent;
 
-    $data->menu_link    = MenuRepo::processLink($request->link_type, $request->menu_link);
+    $data->menu_link    = $request->menu_link;
     $data->link_type    = $request->link_type;
     $data->new_tab      = $request->get('new_tab', 0);
     $data->sort         = $request->sort;
     $data->status       = $request->status;
     $data->save();
 
-    # if link type is not link or external_link
-    # save additional data
+    # save menu metadata
+    foreach ( $request->meta as $meta_key => $meta_val )
+    {
+      $meta = DB::table('menus_meta')->where('meta_key', $meta_key)->where('menu_id', $data->id)->first();
+      if ( ! $meta ) {
+        DB::table('menus_meta')->insert([
+          'meta_key'  => $meta_key,
+          'menu_id'   => $data->id,
+          'meta_val'  => $meta_val
+        ]);
+      }
+      else {
+        DB::table('menus_meta')->where('meta_key', $meta_key)->where('menu_id', $data->id)->update([
+          'meta_val'  => $meta_val
+        ]);
+      }
+    }
     
-    $link_id = DB::table('menus_meta')->where('meta_key', 'link_id')->where('menu_id', $data->id)->first();
-    if ( ! $link_id ) {
-      DB::table('menus_meta')->insert([
-        'meta_key'  => 'link_id',
-        'menu_id'   => $data->id,
-        'meta_val'  => $request->menu_link
-      ]);
-    }
-    else {
-      DB::table('menus_meta')->where('meta_key', 'link_id')->where('menu_id', $data->id)->update([
-        'meta_val'  => $request->menu_link
-      ]);
-    }
-
     # redirect back to list
     return redirect()->route('manager.cms.menu', ['sub' => $request->menu_parent])->with('message', 'Data updated');
   }
+
+  /**
+   * Handle ajax requests
+   * @param  Request $request [description]
+   * @return void
+   */
+  public function ajax(Request $request)
+  {
+    if ( ! $request->ajax() ) {
+      abort(402);
+    }
+
+    switch ($request->action) {
+      case 'page':
+        $page = Page::find($request->id);
+        return $page->getLink();
+        break;
+      
+      default:
+        # code...
+        break;
+    }
+
+  }  
 
   /**
    * Generate breadcrumb for sub-menu
@@ -146,6 +173,6 @@ class Menus extends BaseController
     $breadcrumb = array_values($breadcrumb);
 
     return $breadcrumb;
-  }  
+  }
 
 }

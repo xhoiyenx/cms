@@ -17,6 +17,7 @@
 
 namespace Library\Exceptions;
 
+use View;
 use Exception;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
@@ -68,12 +69,12 @@ class Handler extends ExceptionHandler
       # administrators
       if ( $request->is('manager/*') ) {
         # define default view path for manager
-        view()->addLocation( public_path('manager/view') );
+        View::addLocation( public_path('manager/view') );
         return response()->view('inc.404');
       }
       # front
       else {
-
+        return (new \Domain\Site\Base(app()))->error();
       }
     }
 

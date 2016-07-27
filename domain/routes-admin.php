@@ -62,5 +62,6 @@ $router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], functi
   $router->any('menus/create', 'Menus@form')->name('menu.create');
   $router->get('menus/{menu}/update', 'Menus@form')->name('menu.update');
   $router->post('menus/save', 'Menus@save')->name('menu.save');
+  $router->post('menus/ajax', 'Menus@ajax')->name('menu.ajax');
 
 });

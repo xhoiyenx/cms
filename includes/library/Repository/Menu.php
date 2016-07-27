@@ -27,7 +27,6 @@ class Menu
   {
     $type = [
       'link' => 'Link',
-      'external_link' => 'External Link',
       'page' => 'Page'
     ];
 
@@ -40,11 +39,18 @@ class Menu
     return key($menu);
   }
 
-  public static function all( Request $request = null, $type = 'page', $page = 20 )
+  public static function all( Request $request = null, $type = 'main_menu', $page = 20 )
   {
     $data = Model::query();
 
-    $data->where('menu_parent', $request->get('sub', 0));
+    if ( $request )
+    {
+      $data->where('menu_parent', $request->get('sub', 0));
+    }
+    else
+    {
+      $data->where('menu_parent', 0);
+    }
 
     # default sort
     $data->orderBy('sort');
