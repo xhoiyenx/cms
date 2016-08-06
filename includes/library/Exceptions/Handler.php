@@ -74,7 +74,7 @@ class Handler extends ExceptionHandler
       }
       # front
       else {
-        return (new \Domain\Site\Base(app()))->error();
+        # no need to return error on front site
       }
     }
 

@@ -43,24 +43,16 @@ class DatabaseSchema
     Schema::create('product', function(Blueprint $table) {
 
       $table->mediumIncrements('id');
-      $table->unsignedMediumInteger('parent')->default(0);
-      $table->string('sku', 100)->unique()->nullable();
       $table->string('name', 200);
       $table->text('description')->nullable();
+      $table->text('short_description')->nullable();
       $table->decimal('price', 10, 2)->default('0.00');
       $table->enum('use_stock', ['n', 'y'])->default('n');
-      $table->unsignedSmallInteger('qty_stock')->default(0);
+      $table->unsignedMediumIncrements('qty_stock')->default(0);
       $table->string('status', 10)->default('draft');
       $table->timestamps();
 
     });
-
-    # products
-    Schema::dropIfExists('product_detail');
-    Schema::dropIfExists('product_category');
-    Schema::dropIfExists('product_to_category');
-    Schema::dropIfExists('product_taxonomy');
-    Schema::dropIfExists('product_attribute');
 
     # product media
     Schema::dropIfExists('product_media');
