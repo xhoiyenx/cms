@@ -20,12 +20,12 @@ namespace Domain\Manager\Auth;
 use Auth;
 use Illuminate\Http\Request;
 use Domain\Manager\BaseController;
+use Library\Model\Manager;
 
 class Authentication extends BaseController
 {
-  public function __construct()
+  public function init()
   {
-    parent::__construct();
   }
 
   public function login( Request $request )

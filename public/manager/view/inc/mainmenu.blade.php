@@ -31,7 +31,31 @@
   </li>
 </ul>
 
+<h5 class="sidebar-title">CATALOG</h5>
 <ul class="nav nav-pills nav-stacked nav-quirk">
+  <li>
+    <a href="{{ route('manager.catalog.product') }}">Products</a>
+  </li>
+  <li class="nav-parent">
+    <a href="#">Settings</a>
+    <ul class="children">
+      <li>
+        <a href="#">Categories</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+<ul class="nav nav-pills nav-stacked nav-quirk">
+  <li class="{!! is_active(['manager.user.administrator', 'manager.user.administrator.roles'], 'active ') !!}nav-parent">
+    <a href="#"><i class="fa fa-users"></i> <span>Users</span></a>
+    <ul class="children">
+      <li class="{!! is_active(['manager.user.administrator', 'manager.user.administrator.roles'], 'active ') !!}">
+        <a href="{{ route('manager.user.administrator') }}">Administrators</a>
+      </li>
+    </ul>
+  </li>
   <li class="{!! is_active(['manager.configuration'], 'active ') !!}nav-parent">
     <a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a>
     <ul class="children">

@@ -26,7 +26,7 @@
   <title>Administrator Login</title>
 
   <!-- FONTS -->
-  {{ Html::style('public/manager/assets/css/font-awesome.css') }}
+  {{ Html::style('public/manager/assets/css/font-awesome.min.css') }}
   {{ Html::style('public/manager/assets/css/font.css') }}
 
   <!-- CORE -->

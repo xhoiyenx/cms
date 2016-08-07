@@ -42,6 +42,8 @@ $router->group(['namespace' => 'Config'], function($router) {
   $router->any('configuration/{type?}', 'Configuration@index')->name('configuration');
 });
 
+
+
 #
 # CMS
 #
@@ -63,5 +65,30 @@ $router->group(['namespace' => 'Cms', 'prefix' => 'cms', 'as' => 'cms.'], functi
   $router->get('menus/{menu}/update', 'Menus@form')->name('menu.update');
   $router->post('menus/save', 'Menus@save')->name('menu.save');
   $router->post('menus/ajax', 'Menus@ajax')->name('menu.ajax');
+
+});
+
+#
+# CATALOG
+#
+$router->group(['namespace' => 'Catalog', 'prefix' => 'catalog', 'as' => 'catalog.'], function($router) {
+
+  #
+  # PRODUCTS
+  #
+  $router->any('product', 'ProductsController@index')->name('product');
+
+});
+
+#
+# CATALOG
+#
+$router->group(['namespace' => 'User', 'prefix' => 'user', 'as' => 'user.'], function($router) {
+
+  #
+  # ADMINISTRATORS
+  #
+  $router->any('administrator', 'ManagersController@index')->name('administrator');
+  $router->any('administrator/roles', 'ManagerRolesController@index')->name('administrator.roles');
 
 });

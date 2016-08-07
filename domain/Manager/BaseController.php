@@ -15,23 +15,26 @@
 namespace Domain\Manager;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
 
 abstract class BaseController extends Controller
 {
   use ValidatesRequests;
 
   protected $page;
+  protected $view = [];
   
   public function __construct()
   {
     $this->init();
+    $this->call();
   }
 
   /**
    * Set framework settings for manager domain
    * @return void
    */
-  private function init()
+  private function call()
   {
     # define default view path for manager
     view()->addLocation( public_path('manager/view') );
@@ -47,7 +50,10 @@ abstract class BaseController extends Controller
       ]
     ]);
 
+    view()->share($this->view);
   }
+
+  abstract protected function init();
 
   public function setPage( $text )
   {
