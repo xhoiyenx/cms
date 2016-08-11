@@ -34,18 +34,17 @@ class ManagerRolesController extends BaseController
       }
     }
 
-  }
-
-  public function index(Request $request)
-  {
-    $this->setPage('Administrator Roles');
-
     $this->view += [
+      'page' => 'Administrator Roles',
       'form' => ManagerRole::findOrNew($request->get('edit')),
       'list' => ManagerRoleRepo::all(),
     ];
 
-    return view('user.administrator.role', $this->view);
+  }
+
+  public function index(Request $request)
+  {
+    return view('user.administrator.role');
   }
 
   private function save($request)
@@ -60,7 +59,7 @@ class ManagerRolesController extends BaseController
     $role->is_admin = $request->get('is_admin', 0);
     $role->save();
 
-    $request->session()->flash('message', 'Administrator role data saved');
+    redirect()->to($request->url())->with('message', 'Administrator role data saved')->send();
 
   }
 }

@@ -16,6 +16,11 @@ namespace Domain\Manager;
 
 class Dashboard extends BaseController
 {
+  public function init()
+  {
+
+  }
+  
   public function index()
   {
   	$this->setPage('Dashboard');

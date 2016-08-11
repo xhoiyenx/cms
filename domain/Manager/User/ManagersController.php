@@ -25,11 +25,12 @@ class ManagersController extends BaseController
   {
 
     $request = request();
+
     # on submit
     if ( $request->isMethod('POST') ) {
       # save request
       if ( $request->has('save') ) {
-        $this->save($request);
+        return $this->save($request);
       }
     }
 
@@ -86,9 +87,7 @@ class ManagersController extends BaseController
 
     $admin->save();
 
-    return redirect()->back()->with('message', 'Administrator data saved');
-
-    #$request->session()->flash('message', 'Administrator data saved');
+    return redirect()->to($request->url())->with('message', 'Administrator data saved')->send();
 
   }
 }

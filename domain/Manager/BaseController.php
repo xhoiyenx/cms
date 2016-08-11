@@ -26,16 +26,6 @@ abstract class BaseController extends Controller
   
   public function __construct()
   {
-    $this->init();
-    $this->call();
-  }
-
-  /**
-   * Set framework settings for manager domain
-   * @return void
-   */
-  private function call()
-  {
     # define default view path for manager
     view()->addLocation( public_path('manager/view') );
 
@@ -50,6 +40,16 @@ abstract class BaseController extends Controller
       ]
     ]);
 
+    $this->init();
+    $this->view();
+  }
+
+  /**
+   * Set framework settings for manager domain
+   * @return void
+   */
+  private function view()
+  {
     view()->share($this->view);
   }
 
