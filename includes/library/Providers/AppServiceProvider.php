@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
   public function register()
   {
+    $this->app->register(AuthServiceProvider::class);
     $this->app->register(MediaServiceProvider::class);
     $this->app->register(ThemeServiceProvider::class);
   }
