@@ -22,10 +22,19 @@ use Library\Repository\ManagerRoleRepo;
 
 class ManagerRolesController extends BaseController
 {
-  protected function init()
+  private $permissions = [
+    [
+      'title' => 'Administrators',
+      'value' => [
+        'ManagersController' => 'Administrators',
+        'ManagerRolesController' => 'Administrator Roles',
+      ]
+    ]
+  ];
+
+  protected function init(Request $request = null)
   {
 
-    $request = request();
     # on submit
     if ( $request->isMethod('POST') ) {
       # save request
@@ -38,6 +47,7 @@ class ManagerRolesController extends BaseController
       'page' => 'Administrator Roles',
       'form' => ManagerRole::findOrNew($request->get('edit')),
       'list' => ManagerRoleRepo::all(),
+      'perm' => $this->permissions
     ];
 
   }
@@ -56,7 +66,11 @@ class ManagerRolesController extends BaseController
     ]);
 
     $role->manager_name = $request->manager_name;
-    $role->is_admin = $request->get('is_admin', 0);
+    $role->is_admin     = $request->get('is_admin', 0);
+
+    if ( $request->permissions )
+      $role->permissions  = implode(',', $request->permissions);
+
     $role->save();
 
     redirect()->to($request->url())->with('message', 'Administrator role data saved')->send();

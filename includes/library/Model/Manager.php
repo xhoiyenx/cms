@@ -20,4 +20,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Manager extends Authenticatable
 {
+  public function role()
+  {
+    return $this->belongsTo(ManagerRole::class, 'manager_role_id');
+  }
 }

@@ -13,10 +13,11 @@
  */
 
 namespace Domain\Manager;
+use Illuminate\Http\Request;
 
 class Dashboard extends BaseController
 {
-  public function init()
+  public function init(Request $request = null)
   {
 
   }

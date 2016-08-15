@@ -20,4 +20,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ManagerRole extends Model
 {
+
+  public function managers()
+  {
+    return $this->hasMany('Manager');
+  }
+
+  #############
+  # MUTATORS  #
+  #############
+  public function getPermissionsAttribute( $value )
+  {
+    return explode(',', $value);
+  }
+
 }

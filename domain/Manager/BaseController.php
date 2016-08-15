@@ -23,6 +23,7 @@ abstract class BaseController extends Controller
 
   protected $page;
   protected $view = [];
+  protected $name;
   
   public function __construct()
   {
@@ -40,7 +41,11 @@ abstract class BaseController extends Controller
       ]
     ]);
 
-    $this->init();
+    #global values
+    $this->name = last( explode('\\', get_class($this)) );
+    $this->view['permission_name'] = $this->name;
+
+    $this->init(request());
     $this->view();
   }
 
@@ -53,7 +58,7 @@ abstract class BaseController extends Controller
     view()->share($this->view);
   }
 
-  abstract protected function init();
+  abstract protected function init(Request $request = null);
 
   public function setPage( $text )
   {

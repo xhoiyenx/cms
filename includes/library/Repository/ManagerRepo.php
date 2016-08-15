@@ -24,7 +24,7 @@ class ManagerRepo
 {
   static function all( $page = 20 )
   {
-    $data = Model::query();
+    $data = Model::with('role');
 
     # default sort
     $data->orderBy('id');

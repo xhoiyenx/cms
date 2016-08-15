@@ -21,11 +21,9 @@ use Library\Repository\ManagerRepo;
 
 class ManagersController extends BaseController
 {
-  protected function init()
+  protected function init(Request $request = null)
   {
-
-    $request = request();
-
+    
     # on submit
     if ( $request->isMethod('POST') ) {
       # save request
@@ -34,20 +32,12 @@ class ManagersController extends BaseController
       }
     }
 
-    $this->view['page'] = 'Administrators';
-
-    # show administrators list
-    $this->view['list'] = ManagerRepo::all();
-
-    # show administrators select group
-    $this->view['role'] = ManagerRole::pluck('manager_name', 'id');
-
-    if ( $request->has('edit') ) {
-      $this->view['form'] = Manager::find( $request->edit );
-    }
-    else {
-      $this->view['form'] = new Manager;
-    }
+    $this->view += [
+      'page' => 'Administrators',
+      'list' => ManagerRepo::all(),
+      'role' => ManagerRole::pluck('manager_name', 'id'),
+      'form' => Manager::findOrNew( $request->edit )
+    ];
 
   }
 
@@ -81,6 +71,7 @@ class ManagersController extends BaseController
 
     $admin->usermail = $request->usermail;
     $admin->username = $request->username;
+    $admin->manager_role_id = $request->manager_role_id;
 
     if ( $request->has('password'))
       $admin->password = bcrypt($request->password);

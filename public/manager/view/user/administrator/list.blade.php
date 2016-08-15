@@ -68,6 +68,7 @@
           <th class="cbox"><input type="checkbox" class="checkall"></th>
           <th>e-mail</th>
           <th>username</th>
+          <th>role</th>
         </tr>
       </thead>
       <tbody>
@@ -80,6 +81,9 @@
           </td>
           <td>
             {{ $data->username }}
+          </td>
+          <td>
+            {{ $data->role->manager_name }}
           </td>      
         </tr>
         @empty

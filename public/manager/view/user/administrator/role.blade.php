@@ -40,6 +40,31 @@
             {{ Form::checkbox('is_admin', null) }}<span>Administrator</span>
           </label>
         </div>
+        <div>Permissions:</div>
+        <div class="panel-group" id="roles">
+        @foreach ( $perm as $permissions )
+          <div class="panel">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#roles" href="#collapseOne2">
+                  {{ $permissions['title'] }}
+                </a>
+              </h4>
+            </div>
+            <div aria-expanded="false" id="collapseOne2" class="panel-collapse collapse">
+              <div class="panel-body">
+              @foreach ($permissions['value'] as $key => $permission)
+                <div class="form-group">
+                  <label class="ckbox">
+                    {{ Form::checkbox('permissions[]', $key) }}<span>{{ $permission }}</span>
+                  </label>
+                </div>
+              @endforeach
+              </div>
+            </div>
+          </div>
+        @endforeach
+        </div>
         <button type="submit" name="save" value="1" class="btn btn-success btn-quirk">Save</button> 
         <a class="btn btn-default btn-quirk pull-right" href="{{ Request::url() }}">Cancel</a>
       </div>

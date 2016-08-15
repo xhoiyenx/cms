@@ -24,7 +24,7 @@ use Library\Model\Manager;
 
 class Authentication extends BaseController
 {
-  public function init()
+  public function init(Request $request = null)
   {
   }
 
