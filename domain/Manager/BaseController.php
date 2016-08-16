@@ -24,6 +24,7 @@ abstract class BaseController extends Controller
   protected $page;
   protected $view = [];
   protected $name;
+  protected $menu;
   
   public function __construct()
   {

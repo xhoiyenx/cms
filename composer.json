@@ -16,7 +16,8 @@
         "psr-4": {
             "Library\\": "includes/library/",
             "Core\\": "includes/core/",
-            "Domain\\": "domain/"
+            "Domain\\": "domain/",
+            "Modules\\": "modules/"
         }
     },
     "scripts": {

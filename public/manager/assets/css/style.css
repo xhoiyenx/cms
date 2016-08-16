@@ -1731,7 +1731,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 @media (max-width:480px) {
   .panel-group .panel > .panel-heading .panel-title { line-height: 18px; }
 }
-.panel-group .panel > .panel-heading .panel-title > a { display: block; position: relative; padding: 18px 20px 15px; color: #505b72; color: #259dab; background-color: #fff; -webkit-transition: all 0.2s ease-out 0s; -o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s; }
+.panel-group .panel > .panel-heading .panel-title > a { display: block; position: relative; padding: 15px 20px; color: #505b72; color: #259dab; background-color: #fff; -webkit-transition: all 0.2s ease-out 0s; -o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s; }
 .panel-group .panel > .panel-heading .panel-title > a:hover, .panel-group .panel > .panel-heading .panel-title > a:focus { color: #259dab; }
 .panel-group .panel > .panel-heading .panel-title > a:after { content: '\f078'; font-family: 'FontAwesome'; font-size: 11px; font-weight: normal; color: #9fa8bc; position: absolute; top: 15px; right: 20px; display: none; }
 .panel-group .panel > .panel-heading .panel-title > a.collapsed { padding: 15px 20px; color: #505b72; }

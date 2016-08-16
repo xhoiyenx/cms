@@ -37,13 +37,12 @@
         </div>
         <div class="form-group">
           <label class="ckbox">
-            {{ Form::checkbox('is_admin', null) }}<span>Administrator</span>
+            {{ Form::checkbox('is_admin', null) }}<span>Super Administrator</span>
           </label>
         </div>
-        <div>Permissions:</div>
         <div class="panel-group" id="roles">
         @foreach ( $perm as $permissions )
-          <div class="panel">
+          <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
                 <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#roles" href="#collapseOne2">
