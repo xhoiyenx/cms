@@ -16,6 +16,7 @@ class Authenticate
    */
   public function handle($request, Closure $next, $guard = null)
   {
+    
     if (auth()->getDefaultDriver() == 'manager')
     {
       if (auth()->guest()) {
