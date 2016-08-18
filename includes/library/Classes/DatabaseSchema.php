@@ -122,6 +122,7 @@ class DatabaseSchema
       $table->string('menu_type', 50);
       $table->string('menu_name', 50);
       $table->text('menu_link');
+      $table->string('link_type', 50)->nullable();
       $table->boolean('new_tab')->default(0);
       $table->string('status', 20)->default('enabled');
       $table->tinyInteger('sort')->default(0);
@@ -140,7 +141,7 @@ class DatabaseSchema
     });
   }
 
-  public function items()
+  public function catalog()
   {
     Schema::dropIfExists('products');
     Schema::create('products', function(Blueprint $table) {
@@ -191,14 +192,11 @@ class DatabaseSchema
   {
     $this->managers();
     $this->settings();
-    $this->pages();
-    $this->menus();    
+    #$this->pages();
+    #$this->menus();    
   }
 
   public function upgrade()
   {
-    Schema::table('menus', function ($table) {
-      $table->string('link_type', 50)->nullable()->after('menu_link');
-    });
   }
 }
