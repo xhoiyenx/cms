@@ -12,39 +12,20 @@
  * Dashboard page
  */
 
-namespace Domain\Manager;
+namespace Domain\Manager\App;
+use Domain\Manager\BaseController;
 use Illuminate\Http\Request;
-use Event;
 
 class Dashboard extends BaseController
 {
   public function init(Request $request = null)
   {
     $this->view['page'] = 'Dashboard';
-
-    Event::listen('admin.menu', function($menu) {
-
-      $menu[20] = ['foo'];
-
-      return $menu;
-
-    }, 10);
-
-    Event::listen('admin.menu', function($menu) {
-
-      $menu[30] = ['foo'];
-
-      return $menu;
-
-    }, 15);
   }
   
   public function index()
   {
     # test filter
-    
-
-
     return view('dashboard');
   }
 }

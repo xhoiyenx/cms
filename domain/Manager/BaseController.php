@@ -16,7 +16,6 @@ namespace Domain\Manager;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Event;
 
 abstract class BaseController extends Controller
 {
@@ -48,7 +47,6 @@ abstract class BaseController extends Controller
     $this->view['permission_name'] = $this->name;
 
     $this->init(request());
-    $this->init_menu();
     $this->view();
   }
 
@@ -59,22 +57,6 @@ abstract class BaseController extends Controller
   private function view()
   {
     view()->share($this->view);
-  }
-
-  private function init_menu()
-  {
-    # integer array key as menu position, in 20 increments by default
-    $menu = [
-      
-      10 => [
-        'type' => 'link',
-        'name' => 'Dashboard',
-        'link' => route('manager.dashboard'),
-        'icon' => 'fa-home'
-      ],
-
-    ];
-
   }
 
   abstract protected function init(Request $request = null);

@@ -15,7 +15,7 @@
  * Dashboard page
  */
 
-namespace Domain\Manager\Auth;
+namespace Domain\Manager\App;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -41,7 +41,7 @@ class Authentication extends BaseController
         return redirect()->intended( route('manager.dashboard') );
       }
       else {
-        return back()->withErrors('Login Failed');
+        return back()->withErrors('Login attempt failed');
       }
     }
 

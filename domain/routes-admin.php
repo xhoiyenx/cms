@@ -15,10 +15,16 @@
  * All administrator routes assigned here
  */
 
+
 #
-# Dashboard
+# Default pages
 #
-$router->get('/', 'Dashboard@index')->name('dashboard');
+$router->group(['namespace' => 'App'], function($router) {
+  $router->get('/', 'Dashboard@index')->name('dashboard');
+  $router->any('login', 'Authentication@login')->name('login'); # login page
+  $router->get('logout', 'Authentication@logout')->name('logout'); #logout page
+});
+
 
 #
 # Media
@@ -27,13 +33,6 @@ $router->group(['namespace' => 'Media', 'prefix' => 'media', 'as' => 'media.'], 
   $router->post('upload/{type}', 'Upload@index')->name('upload');
 });
 
-#
-# Auth pages
-#
-$router->group(['namespace' => 'Auth'], function($router) {
-  $router->any('login', 'Authentication@login')->name('login'); # login page
-  $router->get('logout', 'Authentication@logout')->name('logout'); #logout page
-});
 
 #
 # Configuration pages
